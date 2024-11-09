@@ -1,0 +1,235 @@
+/* Reset some basic styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f9fb; /* Light background for the page */
+}
+
+/* Header */
+.header {
+    background: linear-gradient(to right, #004c99, #00bfae); /* Degradado de azul oscuro a verde claro */
+    color: white;
+    text-align: center;
+    padding: 50px 20px; /* Aumentar el padding para que haya más espacio */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave debajo del header */
+}
+
+.header h1 {
+    font-size: 4em; /* Mayor tamaño de fuente */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente moderna */
+    font-weight: 700; /* Hacer el título más grueso */
+    margin-bottom: 15px;
+    letter-spacing: 2px; /* Espaciado entre letras */
+    text-transform: uppercase; /* Convertir a mayúsculas */
+}
+
+.header p {
+    font-size: 2em; /* Aumento del tamaño del texto */
+    font-family: 'Arial', sans-serif; /* Fuente sencilla pero elegante */
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 20px; /* Más espacio debajo del párrafo */
+    letter-spacing: 1px; /* Espaciado entre letras */
+    opacity: 0.9; /* Un toque de transparencia */
+}
+
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(to right, #004c99, #00bfae); /* Degradado de azul oscuro a verde claro */
+    padding: 15px 20px; /* Espaciado superior e inferior */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.navbar-brand {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.8em; /* Mayor tamaño para la marca */
+    letter-spacing: 1px; /* Espaciado entre letras */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente moderna */
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease; /* Transición suave en el cambio de color */
+}
+
+.navbar-logo {
+    width: 250px; /* Aumentado el tamaño del logo */
+    margin-right: 15px; /* Espacio entre el logo y el texto */
+}
+
+.navbar-brand:hover {
+    color: #00bfae; /* Cambio de color al hacer hover */
+}
+
+.navbar-nav {
+    list-style: none;
+    display: flex;
+    gap: 25px; /* Espacio entre los enlaces */
+}
+
+.navbar-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em; /* Tamaño de fuente mayor */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    transition: color 0.3s ease; /* Transición suave para el hover */
+}
+
+.navbar-nav a:hover {
+    color: #00bfae; /* Color verde claro al hacer hover */
+    border-bottom: 2px solid #00bfae; /* Subrayado al hacer hover */
+}
+
+/* Banner */
+.banner {
+    background: url('banner.jpg') no-repeat center center;
+    background-size: cover;
+    height: 100px; /* Aumentada la altura del banner */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    background-color: #00bfae; /* Verde claro para el banner */
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 30px;
+}
+
+.text-center {
+    text-align: center;
+    margin: 30px 0; /* Aumentado el espacio entre los títulos y contenido */
+}
+
+/* Category Cards */
+.category-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px; /* Aumentado el espacio entre categorías */
+}
+
+.category {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    width: 250px; /* Aumentado el tamaño de las categorías */
+    padding: 30px; /* Aumentado el padding */
+    border: 1px solid #ddd;
+    border-radius: 12px; /* Aumento de radio para bordes más redondeados */
+    box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    background-color: #fff; /* Fondo blanco para categorías */
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-top: 6px solid #00bfae; /* Verde claro en el borde superior */
+}
+
+.category:hover {
+    transform: scale(1.1); /* Aumentada la escala del hover */
+    box-shadow: 0px 8px 22px rgba(0, 0, 0, 0.25); /* Sombra más grande al hacer hover */
+}
+
+.category img {
+    width: 100px; /* Aumentado el tamaño de la imagen */
+    height: 100px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+.category p {
+    color: #333;
+    font-weight: bold;
+    font-size: 1.2em; /* Aumentado el tamaño de texto */
+}
+
+/* Product Cards */
+.product-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px; /* Aumentado el espacio entre productos */
+}
+
+.product {
+    width: 280px; /* Aumentado el tamaño de las tarjetas de producto */
+    padding: 30px; /* Aumentado el padding */
+    border: 1px solid #ddd;
+    border-radius: 12px; /* Aumento de radio para bordes más redondeados */
+    box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    text-align: center;
+    background-color: #fff;
+    transition: transform 0.3s;
+    border-top: 6px solid #00bfae; /* Verde claro en el borde superior */
+}
+
+.product:hover {
+    transform: scale(1.1); /* Aumentada la escala del hover */
+}
+
+.product img {
+    width: 100%;
+    height: 220px; /* Aumentada la altura de la imagen */
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.product h5 {
+    color: #004c99; /* Azul oscuro */
+    font-weight: bold;
+    margin: 20px 0;
+    font-size: 1.5em; /* Aumentado el tamaño del título */
+}
+
+.product p {
+    font-size: 1.5em; /* Aumentada el tamaño del precio */
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.product button {
+    padding: 12px 24px; /* Aumentado el tamaño del botón */
+    background-color: #00bfae; /* Verde claro para los botones */
+    color: white;
+    border: none;
+    border-radius: 6px; /* Bordes más redondeados */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product button:hover {
+    background-color: #009f8a; /* Verde más oscuro en hover */
+}
+
+/* Footer */
+.footer {
+    background-color: #004c99; /* Azul oscuro */
+    color: white;
+    text-align: center;
+    padding: 30px;
+    margin-top: 30px;
+}
+
+.footer p {
+    font-size: 1.2em; /* Aumentado el tamaño del texto en el pie de página */
+}

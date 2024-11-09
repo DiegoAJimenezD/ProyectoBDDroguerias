@@ -1,0 +1,111 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f9fb; /* Light background for the page */
+}
+
+/* Header con degradado */
+header {
+    background: linear-gradient(to right, #004c99, #00bfae); /* Degradado de azul oscuro a verde claro */
+    color: white;
+    text-align: center;
+    padding: 50px 20px; /* Aumentar el padding para que haya más espacio */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave debajo del header */
+}
+
+/* Título del header */
+header h1 {
+    font-size: 4em; /* Mayor tamaño de fuente */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente moderna */
+    font-weight: 700; /* Hacer el título más grueso */
+    margin-bottom: 15px;
+    letter-spacing: 2px; /* Espaciado entre letras */
+    text-transform: uppercase; /* Convertir a mayúsculas */
+}
+
+/* Párrafo del header (si decides agregar algún texto debajo del título) */
+header p {
+    font-size: 2em; /* Aumento del tamaño del texto */
+    font-family: 'Arial', sans-serif; /* Fuente sencilla pero elegante */
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 20px; /* Más espacio debajo del párrafo */
+    letter-spacing: 1px; /* Espaciado entre letras */
+    opacity: 0.9; /* Un toque de transparencia */
+}
+
+/* Menú de navegación */
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+/* Tabla */
+table {
+    width: 80%; /* Reducir el ancho de la tabla */
+    margin: 20px auto; /* Centrar la tabla horizontalmente */
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+th, td {
+    padding: 12px; /* Reducir el espaciado en las celdas */
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #004c99;
+    color: white;
+    font-size: 1.1em; /* Reducir ligeramente el tamaño de la fuente en encabezados */
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Botón */
+button {
+    background-color: #004c99;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px; /* Separar el botón de la tabla */
+    margin-left: 20px; /* Mover el botón hacia la derecha */
+}
+
+button:hover {
+    background-color: #00bfae;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 191, 174, 0.5);
+}
