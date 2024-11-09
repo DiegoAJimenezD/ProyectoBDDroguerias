@@ -11,14 +11,14 @@
     <h1>Inventario</h1>
     <nav>
         <ul>
-            <li><a href="cliente.html">Clientes</a></li>
-            <li><a href="empleado.html">Empleados</a></li>
-            <li><a href="sucursal.html">Sucursales</a></li>
-            <li><a href="producto.html">Productos</a></li>
-            <li><a href="inventario.html">Inventario</a></li>
-            <li><a href="proveedor.html">Proveedores</a></li>
-            <li><a href="pedido.html">Pedidos</a></li>
-            <li><a href="venta.html">Ventas</a></li>
+            <li><a href="cliente.php">Clientes</a></li>
+            <li><a href="empleado.php">Empleados</a></li>
+            <li><a href="sucursal.php">Sucursales</a></li>
+            <li><a href="producto.php">Productos</a></li>
+            <li><a href="inventario.php">Inventario</a></li>
+            <li><a href="proveedor.php">Proveedores</a></li>
+            <li><a href="pedido.php">Pedidos</a></li>
+            <li><a href="venta.php">Ventas</a></li>
         </ul>
     </nav>
     </header>
