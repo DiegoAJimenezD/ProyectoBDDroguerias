@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos - Cuidado Personal | Droquerías Comfenalco</title>
+    <title>Productos | Droquerías Comfenalco</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -17,29 +17,41 @@
 
     <nav class="navbar">
         <div class="navbar-container">
-            <a href="index.html" class="navbar-brand">
+            <a href="index.php" class="navbar-brand">
                 <img src="images/logo.png" alt="Logo Droquerías Comfenalco" class="navbar-logo">
             </a>
             <ul class="navbar-nav">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="productos.html">Productos</a></li>
-                <li><a href="login.html">Iniciar sesión</a></li>
-                <li><a href="registro.html">Registrarse</a></li>
+                <li><a href="index.php">Inicio</a></li>
+                <li><a href="productos.php">Productos</a></li>
+                <li><a href="login.php">Iniciar sesión</a></li>
+                <li><a href="registro.php">Registrarse</a></li>
             </ul>
         </div>
     </nav>
 
     <section class="banner">
-        <p>¡Promociones y descuentos en productos seleccionados!</p>
+        <p>¡Lo que necesitas está aquí! Productos seleccionados con cuidado.</p>
     </section>
+    
 
     <div class="container">
-        <h2 class="text-center">Productos de Cuidado Personal</h2>
-
+        <h2 class="text-center">Productos Destacados</h2>
         <div class="product-container">
             <div class="card product">
+                <img src="images/medicamento1.jpg" alt="Producto Medicamento 1">
+                <h5>Multivitamínico</h5>
+                <p>$20,000</p>
+                <button>Comprar</button>
+            </div>
+            <div class="card product">
+                <img src="images/medicamento2.jpg" alt="Producto Medicamento 2">
+                <h5>Antibiótico</h5>
+                <p>$15,000</p>
+                <button>Comprar</button>
+            </div>
+            <div class="card product">
                 <img src="images/cuidado1.jpg" alt="Producto Cuidado Personal 1">
-                <h5>Crema Corporal Hidratante</h5>
+                <h5>Crema Hidratante</h5>
                 <p>$25,000</p>
                 <button>Comprar</button>
             </div>
@@ -50,14 +62,14 @@
                 <button>Comprar</button>
             </div>
             <div class="card product">
-                <img src="images/cuidado3.jpg" alt="Producto Cuidado Personal 3">
-                <h5>Loción Calmante</h5>
-                <p>$22,000</p>
+                <img src="images/cosmetico1.jpg" alt="Producto Cosmético 1">
+                <h5>Base de Maquillaje</h5>
+                <p>$30,000</p>
                 <button>Comprar</button>
             </div>
             <div class="card product">
-                <img src="images/cuidado4.jpg" alt="Producto Cuidado Personal 4">
-                <h5>Desodorante Natural</h5>
+                <img src="images/cosmetico2.jpg" alt="Producto Cosmético 2">
+                <h5>Labial Hidratante</h5>
                 <p>$12,000</p>
                 <button>Comprar</button>
             </div>
