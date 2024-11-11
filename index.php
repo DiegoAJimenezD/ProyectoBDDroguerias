@@ -1,3 +1,8 @@
+<?php
+session_start(); // Iniciar la sesión para acceder a los datos guardados
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -6,7 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Droquerías Comfenalco</title>
     <link rel="stylesheet" href="css/styles.css">
-
 </head>
 
 <body>
@@ -24,11 +28,17 @@
             <ul class="navbar-nav">
                 <li><a href="index.php">Inicio</a></li>
                 <li><a href="productos.php">Productos</a></li>
-                <li><a href="login.php">Iniciar sesión</a></li>
-                <li><a href="registro.php">Registrarse</a></li>
+                <?php if (isset($_SESSION['usuario'])): ?>
+                    <li><a href="#"><?php echo '' . $_SESSION['usuario']; ?></a></li>
+                    <li><a href="logout.php"><button class="Logout" >Cerrar sesión</button></a></li>
+                <?php else: ?>
+                    <li><a href="login.php">Iniciar sesión</a></li>
+                    <li><a href="registro.php">Registrarse</a></li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>
+
     <section class="banner">
         <p>¡Promociones y descuentos en productos seleccionados!</p>
     </section>
