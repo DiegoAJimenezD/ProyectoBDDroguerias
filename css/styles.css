@@ -233,3 +233,14 @@ body {
 .footer p {
     font-size: 1.2em; /* Aumentado el tamaño del texto en el pie de página */
 }
+
+
+.Logout {
+    padding: 14px 24px; /* Aumentado el tamaño del botón */
+    background-color: #00bfae; /* Verde claro para los botones */
+    color: white;
+    border: none;
+    border-radius: 6px; /* Bordes más redondeados */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
