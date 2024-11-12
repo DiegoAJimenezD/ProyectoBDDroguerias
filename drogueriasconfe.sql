@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2024 a las 08:17:20
+-- Tiempo de generación: 12-11-2024 a las 18:42:26
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -90,6 +90,7 @@ CREATE TABLE `cliente` (
 
 INSERT INTO `cliente` (`cedula`, `primernombre`, `segundonombre`, `primerApellido`, `segundoApellido`, `fechaNacimiento`, `direccion`, `email`, `contrasena`) VALUES
 ('0987654321', 'Ana', 'María', 'Rodríguez', 'Martínez', '1985-08-20', NULL, 'ana.rodriguez@example.com', '987'),
+('1004779035', 'Juan', 'Camilo', 'Cuenca', 'Sepuveda', '2003-09-18', 'crr 23# 7', 'camilocuenca1810@gmail.com', 'camilo123'),
 ('1234567890', 'Juan', 'Carlos', 'Pérez', 'Gómez', '1990-05-15', NULL, 'juan.perez@example.com', '123');
 
 -- --------------------------------------------------------
@@ -190,6 +191,19 @@ CREATE TABLE `inventario` (
   `idProducto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `inventario`
+--
+
+INSERT INTO `inventario` (`idInventario`, `cantidadStock`, `fecha`, `idProducto`) VALUES
+(1, 120, '2024-11-10', 1),
+(2, 20, '2024-11-10', 2),
+(3, 100, '2024-11-10', 3),
+(4, 50, '2024-11-10', 4),
+(5, 30, '2024-11-10', 5),
+(6, 80, '2024-11-10', 6),
+(7, 60, '2024-11-10', 7);
+
 -- --------------------------------------------------------
 
 --
@@ -289,7 +303,12 @@ CREATE TABLE `producto` (
 
 INSERT INTO `producto` (`idProducto`, `nombre`, `precio`, `categoriaProducto`, `imagen`) VALUES
 (1, 'Paracetamol', 3500, 1, 'https://example.com/images/paracetamol.jpg'),
-(2, 'Crema Hidratante', 15000, 2, 'https://example.com/images/crema_hidratante.jpg');
+(2, 'Crema Hidratante', 15000, 2, 'https://example.com/images/crema_hidratante.jpg'),
+(3, 'Paracetamol', 3500, 1, 'https://example.com/images/paracetamol.jpg'),
+(4, 'Crema Hidratante', 15000, 2, 'https://example.com/images/crema_hidratante.jpg'),
+(5, 'Antibiótico', 15000, 1, 'https://example.com/images/antibiotico.jpg'),
+(6, 'Shampoo Suave', 18000, 2, 'https://example.com/images/shampoo.jpg'),
+(7, 'Base de Maquillaje', 30000, 2, 'https://example.com/images/base_maquillaje.jpg');
 
 -- --------------------------------------------------------
 
@@ -718,7 +737,7 @@ ALTER TABLE `pedido`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
