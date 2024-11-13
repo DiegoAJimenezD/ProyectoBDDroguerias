@@ -72,11 +72,8 @@ CREATE TABLE `categoriaproducto` (
 
 INSERT INTO `categoriaproducto` (`idCategoria`, `nombre`, `estado`, `descripcion`) VALUES
 (1, 'Medicamentos', 'ACTIVO', 'Productos farmacéuticos para el tratamiento de enfermedades'),
-
 (2, 'Cosméticos', 'INACTIVO', 'Productos para el cuidado personal y la belleza, incluyendo maquillaje y cuidado de la piel.'),
 (3, 'Cuidado personal', 'ACTIVO', 'Productos relacionados con el cuidado personal, como cosméticos, productos de higiene y cuidado de la piel.');
-
-(2, 'Cosméticos', 'INACTIVO', 'Productos para el cuidado personal y la belleza, incluyendo maquillaje y cuidado de la piel.');
 
 -- --------------------------------------------------------
 
@@ -124,8 +121,6 @@ INSERT INTO `cliente` (`cedula`, `primernombre`, `segundonombre`, `primerApellid
 ('5678901234', 'Luis', 'Antonio', 'García', 'Díaz', '1995-07-18', 'Calle 202, Cartagena', 'luis.garcia@mail.com', 'contrasena202'),
 ('6789012345', 'Lucía', 'Estefanía', 'Hernández', 'Paredes', '1993-02-03', 'Calle 303, Bucaramanga', 'lucia.hernandez@mail.com', 'contrasena303'),
 ('7890123456', 'Pedro', 'Alfredo', 'Jiménez', 'Vargas', '1982-09-25', 'Calle 404, Manizales', 'pedro.jimenez@mail.com', 'contrasena404');
-
-('1234567890', 'Juan', 'Carlos', 'Pérez', 'Gómez', '1990-05-15', NULL, 'juan.perez@example.com', '123');
 
 
 -- --------------------------------------------------------
@@ -199,8 +194,6 @@ INSERT INTO `empleado` (`idEmpleado`, `nombre`, `horario`, `sucursal`, `email`, 
 (48, 'Luis González', '08:00:00', 8, 'luis.gonzalez@empresa.com', 'contrasena048'),
 (49, 'Rosa Fernández', '08:30:00', 9, 'rosa.fernandez@empresa.com', 'contrasena049'),
 (50, 'Javier Ruiz', '09:00:00', 10, 'javier.ruiz@empresa.com', 'contrasena050');
-
-(1, 'Carlos Gómez', '09:00:00', 1, 'carlos.gomez@example.com', 'carlos123');
 
 
 -- --------------------------------------------------------
@@ -307,8 +300,9 @@ INSERT INTO `facturaventa` (`idFactura`, `idVenta`) VALUES
 
 CREATE TABLE `farmaceutico` (
   `idEmpleado` int(11) NOT NULL,
-
-  `turno` varchar(20) NOT NULL
+ `especializacion` int(11) NOT NULL,
+  `turno` varchar(20) NOT NULL,
+  `licenciaFarmaceutico` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -328,11 +322,6 @@ INSERT INTO `farmaceutico` (`idEmpleado`, `turno`) VALUES
 (16, 'Mañana');
 
 
-  `especializacion` int(11) NOT NULL,
-  `licenciaFarmaceutico` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
 -- --------------------------------------------------------
 
 --
@@ -341,9 +330,9 @@ INSERT INTO `farmaceutico` (`idEmpleado`, `turno`) VALUES
 
 CREATE TABLE `gerente` (
   `idEmpleado` int(11) NOT NULL,
-  `titulo` varchar(100) NOT NULL,
-  `certificado` int(11) NOT NULL
+  `titulo` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- --------------------------------------------------------
 
@@ -369,7 +358,6 @@ INSERT INTO `inventario` (`idInventario`, `cantidadStock`, `fecha`, `idProducto`
 (4, 50, '2024-11-10', 4),
 (5, 30, '2024-11-10', 5),
 (6, 80, '2024-11-10', 6),
-
 (7, 60, '2024-11-10', 7),
 (8, 100, '2024-11-13', 8),
 (9, 150, '2024-11-13', 9),
@@ -414,8 +402,6 @@ INSERT INTO `inventario` (`idInventario`, `cantidadStock`, `fecha`, `idProducto`
 (48, 130, '2024-11-13', 48),
 (49, 180, '2024-11-13', 49),
 (50, 140, '2024-11-13', 50);
-
-(7, 60, '2024-11-10', 7);
 
 
 -- --------------------------------------------------------
@@ -501,7 +487,6 @@ CREATE TABLE `pedido` (
 
 INSERT INTO `pedido` (`idPedido`, `fechaPedido`) VALUES
 (1, '2024-11-01'),
-
 (2, '2024-11-08'),
 (3, '2024-11-13'),
 (4, '2024-11-14'),
@@ -511,8 +496,6 @@ INSERT INTO `pedido` (`idPedido`, `fechaPedido`) VALUES
 (8, '2024-11-18'),
 (9, '2024-11-19'),
 (10, '2024-11-20');
-
-(2, '2024-11-08');
 
 
 -- --------------------------------------------------------
@@ -603,7 +586,6 @@ INSERT INTO `producto` (`idProducto`, `nombre`, `precio`, `categoriaProducto`, `
 (4, 'Crema Hidratante', 15000, 2, 'https://example.com/images/crema_hidratante.jpg'),
 (5, 'Antibiótico', 15000, 1, 'https://example.com/images/antibiotico.jpg'),
 (6, 'Shampoo Suave', 18000, 2, 'https://example.com/images/shampoo.jpg'),
-
 (7, 'Base de Maquillaje', 30000, 2, 'https://example.com/images/base_maquillaje.jpg'),
 (8, 'Aspirina', 25000, 1, 'https://example.com/aspirina.jpg'),
 (9, 'Ibuprofeno', 30000, 1, 'https://example.com/ibuprofeno.jpg'),
@@ -648,8 +630,6 @@ INSERT INTO `producto` (`idProducto`, `nombre`, `precio`, `categoriaProducto`, `
 (48, 'Jabón para rostro', 20000, 2, 'https://example.com/jabon-rostro.jpg'),
 (49, 'Rímel', 35000, 2, 'https://example.com/rimel.jpg'),
 (50, 'Pincel para maquillaje', 30000, 2, 'https://example.com/pincel-maquillaje.jpg');
-
-(7, 'Base de Maquillaje', 30000, 2, 'https://example.com/images/base_maquillaje.jpg');
 
 
 -- --------------------------------------------------------
@@ -731,7 +711,6 @@ CREATE TABLE `proveedor` (
 
 INSERT INTO `proveedor` (`idProveedor`, `nombre`, `email`) VALUES
 (1, 'Laboratorios ABC', 'contacto@laboratoriosabc.com'),
-
 (2, 'Farmacéutica XYZ', 'info@farmaceuticaxyz.com'),
 (3, 'Farmacéutica Salud y Bienestar', 'contacto@farmasalud.com'),
 (4, 'Cosméticos Bella', 'ventas@cosmeticabella.com'),
@@ -742,7 +721,7 @@ INSERT INTO `proveedor` (`idProveedor`, `nombre`, `email`) VALUES
 (9, 'Medicamentos y Salud', 'servicio@medicamentosysalud.com'),
 (10, 'Bienestar Cosmético', 'contacto@bienestarcosmetico.com');
 
-(2, 'Farmacéutica XYZ', 'info@farmaceuticaxyz.com');
+
 
 
 -- --------------------------------------------------------
@@ -751,9 +730,9 @@ INSERT INTO `proveedor` (`idProveedor`, `nombre`, `email`) VALUES
 -- Estructura de tabla para la tabla `repartidor`
 --
 
+
 CREATE TABLE `repartidor` (
-  `idEmpleado` int(11) NOT NULL,
-  `licenciaConduccion` varchar(20) NOT NULL
+  `idEmpleado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -850,9 +829,6 @@ INSERT INTO `sucursal` (`idSucursal`, `nombre`, `direccion`) VALUES
 (8, 'Sucursal Sur 2', 'Carrera 300, Armenia'),
 (9, 'Sucursal Centro 2', 'Avenida 400, Armenia'),
 (10, 'Sucursal Internacional', 'Calle 500, Armenia');
-
-(1, 'Sucursal Central', 'Cl. 16 # 15 -22, Armenia, Quindío');
-
 
 -- --------------------------------------------------------
 
@@ -1038,8 +1014,8 @@ ALTER TABLE `categoriaproducto`
 -- Indices de la tabla `certificado`
 --
 ALTER TABLE `certificado`
-  ADD PRIMARY KEY (`tipoCertificado`),
-  ADD KEY `idEmpleado` (`idEmpleado`);
+  ADD PRIMARY KEY (`tipoCertificado`),      -- Si realmente quieres hacer esta columna la clave primaria
+ ADD KEY `idEmpleado` (`idEmpleado`);
 
 --
 -- Indices de la tabla `cliente`
@@ -1084,14 +1060,11 @@ ALTER TABLE `farmaceutico`
 --
 -- Indices de la tabla `gerente`
 --
-ALTER TABLE `gerente`
-  ADD PRIMARY KEY (`idEmpleado`),
-  ADD KEY `certificado` (`certificado`);
+-- Índices de la tabla `gerente`
+ALTER TABLE `gerente` ADD PRIMARY KEY (`idEmpleado`);
 
---
--- Indices de la tabla `inventario`
---
-ALTER TABLE `inventario`
+-- Índices de la tabla `inventario`
+ALTER TABLE `inventario` 
   ADD PRIMARY KEY (`idInventario`),
   ADD KEY `idProducto` (`idProducto`);
 
@@ -1110,8 +1083,6 @@ ALTER TABLE `licenciafarmaceutico`
 
   ADD KEY `idEmpleado` (`idEmpleado`),
   ADD KEY `idEmpleado_2` (`idEmpleado`);
-
-  ADD KEY `idEmpleado` (`idEmpleado`);
 
 
 --
@@ -1172,8 +1143,8 @@ ALTER TABLE `proveedor`
 -- Indices de la tabla `repartidor`
 --
 ALTER TABLE `repartidor`
-  ADD PRIMARY KEY (`idEmpleado`),
-  ADD KEY `licenciaConduccion` (`licenciaConduccion`);
+  ADD PRIMARY KEY (`idEmpleado`);
+ 
 
 --
 -- Indices de la tabla `ruta`
@@ -1248,7 +1219,6 @@ ALTER TABLE `categoriaproducto`
 
   MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 
 --
@@ -1258,8 +1228,6 @@ ALTER TABLE `empleado`
 
   MODIFY `idEmpleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
-  MODIFY `idEmpleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 
 --
 -- AUTO_INCREMENT de la tabla `factura`
@@ -1268,7 +1236,6 @@ ALTER TABLE `factura`
 
   MODIFY `idFactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
-  MODIFY `idFactura` int(11) NOT NULL AUTO_INCREMENT;
 
 
 --
@@ -1278,7 +1245,6 @@ ALTER TABLE `metodopago`
 
   MODIFY `idMetodoPago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
-  MODIFY `idMetodoPago` int(11) NOT NULL AUTO_INCREMENT;
 
 
 --
@@ -1288,7 +1254,6 @@ ALTER TABLE `pedido`
 
   MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 
 --
@@ -1298,7 +1263,6 @@ ALTER TABLE `producto`
 
   MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 
 --
@@ -1308,7 +1272,6 @@ ALTER TABLE `proveedor`
 
   MODIFY `idProveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
-  MODIFY `idProveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 
 --
@@ -1318,7 +1281,6 @@ ALTER TABLE `ruta`
 
   MODIFY `idRuta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
-  MODIFY `idRuta` int(11) NOT NULL AUTO_INCREMENT;
 
 
 --
@@ -1328,7 +1290,6 @@ ALTER TABLE `subsidio`
 
   MODIFY `idSubsidio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
-  MODIFY `idSubsidio` int(11) NOT NULL AUTO_INCREMENT;
 
 
 --
@@ -1338,7 +1299,6 @@ ALTER TABLE `sucursal`
 
   MODIFY `idSucursal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
-  MODIFY `idSucursal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 
 --
@@ -1354,7 +1314,6 @@ ALTER TABLE `tipocertificado`
 
   MODIFY `idTipoCertificado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
-  MODIFY `idTipoCertificado` int(11) NOT NULL AUTO_INCREMENT;
 
 
 --
@@ -1364,7 +1323,6 @@ ALTER TABLE `tiporesponsabilidad`
 
   MODIFY `idTipoResponsabilidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
-  MODIFY `idTipoResponsabilidad` int(11) NOT NULL AUTO_INCREMENT;
 
 
 --
@@ -1374,7 +1332,6 @@ ALTER TABLE `tiposubsidio`
 
   MODIFY `idTipoSubsidio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
-  MODIFY `idTipoSubsidio` int(11) NOT NULL AUTO_INCREMENT;
 
 
 --
@@ -1384,8 +1341,6 @@ ALTER TABLE `tipotelefono`
 
   MODIFY `idTipoTelefono` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
-  MODIFY `idTipoTelefono` int(11) NOT NULL AUTO_INCREMENT;
-
 
 --
 -- AUTO_INCREMENT de la tabla `venta`
@@ -1394,7 +1349,6 @@ ALTER TABLE `venta`
 
   MODIFY `idVenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
-  MODIFY `idVenta` int(11) NOT NULL AUTO_INCREMENT;
 
 
 --
@@ -1450,8 +1404,8 @@ ALTER TABLE `farmaceutico`
 -- Filtros para la tabla `gerente`
 --
 ALTER TABLE `gerente`
-  ADD CONSTRAINT `gerente_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`),
-  ADD CONSTRAINT `gerente_ibfk_2` FOREIGN KEY (`certificado`) REFERENCES `certificado` (`tipoCertificado`);
+  ADD CONSTRAINT `gerente_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`);
+ 
 
 --
 -- Filtros para la tabla `inventario`
@@ -1510,8 +1464,7 @@ ALTER TABLE `productoproveedor`
 -- Filtros para la tabla `repartidor`
 --
 ALTER TABLE `repartidor`
-  ADD CONSTRAINT `repartidor_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`),
-  ADD CONSTRAINT `repartidor_ibfk_2` FOREIGN KEY (`licenciaConduccion`) REFERENCES `licenciaconduccion` (`nombre`);
+  ADD CONSTRAINT `repartidor_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`);
 
 --
 -- Filtros para la tabla `ruta`
