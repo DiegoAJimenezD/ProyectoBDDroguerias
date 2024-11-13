@@ -60,7 +60,6 @@ $conn->close();
 
     <button onclick="recargarDatos()">Recargar Datos</button>
 
-    <h1>Inventario</h1>
     <nav>
         <ul>
             <li><a href="cliente.php">Clientes</a></li>

@@ -25,8 +25,6 @@
     </header>
     <button onclick="window.location.reload()">Recargar Datos</button>
 
-
-    <h1>Ventas</h1>
     <nav>
         <ul>
             <li><a href="cliente.php">Clientes</a></li>
