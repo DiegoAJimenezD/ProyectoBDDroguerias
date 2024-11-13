@@ -71,6 +71,7 @@ $conn->close();
             <li><a href="proveedor.php">Proveedores</a></li>
             <li><a href="pedido.php">Pedidos</a></li>
             <li><a href="venta.php">Ventas</a></li>
+            <li><a href="login.php">regresar</a></li>
         </ul>
     </nav>
     </header>
