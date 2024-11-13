@@ -19,6 +19,7 @@
                 <li><a href="proveedor.php">Proveedores</a></li>
                 <li><a href="pedido.php">Pedidos</a></li>
                 <li><a href="venta.php">Ventas</a></li>
+                <li><a href="login.php">Regresar</a></li>
             </ul>
         </nav>
     </header>
@@ -35,10 +36,10 @@
         <tbody id="datosProducto">
             <?php
             // Conexión a la base de datos
-            $host = 'localhost'; // Cambia esto según tu configuración
-            $usuario = 'root'; // Cambia esto según tu configuración
-            $contrasena = ''; // Cambia esto según tu configuración
-            $base_de_datos = 'drogueriasconfe'; // Nombre de tu base de datos
+            $host = 'localhost';
+            $usuario = 'root';
+            $contrasena = '';
+            $base_de_datos = 'drogueriasconfe';
 
             // Conexión a la base de datos
             $conn = new mysqli($host, $usuario, $contrasena, $base_de_datos);
@@ -74,5 +75,42 @@
             ?>
         </tbody>
     </table>
+
+    <!-- Contenedor para la gráfica -->
+    <h2>Productos Más Vendidos</h2>
+    <canvas id="graficaProductosMasVendidos" width="400" height="200"></canvas>
+
+    <!-- Script para Chart.js y para obtener datos de productos más vendidos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Obtener los datos de los productos más vendidos desde el archivo PHP
+        fetch('obtener_productos_mas_vendidos.php')
+            .then(response => response.json())
+            .then(data => {
+                // Configurar los datos de la gráfica
+                const ctx = document.getElementById('graficaProductosMasVendidos').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.productos,
+                        datasets: [{
+                            label: 'Productos más vendidos',
+                            data: data.cantidades,
+                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error al obtener los datos:', error));
+    </script>
 </body>
 </html>
