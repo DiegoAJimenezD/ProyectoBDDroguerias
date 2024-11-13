@@ -11,8 +11,8 @@
 <body>
 
     <header class="header">
-        <h1>Droquerías Comfenalco</h1>
-        <p>Todo lo que necesitas para tu salud y bienestar</p>
+        <h1>Cuidado Personal</h1>
+        <p>Encuentra los mejores productos de cuidado personal</p>
     </header>
 
     <nav class="navbar">
@@ -28,6 +28,9 @@
             </ul>
         </div>
     </nav>
+    <?php
+    include 'componentes\navbar.php';
+    ?>
 
     <section class="banner">
         <p>¡Promociones y descuentos en productos seleccionados!</p>
@@ -64,9 +67,9 @@
         </div>
     </div>
 
-    <footer class="footer">
-        <p>&copy; 2024 Droquerías Comfenalco - Todos los derechos reservados</p>
-    </footer>
+    <?php
+    include 'componentes\footer.php';
+    ?>
 
 </body>
 

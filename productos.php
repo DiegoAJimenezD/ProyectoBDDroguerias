@@ -15,6 +15,7 @@
         <p>Todo lo que necesitas para tu salud y bienestar</p>
     </header>
 
+
     <nav class="navbar">
         <div class="navbar-container">
             <a href="index.php" class="navbar-brand">
@@ -29,10 +30,16 @@
         </div>
     </nav>
 
+    <?php
+    include 'componentes\navbar.php';
+    ?>
+
+
     <section class="banner">
         <p>¡Lo que necesitas está aquí! Productos seleccionados con cuidado.</p>
     </section>
     
+
 
     <div class="container">
         <h2 class="text-center">Productos Destacados</h2>
@@ -79,6 +86,16 @@
     <footer class="footer">
         <p>&copy; 2024 Droquerías Comfenalco - Todos los derechos reservados</p>
     </footer>
+
+    <?php
+    include 'componentes\card.php';
+    ?>
+
+    <?php
+    include 'componentes\footer.php';
+    ?>
+
+
 
 </body>
 

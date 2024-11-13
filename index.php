@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Droquerías Comfenalco</title>
     <link rel="stylesheet" href="css/styles.css">
-
 </head>
 
 <body>
@@ -29,6 +28,10 @@
             </ul>
         </div>
     </nav>
+    <?php
+    include 'componentes\navbar.php';
+    ?>
+
     <section class="banner">
         <p>¡Promociones y descuentos en productos seleccionados!</p>
     </section>
@@ -73,9 +76,9 @@
         </div>
     </div>
 
-    <footer class="footer">
-        <p>&copy; 2024 Droquerías Comfenalco - Todos los derechos reservados</p>
-    </footer>
+    <?php
+    include 'componentes\footer.php';
+    ?>
 
 </body>
 

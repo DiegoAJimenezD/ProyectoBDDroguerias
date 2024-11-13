@@ -8,6 +8,7 @@
 </head>
 <body>
     <header class="header">
+
         <h1>Ventas</h1>
         <nav>
             <ul>
@@ -24,6 +25,23 @@
     </header>
     <button onclick="window.location.reload()">Recargar Datos</button>
 
+
+    <h1>Ventas</h1>
+    <nav>
+        <ul>
+            <li><a href="cliente.php">Clientes</a></li>
+            <li><a href="empleado.php">Empleados</a></li>
+            <li><a href="sucursal.php">Sucursales</a></li>
+            <li><a href="producto.php">Productos</a></li>
+            <li><a href="inventario.php">Inventario</a></li>
+            <li><a href="proveedor.php">Proveedores</a></li>
+            <li><a href="pedido.php">Pedidos</a></li>
+            <li><a href="venta.php">Ventas</a></li>
+        </ul>
+    </nav>
+    </header>
+    <button onclick="recargarDatos()">Recargar Datos</button>
+
     <table border="1">
         <thead>
             <tr>
@@ -35,6 +53,7 @@
             </tr>
         </thead>
         <tbody id="datosVenta">
+
             <?php
             // Conexión a la base de datos
             $host = 'localhost'; // Cambia esto según tu configuración
@@ -75,6 +94,8 @@
             // Cerrar la conexión
             $conn->close();
             ?>
+
+            <!-- Datos a cargar dinámicamente -->
         </tbody>
     </table>
 </body>

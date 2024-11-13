@@ -1,3 +1,4 @@
+
 <?php
 // Conexión a la base de datos
 $servername = "localhost"; // Cambia esto si el servidor es diferente
@@ -41,6 +42,7 @@ $conn->close();
 </head>
 <body>
     <header class="header">
+
         <h1>Inventario</h1>
         <nav>
             <ul>
@@ -58,6 +60,22 @@ $conn->close();
 
     <button onclick="recargarDatos()">Recargar Datos</button>
 
+    <h1>Inventario</h1>
+    <nav>
+        <ul>
+            <li><a href="cliente.php">Clientes</a></li>
+            <li><a href="empleado.php">Empleados</a></li>
+            <li><a href="sucursal.php">Sucursales</a></li>
+            <li><a href="producto.php">Productos</a></li>
+            <li><a href="inventario.php">Inventario</a></li>
+            <li><a href="proveedor.php">Proveedores</a></li>
+            <li><a href="pedido.php">Pedidos</a></li>
+            <li><a href="venta.php">Ventas</a></li>
+        </ul>
+    </nav>
+    </header>
+    <button onclick="recargarDatos()">Recargar Datos</button>
+
     <table border="1">
         <thead>
             <tr>
@@ -68,6 +86,7 @@ $conn->close();
             </tr>
         </thead>
         <tbody id="datosInventario">
+
             <?php
             // Mostrar los datos en la tabla
             if (count($inventarios) > 0) {
@@ -91,5 +110,8 @@ $conn->close();
             location.reload(); // Recargar la página
         }
     </script>
+            <!-- Datos a cargar dinámicamente -->
+        </tbody>
+    </table>
 </body>
 </html>

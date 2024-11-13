@@ -27,6 +27,11 @@
         </div>
     </nav>
 
+    <?php
+    include 'componentes\navbar.php';
+    ?>
+
+
     <section class="banner">
         <p>¡Recupera tu bienestar con nuestros medicamentos de calidad!</p>
     </section>
@@ -56,9 +61,9 @@
     </div>
 </div>
 
-<footer class="footer">
-    <p>&copy; 2024 Droquerías Comfenalco - Todos los derechos reservados</p>
-</footer>
+<?php
+include 'componentes\footer.php';
+?>
 
 </body>
 </html>

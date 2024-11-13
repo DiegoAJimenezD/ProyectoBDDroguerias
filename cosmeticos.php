@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,7 +14,6 @@
     <h1>Cosméticos</h1>
     <p>Encuentra los mejores productos de cuidado para tu piel y belleza.</p>
 </header>
-
 <nav class="navbar">
     <div class="navbar-container">
         <a href="index.php" class="navbar-brand">
@@ -26,6 +27,9 @@
         </ul>
     </div>
 </nav>
+<?php
+include 'componentes\navbar.php';
+?>
 
 <section class="banner">
     <h3>¡Descubre nuestros productos cosméticos y disfruta de tu belleza!</h3>
@@ -73,9 +77,10 @@
     </div>
 </div>
 
-<footer class="footer">
-    <p>&copy; 2024 Droquerías Comfenalco - Todos los derechos reservados</p>
-</footer>
+<?php
+include 'componentes\footer.php';
+?>
+    
 
 </body>
 </html>
