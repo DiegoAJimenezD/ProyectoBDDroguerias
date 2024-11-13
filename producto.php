@@ -48,6 +48,13 @@
                 die("Conexión fallida: " . $conn->connect_error);
             }
 
+
+            // Consulta SQL para obtener los productos ordenados ascendentemente por idProducto
+            $sql = "SELECT p.idProducto, p.nombre, p.precio, c.nombre AS categoria 
+                    FROM producto p
+                    JOIN categoriaProducto c ON p.categoriaProducto = c.idCategoria
+                    ORDER BY p.idProducto ASC"; // Orden ascendente por idProducto
+
             // Consulta SQL para obtener los productos
             $sql = "SELECT p.idProducto, p.nombre, p.precio, c.nombre AS categoria 
                     FROM producto p

@@ -13,9 +13,24 @@
         <p>Encuentra los mejores medicamentos para tu salud.</p>
     </header>
     
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.php" class="navbar-brand">
+                <img src="images/logo.png" alt="Logo Droquerías Comfenalco" class="navbar-logo">
+            </a>
+            <ul class="navbar-nav">
+                <li><a href="index.php">Inicio</a></li>
+                <li><a href="productos.php">Productos</a></li>
+                <li><a href="login.php">Iniciar sesión</a></li>
+                <li><a href="registro.php">Registrarse</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <?php
     include 'componentes\navbar.php';
     ?>
+
 
     <section class="banner">
         <p>¡Recupera tu bienestar con nuestros medicamentos de calidad!</p>
