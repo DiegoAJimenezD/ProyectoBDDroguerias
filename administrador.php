@@ -9,68 +9,56 @@
 <body>
     <header>
         <h1>Panel de Administración</h1>
-        <nav>
-            <ul>
-                <li><a href="cliente.html">Clientes</a></li>
-                <li><a href="empleado.html">Empleados</a></li>
-                <li><a href="sucursal.html">Sucursales</a></li>
-                <li><a href="producto.html">Productos</a></li>
-                <li><a href="inventario.html">Inventario</a></li>
-                <li><a href="proveedor.html">Proveedores</a></li>
-                <li><a href="pedido.html">Pedidos</a></li>
-                <li><a href="venta.html">Ventas</a></li>
-            </ul>
-        </nav>
     </header>
 
     <main>
         <section id="clientes">
             <img src="images/clientes.png" alt="Clientes">
             <h2>Clientes</h2>
-            <button onclick="window.location.href='cliente.html';">Administrar Clientes</button>
+            <button onclick="window.location.href='cliente.php';">Administrar Clientes</button>
 
         </section>
 
         <section id="empleados">
             <img src="images/empleados.png" alt="Empleados">
             <h2>Empleados</h2>
-            <button onclick="window.location.href='empleado.html';">Administrar Empleados</button>
+            <button onclick="window.location.href='empleado.php';">Administrar Empleados</button>
         </section>
 
         <section id="sucursales">
             <img src="images/sucursales.png" alt="Sucursales">
             <h2>Sucursales</h2>
-            <button onclick="window.location.href='sucursal.html';">Administrar Sucursales</button>
+            <button onclick="window.location.href='sucursal.php';">Administrar Sucursales</button>
         </section>
 
         <section id="productos">
             <img src="images/productos.png" alt="Productos">
             <h2>Productos</h2>
-            <button onclick="window.location.href='producto.html';">Administrar Productos</button>
+            <button onclick="window.location.href='producto.php';">Administrar Productos</button>
         </section>
 
         <section id="inventario">
             <img src="images/inventario.png" alt="Inventario">
             <h2>Inventario</h2>
-            <button onclick="window.location.href='inventario.html';">Gestionar Inventario</button>
+            <button onclick="window.location.href='inventario.php';">Gestionar Inventario</button>
         </section>
 
         <section id="proveedores">
             <img src="images/proveedores.png" alt="Proveedores">
             <h2>Proveedores</h2>
-            <button onclick="window.location.href='proveedor.html';">Administrar Proveedores</button>
+            <button onclick="window.location.href='proveedor.php';">Administrar Proveedores</button>
         </section>
 
         <section id="pedidos">
             <img src="images/pedidos.png" alt="Pedidos">
             <h2>Pedidos</h2>
-            <button onclick="window.location.href='pedido.html';">Administrar Pedidos</button>
+            <button onclick="window.location.href='pedido.php';">Administrar Pedidos</button>
         </section>
 
         <section id="ventas">
             <img src="images/ventas.png" alt="Ventas">
             <h2>Ventas</h2>
-            <button onclick="window.location.href='venta.html';">Gestionar Ventas</button>
+            <button onclick="window.location.href='venta.php';">Gestionar Ventas</button>
         </section>
     </main>
 

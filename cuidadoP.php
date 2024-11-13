@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos - Cuidado Personal | Droquerías Comfenalco</title>
+    <title>Productos - Cuidado Personal | Droquerías COMFENALCO</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -17,14 +17,14 @@
 
     <nav class="navbar">
         <div class="navbar-container">
-            <a href="index.html" class="navbar-brand">
+            <a href="index.php" class="navbar-brand">
                 <img src="images/logo.png" alt="Logo Droquerías Comfenalco" class="navbar-logo">
             </a>
             <ul class="navbar-nav">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="productos.html">Productos</a></li>
-                <li><a href="login.html">Iniciar sesión</a></li>
-                <li><a href="registro.html">Registrarse</a></li>
+                <li><a href="index.php">Inicio</a></li>
+                <li><a href="productos.php">Productos</a></li>
+                <li><a href="login.php">Iniciar sesión</a></li>
+                <li><a href="registro.php">Registrarse</a></li>
             </ul>
         </div>
     </nav>
