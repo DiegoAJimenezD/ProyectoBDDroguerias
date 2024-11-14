@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,49 +24,44 @@ include 'componentes\navbar.php';
 <div class="container">
     <h2 class="text-center">Productos Cosméticos</h2>
     <div class="product-container">
-        <div class="card product">
-            <img src="images/crema_hidratante.jpg" alt="Crema Hidratante">
-            <h5>Crema Hidratante</h5>
-            <p>$25,000</p>
-            <button>Comprar</button>
-        </div>
-        <div class="card product">
-            <img src="images/serum_antiarrugas.jpg" alt="Serum Antiarrugas">
-            <h5>Serum Antiarrugas</h5>
-            <p>$30,000</p>
-            <button>Comprar</button>
-        </div>
-        <div class="card product">
-            <img src="images/máscara_pestañas.jpg" alt="Máscara de Pestañas">
-            <h5>Máscara de Pestañas</h5>
-            <p>$18,000</p>
-            <button>Comprar</button>
-        </div>
-        <div class="card product">
-            <img src="images/labial_rojo.jpg" alt="Labial Rojo">
-            <h5>Labial Rojo</h5>
-            <p>$12,000</p>
-            <button>Comprar</button>
-        </div>
-        <div class="card product">
-            <img src="images/crema_antiselulitis.jpg" alt="Crema Anticelulitis">
-            <h5>Crema Anticelulitis</h5>
-            <p>$22,000</p>
-            <button>Comprar</button>
-        </div>
-        <div class="card product">
-            <img src="images/tonico_piel.jpg" alt="Tónico Facial">
-            <h5>Tónico Facial</h5>
-            <p>$20,000</p>
-            <button>Comprar</button>
-        </div>
+    <?php
+include 'conexion.php';  // Conexión a la base de datos
+
+// Consulta para obtener los productos de la categoría 'Cosméticos' y su stock
+$sql = "SELECT p.idProducto, p.nombre, p.precio, p.imagen, i.cantidadStock 
+        FROM producto p
+        JOIN categoriaproducto cp ON p.categoriaProducto = cp.idCategoria
+        JOIN inventario i ON p.idProducto = i.idProducto
+        WHERE cp.nombre = 'Cosméticos'";  // Asegúrate de que el nombre de la categoría sea correcto en la base de datos
+
+$result = $conn->query($sql);
+
+// Verificar si hay resultados
+if ($result->num_rows > 0) {
+    // Mostrar los productos
+    while($row = $result->fetch_assoc()) {
+        echo '<div class="card product">';
+        echo '<img src="' . $row['imagen'] . '" alt="Producto ' . $row['nombre'] . '">';
+        echo '<h5>' . $row['nombre'] . '</h5>';
+        echo '<p>$' . number_format($row['precio'], 0, ',', '.') . '</p>';
+        echo '<p><strong>Stock disponible: ' . $row['cantidadStock'] . '</strong></p>';
+        echo '<button>Comprar</button>';
+        echo '</div>';
+    }
+} else {
+    echo "<p>No hay productos disponibles en esta categoría.</p>";
+}
+
+// Cerrar la conexión
+$conn->close();
+?>
+
     </div>
 </div>
 
 <?php
 include 'componentes\footer.php';
 ?>
-    
 
 </body>
 </html>

@@ -109,3 +109,13 @@ button:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 191, 174, 0.5);
 }
+
+/* Alineación de los botones en la columna de acciones */
+.acciones {
+    display: inline-block; /* Hace que los botones se alineen en línea */
+}
+
+.acciones button {
+    margin-right: 10px; /* Espacio entre los botones */
+}
+

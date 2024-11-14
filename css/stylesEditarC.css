@@ -1,0 +1,190 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f9fb; /* Light background for the page */
+}
+
+/* Header con degradado */
+header {
+    background: linear-gradient(to right, #004c99, #00bfae); /* Degradado de azul oscuro a verde claro */
+    color: white;
+    text-align: center;
+    padding: 50px 20px; /* Aumentar el padding para que haya más espacio */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave debajo del header */
+}
+
+/* Título del header */
+header h1 {
+    font-size: 4em; /* Mayor tamaño de fuente */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente moderna */
+    font-weight: 700; /* Hacer el título más grueso */
+    margin-bottom: 15px;
+    letter-spacing: 2px; /* Espaciado entre letras */
+    text-transform: uppercase; /* Convertir a mayúsculas */
+}
+
+/* Párrafo del header (si decides agregar algún texto debajo del título) */
+header p {
+    font-size: 2em; /* Aumento del tamaño del texto */
+    font-family: 'Arial', sans-serif; /* Fuente sencilla pero elegante */
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 20px; /* Más espacio debajo del párrafo */
+    letter-spacing: 1px; /* Espaciado entre letras */
+    opacity: 0.9; /* Un toque de transparencia */
+}
+
+/* Estilo para la barra de navegación */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo para el formulario */
+form {
+    background-color: white;
+    width: 60%;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilos para los campos de entrada */
+label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Estilo para el botón de enviar */
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para el contenedor de botones */
+button[type="submit"] {
+    display: block;
+    margin: 20px 0;
+    width: 100%;
+}
+
+/* Agregar margen inferior a las secciones de formulario */
+form label, form input {
+    margin-bottom: 15px;
+}
+
+/* Estilo para mensajes de error */
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Estilo para la tabla de clientes */
+table {
+    width: 90%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #007bff;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+table td button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+table td button:hover {
+    opacity: 0.7;
+}
+
+/* Estilos para botones de acción (editar y eliminar) */
+button i {
+    margin-right: 5px;
+}
+
+button.edit {
+    color: #28a745;
+}
+
+button.delete {
+    color: #dc3545;
+}

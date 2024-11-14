@@ -244,3 +244,108 @@ body {
     cursor: pointer;
     transition: background-color 0.3s;
 }
+
+
+/* Estilos generales para el formulario de filtros */
+.formularioFiltros {
+    background-color: #fff; /* Fondo blanco */
+    padding: 20px; /* Espaciado alrededor del formulario */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    display: flex; /* Usamos flexbox para distribuir los filtros en línea */
+    justify-content: flex-start; /* Alinea los filtros hacia la izquierda */
+    gap: 15px; /* Espacio entre los filtros */
+    flex-wrap: wrap; /* Permite que los filtros se ajusten si no caben en una sola línea */
+    max-width: 1000px; /* Ancho máximo del formulario */
+    margin: 30px auto; /* Centra el formulario */
+}
+
+/* Estilos para cada filtro */
+.filtro {
+    display: flex; /* Asegura que el label y el input estén alineados verticalmente */
+    flex-direction: column; /* El label arriba del input */
+    flex: 1; /* Los filtros tomarán el mismo espacio disponible */
+    max-width: 200px; /* Limita el tamaño de cada filtro */
+}
+
+/* Estilo para las etiquetas de los filtros */
+.filtro label {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+/* Estilo para los campos de entrada (select, input) */
+.filtro select,
+.filtro input {
+    width: 100%; /* Hace que los inputs ocupen el 100% del espacio disponible */
+    padding: 12px; /* Espaciado dentro de los campos */
+    font-size: 1em; /* Tamaño de la fuente */
+    border: 1px solid #ddd; /* Borde suave */
+    border-radius: 6px; /* Bordes redondeados */
+    box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
+    background-color: #f4f9fb; /* Fondo suave */
+}
+
+
+
+
+/* Estilo para el contenedor del botón */
+.filtro-boton {
+    display: flex;
+    justify-content: center; /* Centra los botones horizontalmente */
+    align-items: center;     /* Centra los botones verticalmente */
+    margin-top: 20px;        /* Añade margen superior si es necesario */
+    gap: 20px;               /* Crea un espacio de 20px entre los botones */
+}
+
+/* Estilo para los botones dentro de filtro-boton */
+.filtro-boton button {
+    background-color: #00bfae; /* Verde claro */
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px; /* Bordes redondeados */
+    padding: 12px 20px; /* Espaciado interno */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: auto; /* Hace que el ancho dependa del contenido */
+    min-width: 150px; /* Asegura que el botón no sea más pequeño que 150px */
+    text-align: center; /* Centra el texto dentro del botón */
+}
+
+
+/* Estilo para los botones dentro de filtro-boton */
+button {
+    background-color: #00bfae; /* Verde claro */
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px; /* Bordes redondeados */
+    padding: 12px 20px; /* Espaciado interno */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: auto; /* Hace que el ancho dependa del contenido */
+    min-width: 150px; /* Asegura que el botón no sea más pequeño que 150px */
+    text-align: center; /* Centra el texto dentro del botón */
+}
+
+
+/* Efecto al pasar el mouse sobre el botón */
+.filtro button:hover {
+    background-color: #009f8a; /* Verde más oscuro al pasar el ratón */
+}
+
+/* Alineación y estilos cuando el campo de número es tocado */
+.filtro input[type="number"] {
+    -moz-appearance: textfield; /* Eliminar los controles de números en Firefox */
+}
+
+.filtro input[type="number"]::-webkit-outer-spin-button,
+.filtro input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
