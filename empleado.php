@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empleados</title>
     <link rel="stylesheet" href="css/stylesListas.css">
+    <!-- Agregar iconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
     <header class="header">
@@ -19,6 +21,7 @@
                 <li><a href="proveedor.php">Proveedores</a></li>
                 <li><a href="pedido.php">Pedidos</a></li>
                 <li><a href="venta.php">Ventas</a></li>
+                <li><a href="administrador.php">Panel</a></li>
             </ul>
         </nav>
     </header>
@@ -31,6 +34,7 @@
                 <th>Horario</th>
                 <th>Sucursal</th>
                 <th>Email</th>
+                <th>Acciones</th> <!-- Columna para los botones -->
             </tr>
         </thead>
         <tbody id="datosEmpleado">
@@ -63,10 +67,18 @@
                             <td>" . $row["horario"] . "</td>
                             <td>" . $row["sucursal"] . "</td>
                             <td>" . $row["email"] . "</td>
+                            <td>
+                                <button class='editar' onclick='editarEmpleado(" . $row["idEmpleado"] . ")'>
+                                    <i class='fas fa-edit'></i> Editar
+                                </button>
+                                <button class='eliminar' onclick='eliminarEmpleado(" . $row["idEmpleado"] . ")'>
+                                    <i class='fas fa-trash-alt'></i> Eliminar
+                                </button>
+                            </td>
                           </tr>";
                 }
             } else {
-                echo "<tr><td colspan='4'>No se encontraron empleados</td></tr>";
+                echo "<tr><td colspan='6'>No se encontraron empleados</td></tr>";
             }
 
             // Cerrar la conexión
@@ -79,6 +91,60 @@
             // Para recargar los datos, puedes recargar la página o hacer una petición AJAX
             window.location.reload(); // Recarga la página
         }
+
+        function editarEmpleado(id) {
+            // Aquí puedes redirigir a la página de edición, pasando el ID del empleado
+            window.location.href = 'editarEmpleado.php?id=' + id;
+        }
+
+        function eliminarEmpleado(id) {
+            // Confirmación antes de eliminar
+            if (confirm("¿Estás seguro de que deseas eliminar este empleado?")) {
+                // Aquí puedes agregar la lógica para eliminar al empleado
+                window.location.href = 'eliminarEmpleado.php?id=' + id;
+            }
+        }
     </script>
+
+    <style>
+        /* Estilos personalizados para los botones */
+        .editar {
+            background-color: #28a745; /* Verde */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .editar i {
+            margin-right: 5px;
+        }
+
+        .editar:hover {
+            background-color: #218838;
+        }
+
+        .eliminar {
+            background-color: #dc3545; /* Rojo */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .eliminar i {
+            margin-right: 5px;
+        }
+
+        .eliminar:hover {
+            background-color: #c82333;
+        }
+    </style>
 </body>
 </html>

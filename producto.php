@@ -10,7 +10,7 @@
     <header class="header">
         <h1>Productos</h1>
         <nav>
-            <ul>
+        <ul>
                 <li><a href="cliente.php">Clientes</a></li>
                 <li><a href="empleado.php">Empleados</a></li>
                 <li><a href="sucursal.php">Sucursales</a></li>
@@ -19,6 +19,7 @@
                 <li><a href="proveedor.php">Proveedores</a></li>
                 <li><a href="pedido.php">Pedidos</a></li>
                 <li><a href="venta.php">Ventas</a></li>
+                <li><a href="administrador.php">Panel</a></li>
             </ul>
         </nav>
     </header>
