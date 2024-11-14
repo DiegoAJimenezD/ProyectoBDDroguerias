@@ -88,10 +88,14 @@ $conn->close();
                 <li><a href="pedido.php">Pedidos</a></li>
                 <li><a href="venta.php">Ventas</a></li>
 
+
                 <li><a href="administrador.php">Panel</a></li>
                 <li><a href="login.php">regresar</a></li>
                 
 
+
+                <li><a href="login.php">regresar</a></li>
+                
             </ul>
         </nav>
     </header>

@@ -8,8 +8,6 @@
 </head>
 <body>
     <header class="header">
-
-
         <h1>Ventas</h1>
         <nav>
             <ul>
@@ -21,6 +19,7 @@
                 <li><a href="proveedor.php">Proveedores</a></li>
                 <li><a href="pedido.php">Pedidos</a></li>
                 <li><a href="venta.php">Ventas</a></li>
+
 
                 <li><a href="administrador.php">Panel</a></li>
             </ul>
@@ -45,6 +44,10 @@
             </ul>
         </nav>
 
+
+                <li><a href="login.php">Regresar</a></li>
+            </ul>
+        </nav>
     </header>
 
     <table border="1">
@@ -58,6 +61,7 @@
             </tr>
         </thead>
         <tbody id="datosVenta">
+
 
 
             <?php
@@ -81,10 +85,13 @@
             $conn = new mysqli($servername, $username, $password, $dbname);
 
 
+
+
             // Verificar la conexión
             if ($conn->connect_error) {
                 die("Conexión fallida: " . $conn->connect_error);
             }
+
 
 
             // Consulta SQL para obtener las ventas
@@ -121,6 +128,8 @@
                             <td>" . $row["cedulaCliente"] . "</td>
                           </tr>";
 
+
+
                 }
             } else {
                 echo "<tr><td colspan='5'>No se encontraron ventas</td></tr>";
@@ -131,8 +140,8 @@
             ?>
 
 
-            <!-- Datos a cargar dinámicamente -->
 
+            <!-- Datos a cargar dinámicamente -->
 
         </tbody>
     </table>
