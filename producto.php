@@ -23,8 +23,9 @@
             </ul>
         </nav>
     </header>
-    
+
     <button onclick="window.location.reload()">Recargar Datos</button>
+
     <table border="1">
         <thead>
             <tr>
@@ -52,6 +53,7 @@
             $sql = "SELECT p.idProducto, p.nombre, p.precio, c.nombre AS categoria 
                     FROM producto p
                     JOIN categoriaProducto c ON p.categoriaProducto = c.idCategoria
+                    WHERE p.eliminado = 0  -- Filtrar productos no eliminados
                     ORDER BY p.idProducto ASC";
 
             $resultado = $conn->query($sql);
@@ -64,8 +66,8 @@
                     echo "<td>" . $row["precio"] . "</td>";
                     echo "<td>" . $row["categoria"] . "</td>";
                     echo "<td>
-                            <button onclick='editarProducto(\"" . $row["idProducto"] . "\")'>Editar</button>
-                            <button onclick='eliminarProducto(\"" . $row["idProducto"] . "\")'>Eliminar</button>
+                            <button onclick='editarProducto(" . $row["idProducto"] . ")'>Editar</button>
+                            <button onclick='eliminarProducto(" . $row["idProducto"] . ")'>Eliminar</button>
                           </td>";
                     echo "</tr>";
                 }
@@ -78,8 +80,17 @@
         </tbody>
     </table>
 
+    <script>
+        function editarProducto(idProducto) {
+            window.location.href = "editarProducto.php?idProducto=" + idProducto;
+        }
+
+        function eliminarProducto(idProducto) {
+            if (confirm("¿Seguro que deseas eliminar este producto?")) {
+                window.location.href = "eliminarProducto.php?idProducto=" + idProducto;
+            }
+        }
     </script>
 
-    
 </body>
 </html>
