@@ -60,6 +60,14 @@
             <h2>Ventas</h2>
             <button onclick="window.location.href='venta.php';">Gestionar Ventas</button>
         </section>
+
+        <section id="Cerra sesion">
+            <img src="images/ventas.png" alt="Cerrar sesion">
+            <h2>Cerrar Sesion</h2>
+            <button onclick="window.location.href='logout.php';">Cerrar Sesion</button>
+        </section>
+
+
     </main>
 
 
