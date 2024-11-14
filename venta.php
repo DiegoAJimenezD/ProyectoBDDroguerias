@@ -1,3 +1,27 @@
+<?php
+// Conectar a la base de datos
+include('conexion.php');
+
+// Consulta SQL para obtener las ventas
+$sql = "SELECT v.idVenta, v.descuento, m.nombre AS metodoPago, v.idFactura, v.cedula
+        FROM venta v
+        JOIN metodoPago m ON v.metodoPago = m.idMetodoPago ORDER BY v.idVenta ASC";
+$resultado = $conn->query($sql);
+
+// Verificar si hay resultados
+$ventas = [];
+if ($resultado->num_rows > 0) {
+    while ($row = $resultado->fetch_assoc()) {
+        $ventas[] = $row; // Almacenamos los datos en un arreglo
+    }
+} else {
+    $ventas = [];
+}
+
+// Cerrar la conexión
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,10 +29,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ventas</title>
     <link rel="stylesheet" href="css/stylesListas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <header class="header">
-
+    <header>
         <h1>Ventas</h1>
         <nav>
             <ul>
@@ -24,21 +48,8 @@
             </ul>
         </nav>
     </header>
-    <button onclick="window.location.reload()">Recargar Datos</button>
 
-    <nav>
-        <ul>
-            <li><a href="cliente.php">Clientes</a></li>
-            <li><a href="empleado.php">Empleados</a></li>
-            <li><a href="sucursal.php">Sucursales</a></li>
-            <li><a href="producto.php">Productos</a></li>
-            <li><a href="inventario.php">Inventario</a></li>
-            <li><a href="proveedor.php">Proveedores</a></li>
-            <li><a href="pedido.php">Pedidos</a></li>
-            <li><a href="venta.php">Ventas</a></li>
-        </ul>
-    </nav>
-    </header>
+    <button onclick="recargarDatos()">Recargar Datos</button>
 
     <table border="1">
         <thead>
@@ -51,50 +62,29 @@
             </tr>
         </thead>
         <tbody id="datosVenta">
-
             <?php
-            // Conexión a la base de datos
-            $host = 'localhost'; // Cambia esto según tu configuración
-            $usuario = 'root'; // Cambia esto según tu configuración
-            $contrasena = ''; // Cambia esto según tu configuración
-            $base_de_datos = 'drogueriasconfe'; // Nombre de tu base de datos
-
-            // Conexión a la base de datos
-            $conn = new mysqli($host, $usuario, $contrasena, $base_de_datos);
-
-            // Verificar la conexión
-            if ($conn->connect_error) {
-                die("Conexión fallida: " . $conn->connect_error);
-            }
-
-            // Consulta SQL para obtener las ventas
-            $sql = "SELECT v.idVenta, v.descuento, m.nombre AS metodoPago, v.idFactura, v.cedula
-                    FROM venta v
-                    JOIN metodoPago m ON v.metodoPago = m.idMetodoPago ORDER BY v.idVenta ASC";
-
-            $resultado = $conn->query($sql);
-
-            // Mostrar los datos en la tabla
-            if ($resultado->num_rows > 0) {
-                while($row = $resultado->fetch_assoc()) {
+            // Mostrar los datos de ventas
+            if (count($ventas) > 0) {
+                foreach ($ventas as $venta) {
                     echo "<tr>";
-                    echo "<td>" . $row["idVenta"] . "</td>";
-                    echo "<td>" . $row["descuento"] . "</td>";
-                    echo "<td>" . $row["metodoPago"] . "</td>";
-                    echo "<td>" . $row["idFactura"] . "</td>";
-                    echo "<td>" . $row["cedula"] . "</td>";
+                    echo "<td>" . $venta['idVenta'] . "</td>";
+                    echo "<td>" . $venta['descuento'] . "</td>";
+                    echo "<td>" . $venta['metodoPago'] . "</td>";
+                    echo "<td>" . $venta['idFactura'] . "</td>";
+                    echo "<td>" . $venta['cedula'] . "</td>";
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='5'>No se encontraron ventas</td></tr>";
+                echo "<tr><td colspan='5'>No se encontraron ventas.</td></tr>";
             }
-
-            // Cerrar la conexión
-            $conn->close();
             ?>
-
-            <!-- Datos a cargar dinámicamente -->
         </tbody>
     </table>
+
+    <script>
+        function recargarDatos() {
+            window.location.reload(); // Recarga la página
+        }
+    </script>
 </body>
 </html>
