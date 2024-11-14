@@ -10,7 +10,7 @@
     <header class="header">
         <h1>Productos</h1>
         <nav>
-        <ul>
+            <ul>
                 <li><a href="cliente.php">Clientes</a></li>
                 <li><a href="empleado.php">Empleados</a></li>
                 <li><a href="sucursal.php">Sucursales</a></li>
@@ -19,15 +19,11 @@
                 <li><a href="proveedor.php">Proveedores</a></li>
                 <li><a href="pedido.php">Pedidos</a></li>
                 <li><a href="venta.php">Ventas</a></li>
-
-
                 <li><a href="administrador.php">Panel</a></li>
-
-
-                <li><a href="login.php">Regresar</a></li>
             </ul>
         </nav>
     </header>
+    
     <button onclick="window.location.reload()">Recargar Datos</button>
     <table border="1">
         <thead>
@@ -36,6 +32,7 @@
                 <th>Nombre</th>
                 <th>Precio</th>
                 <th>Categoría</th>
+                <th>Acciones</th> <!-- Nueva columna para acciones -->
             </tr>
         </thead>
         <tbody id="datosProducto">
@@ -46,29 +43,19 @@
             $contrasena = '';
             $base_de_datos = 'drogueriasconfe';
 
-            // Conexión a la base de datos
             $conn = new mysqli($host, $usuario, $contrasena, $base_de_datos);
 
-            // Verificar la conexión
             if ($conn->connect_error) {
                 die("Conexión fallida: " . $conn->connect_error);
             }
 
-
-            // Consulta SQL para obtener los productos ordenados ascendentemente por idProducto
             $sql = "SELECT p.idProducto, p.nombre, p.precio, c.nombre AS categoria 
                     FROM producto p
                     JOIN categoriaProducto c ON p.categoriaProducto = c.idCategoria
-                    ORDER BY p.idProducto ASC"; // Orden ascendente por idProducto
-
-            // Consulta SQL para obtener los productos
-            $sql = "SELECT p.idProducto, p.nombre, p.precio, c.nombre AS categoria 
-                    FROM producto p
-                    JOIN categoriaProducto c ON p.categoriaProducto = c.idCategoria";
+                    ORDER BY p.idProducto ASC";
 
             $resultado = $conn->query($sql);
 
-            // Mostrar los datos en la tabla
             if ($resultado->num_rows > 0) {
                 while($row = $resultado->fetch_assoc()) {
                     echo "<tr>";
@@ -76,53 +63,23 @@
                     echo "<td>" . $row["nombre"] . "</td>";
                     echo "<td>" . $row["precio"] . "</td>";
                     echo "<td>" . $row["categoria"] . "</td>";
+                    echo "<td>
+                            <button onclick='editarProducto(\"" . $row["idProducto"] . "\")'>Editar</button>
+                            <button onclick='eliminarProducto(\"" . $row["idProducto"] . "\")'>Eliminar</button>
+                          </td>";
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='4'>No se encontraron productos</td></tr>";
+                echo "<tr><td colspan='5'>No se encontraron productos</td></tr>";
             }
 
-            // Cerrar la conexión
             $conn->close();
             ?>
         </tbody>
     </table>
 
-    <!-- Contenedor para la gráfica -->
-    <h2>Productos Más Vendidos</h2>
-    <canvas id="graficaProductosMasVendidos" width="400" height="200"></canvas>
-
-    <!-- Script para Chart.js y para obtener datos de productos más vendidos -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        // Obtener los datos de los productos más vendidos desde el archivo PHP
-        fetch('obtener_productos_mas_vendidos.php')
-            .then(response => response.json())
-            .then(data => {
-                // Configurar los datos de la gráfica
-                const ctx = document.getElementById('graficaProductosMasVendidos').getContext('2d');
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: data.productos,
-                        datasets: [{
-                            label: 'Productos más vendidos',
-                            data: data.cantidades,
-                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                            borderColor: 'rgba(54, 162, 235, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                });
-            })
-            .catch(error => console.error('Error al obtener los datos:', error));
     </script>
+
+    
 </body>
 </html>
