@@ -13,6 +13,7 @@ if ($result_cliente->num_rows > 0) {
     $cliente = $result_cliente->fetch_assoc();
     $_SESSION['usuario'] = $cliente['primernombre'] . ' ' . $cliente['primerApellido']; // Guardar nombre en la sesión
     $_SESSION['tipo_usuario'] = 'cliente'; // Guardar tipo de usuario en la sesión
+    $_SESSION['email'] = $cliente['email']; // Guardar correo electrónico en la sesión
     header("Location: index.php");
     exit();
 }

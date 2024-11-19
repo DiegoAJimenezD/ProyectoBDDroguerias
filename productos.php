@@ -26,7 +26,7 @@
     <?php
     include 'componentes\card.php';
     ?>
-
+    
     <?php
     include 'componentes\footer.php';
     ?>

@@ -90,7 +90,8 @@
                 echo '<p>Categoría: ' . $row['categoriaNombre'] . '</p>';
                 echo '<p>$' . number_format($row['precio'], 0, ',', '.') . '</p>';
                 echo '<p><strong>Stock disponible: ' . $row['cantidadStock'] . '</strong></p>';
-                echo '<button>Comprar</button>';
+                // Modificar el botón para redirigir a la página de compra
+                echo '<button onclick="redirigirCompra(' . $row['idProducto'] . ')">Comprar</button>';
                 echo '</div>';
             }
         } else {
@@ -109,5 +110,10 @@
         document.getElementById("nombre").value = "";  // Limpiar el filtro de nombre
         document.getElementById("precio").value = "";  // Limpiar el filtro de precio
         document.getElementById("filterForm").submit();  // Enviar el formulario para aplicar los cambios
+    }
+
+    // Función para redirigir a la página de compra
+    function redirigirCompra(idProducto) {
+        window.location.href = `compra.php?idProducto=${idProducto}`;
     }
 </script>

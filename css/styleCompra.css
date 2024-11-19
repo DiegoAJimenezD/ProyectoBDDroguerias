@@ -1,0 +1,238 @@
+/* Reset some basic styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f9fb; /* Light background for the page */
+}
+
+/* Header */
+.header {
+    background: linear-gradient(to right, #004c99, #00bfae); /* Degradado de azul oscuro a verde claro */
+    color: white;
+    text-align: center;
+    padding: 50px 20px; /* Aumentar el padding para que haya más espacio */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave debajo del header */
+}
+
+.header h1 {
+    font-size: 4em; /* Mayor tamaño de fuente */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente moderna */
+    font-weight: 700; /* Hacer el título más grueso */
+    margin-bottom: 15px;
+    letter-spacing: 2px; /* Espaciado entre letras */
+    text-transform: uppercase; /* Convertir a mayúsculas */
+}
+
+.header p {
+    font-size: 2em; /* Aumento del tamaño del texto */
+    font-family: 'Arial', sans-serif; /* Fuente sencilla pero elegante */
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 20px; /* Más espacio debajo del párrafo */
+    letter-spacing: 1px; /* Espaciado entre letras */
+    opacity: 0.9; /* Un toque de transparencia */
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(to right, #004c99, #00bfae); /* Degradado de azul oscuro a verde claro */
+    padding: 15px 20px; /* Espaciado superior e inferior */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.navbar-brand {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.8em; /* Mayor tamaño para la marca */
+    letter-spacing: 1px; /* Espaciado entre letras */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente moderna */
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease; /* Transición suave en el cambio de color */
+}
+
+.navbar-logo {
+    width: 250px; /* Aumentado el tamaño del logo */
+    margin-right: 15px; /* Espacio entre el logo y el texto */
+}
+
+.navbar-brand:hover {
+    color: #00bfae; /* Cambio de color al hacer hover */
+}
+
+.navbar-nav {
+    list-style: none;
+    display: flex;
+    gap: 25px; /* Espacio entre los enlaces */
+}
+
+.navbar-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em; /* Tamaño de fuente mayor */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    transition: color 0.3s ease; /* Transición suave para el hover */
+}
+
+.navbar-nav a:hover {
+    color: #00bfae; /* Color verde claro al hacer hover */
+    border-bottom: 2px solid #00bfae; /* Subrayado al hacer hover */
+}
+
+/* Banner */
+.banner {
+    background: url('banner.jpg') no-repeat center center;
+    background-size: cover;
+    height: 100px; /* Aumentada la altura del banner */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    background-color: #00bfae; /* Verde claro para el banner */
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 30px;
+}
+
+.text-center {
+    text-align: center;
+    margin: 30px 0; /* Aumentado el espacio entre los títulos y contenido */
+}
+
+/* Formulario de filtros */
+.formulario-compra {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 50px auto;
+    animation: fadeIn 0.8s ease-out; /* Agregar animación de aparición */
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.formulario-compra h2 {
+    font-size: 2.5em;
+    color: #004c99;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.formulario-compra label {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.formulario-compra input,
+.formulario-compra select {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.1em;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    background-color: #f4f9fb;
+    transition: border-color 0.3s ease;
+}
+
+.formulario-compra input:focus,
+.formulario-compra select:focus {
+    border-color: #00bfae;
+    outline: none;
+}
+
+.formulario-compra button {
+    background-color: #00bfae;
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    padding: 14px 24px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s ease;
+    width: 100%;
+}
+
+.formulario-compra button:hover {
+    background-color: #009f8a;
+    transform: scale(1.05); /* Añadir un efecto de zoom */
+}
+
+.footer {
+    background-color: #004c99; /* Azul oscuro */
+    color: white;
+    text-align: center;
+    padding: 30px;
+    margin-top: 30px;
+}
+
+.footer p {
+    font-size: 1.2em;
+}
+
+/* Estilo para el botón de logout */
+.Logout {
+    padding: 14px 24px;
+    background-color: #00bfae;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.Logout:hover {
+    background-color: #009f8a;
+}
+
+/* Efecto al pasar el mouse sobre el botón */
+button:hover {
+    background-color: #009f8a;
+}
+
+/* Alineación y estilos cuando el campo de número es tocado */
+.filtro input[type="number"] {
+    -moz-appearance: textfield; /* Eliminar los controles de números en Firefox */
+}
+
+.filtro input[type="number"]::-webkit-outer-spin-button,
+.filtro input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

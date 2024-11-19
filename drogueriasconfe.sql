@@ -1311,6 +1311,7 @@ ALTER TABLE `gerente`
 ALTER TABLE `inventario`
   ADD CONSTRAINT `inventario_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`);
 
+
 --
 -- Constraints for table `licenciaconduccion`
 --
