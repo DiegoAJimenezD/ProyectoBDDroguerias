@@ -2,8 +2,41 @@
 // Incluir la conexión a la base de datos
 include('conexion.php');
 
+// Obtener los valores de los filtros, si están definidos
+$cedulaFiltro = isset($_GET['cedula']) ? $_GET['cedula'] : '';
+$primernombreFiltro = isset($_GET['primernombre']) ? $_GET['primernombre'] : '';
+$segundonombreFiltro = isset($_GET['segundonombre']) ? $_GET['segundonombre'] : '';
+$primerapellidoFiltro = isset($_GET['primerapellido']) ? $_GET['primerapellido'] : '';
+$segundoapellidoFiltro = isset($_GET['segundoapellido']) ? $_GET['segundoapellido'] : '';
+$fechanacimientoFiltro = isset($_GET['fechanacimiento']) ? $_GET['fechanacimiento'] : '';
+$emailFiltro = isset($_GET['email']) ? $_GET['email'] : '';
+
+// Construir la consulta con los filtros
+$sql = "SELECT cedula, primernombre, segundonombre, primerapellido, segundoapellido, fechanacimiento, email FROM cliente WHERE 1=1";
+
+if ($cedulaFiltro) {
+    $sql .= " AND cedula LIKE '%" . $conn->real_escape_string($cedulaFiltro) . "%'";
+}
+if ($primernombreFiltro) {
+    $sql .= " AND primernombre LIKE '%" . $conn->real_escape_string($primernombreFiltro) . "%'";
+}
+if ($segundonombreFiltro) {
+    $sql .= " AND segundonombre LIKE '%" . $conn->real_escape_string($segundonombreFiltro) . "%'";
+}
+if ($primerapellidoFiltro) {
+    $sql .= " AND primerapellido LIKE '%" . $conn->real_escape_string($primerapellidoFiltro) . "%'";
+}
+if ($segundoapellidoFiltro) {
+    $sql .= " AND segundoapellido LIKE '%" . $conn->real_escape_string($segundoapellidoFiltro) . "%'";
+}
+if ($fechanacimientoFiltro) {
+    $sql .= " AND fechanacimiento = '" . $conn->real_escape_string($fechanacimientoFiltro) . "'";
+}
+if ($emailFiltro) {
+    $sql .= " AND email LIKE '%" . $conn->real_escape_string($emailFiltro) . "%'";
+}
+
 // Realizar la consulta a la base de datos
-$sql = "SELECT cedula, primernombre, segundonombre, primerapellido, segundoapellido, fechanacimiento, email FROM cliente";
 $result = $conn->query($sql);
 
 // Comprobar si hay resultados
@@ -94,13 +127,72 @@ $conn->close();
         </nav>
     </header>
 
+    <form method="GET" action="">
+    <div class="contenedor-filtros">
+        <div class="formulario-filtros">
+            <div class="filtro">
+                <label for="cedula">Cédula:</label>
+                <input type="text" name="cedula" id="cedula" placeholder="Buscar por cédula" value="<?= isset($_GET['cedula']) ? htmlspecialchars($_GET['cedula']) : '' ?>">
+            </div>
+
+            <div class="filtro">
+                <label for="primernombre">Primer Nombre:</label>
+                <input type="text" name="primernombre" id="primernombre" placeholder="Buscar por primer nombre" value="<?= isset($_GET['primernombre']) ? htmlspecialchars($_GET['primernombre']) : '' ?>">
+            </div>
+
+            <div class="filtro">
+                <label for="segundonombre">Segundo Nombre:</label>
+                <input type="text" name="segundonombre" id="segundonombre" placeholder="Buscar por segundo nombre" value="<?= isset($_GET['segundonombre']) ? htmlspecialchars($_GET['segundonombre']) : '' ?>">
+            </div>
+
+            <div class="filtro">
+                <label for="primerapellido">Primer Apellido:</label>
+                <input type="text" name="primerapellido" id="primerapellido" placeholder="Buscar por primer apellido" value="<?= isset($_GET['primerapellido']) ? htmlspecialchars($_GET['primerapellido']) : '' ?>">
+            </div>
+
+            <div class="filtro">
+                <label for="segundoapellido">Segundo Apellido:</label>
+                <input type="text" name="segundoapellido" id="segundoapellido" placeholder="Buscar por segundo apellido" value="<?= isset($_GET['segundoapellido']) ? htmlspecialchars($_GET['segundoapellido']) : '' ?>">
+            </div>
+
+            <div class="filtro">
+                <label for="fechanacimiento">Fecha de Nacimiento:</label>
+                <input type="date" name="fechanacimiento" id="fechanacimiento" value="<?= isset($_GET['fechanacimiento']) ? htmlspecialchars($_GET['fechanacimiento']) : '' ?>">
+            </div>
+
+            <div class="filtro">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" placeholder="Buscar por email" value="<?= isset($_GET['email']) ? htmlspecialchars($_GET['email']) : '' ?>">
+            </div>
+        </div>
+
+        <!-- Botones debajo de los filtros -->
+        <div class="botones">
+            <button type="submit">Filtrar</button>
+            <button type="reset" onclick="resetForm()">Limpiar</button> <!-- Botón limpiar -->
+        </div>
+    </div>
+</form>
+
+<script>
+    function resetForm() {
+        // Obtiene todos los campos del formulario
+        var form = document.querySelector("form");
+
+        // Recorre todos los campos y los limpia
+        form.reset();
+
+        // Si quieres asegurarte de limpiar también los valores de los filtros de URL (GET), puedes redirigir a una URL sin parámetros
+        window.location.href = window.location.pathname;
+    }
+</script>
+
     
     <div class>
     <button onclick="recargarDatos()">Recargar Datos</button>
     </div>
    
 
-    
     <table border="1">
         <thead>
             <tr>
@@ -145,9 +237,23 @@ $conn->close();
     </table>
 
     <script>
+
+        function editarCliente(cedula) {
+            window.location.href = "editarCliente.php?cedula=" + cedula;
+        }
+
+        function eliminarCliente(cedula) {
+            if (confirm("¿Estás seguro de eliminar este cliente?")) {
+                window.location.href = "eliminarCliente.php?cedula=" + cedula;
+            }
+        }
+
+        function recargarDatos() {
+            window.location.reload();
         // Función para recargar los datos
         function recargarDatos() {
             window.location.reload(); // Recarga la página
+
         }
 
         // Función para manejar la acción de editar

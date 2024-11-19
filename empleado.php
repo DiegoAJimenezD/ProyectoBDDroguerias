@@ -7,6 +7,52 @@
     <link rel="stylesheet" href="css/stylesListas.css">
     <!-- Agregar iconos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+    <style>
+        /* Estilo para la celda de acciones */
+        .acciones {
+            display: flex; /* Usamos flexbox para alinear los botones */
+            justify-content: space-evenly; /* Espacio uniforme entre los botones */
+            gap: 10px; /* Espacio entre los botones */
+        }
+
+        /* Estilo para los botones */
+        .acciones button {
+            padding: 5px 10px; /* Tamaño de los botones */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+            transition: background-color 0.3s ease; /* Animación suave para el color de fondo */
+            display: flex;
+            align-items: center;
+        }
+
+        /* Botón de editar (verde) */
+        .acciones button.editar {
+            background-color: #4CAF50; /* Verde */
+            color: white; /* Color del texto */
+        }
+
+        .acciones button.editar:hover {
+            background-color: #45a049; /* Verde más oscuro en hover */
+        }
+
+        /* Botón de eliminar (rojo) */
+        .acciones button.eliminar {
+            background-color: #f44336; /* Rojo */
+            color: white; /* Color del texto */
+        }
+
+        .acciones button.eliminar:hover {
+            background-color: #e53935; /* Rojo más oscuro en hover */
+        }
+
+        .acciones i {
+            margin-right: 5px; /* Espacio entre el icono y el texto */
+        }
+    </style>
+
 </head>
 <body>
     <header class="header">
@@ -107,6 +153,7 @@
         }
     </script>
 
+
     <style>
         /* Estilos personalizados para los botones */
         .editar {
@@ -147,5 +194,6 @@
             background-color: #c82333;
         }
     </style>
+
 </body>
 </html>

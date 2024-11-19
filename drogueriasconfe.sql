@@ -2,10 +2,20 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
+
+-- Servidor: 127.0.0.1
+
+-- Tiempo de generación: 19-11-2024 a las 05:04:47
+
+-- Tiempo de generación: 14-11-2024 a las 08:18:42
+
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 -- Host: 127.0.0.1
 -- Generation Time: Nov 14, 2024 at 06:56 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -138,7 +148,7 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`idEmpleado`, `nombre`, `horario`, `sucursal`, `email`, `contrasena`) VALUES
-(1, 'Carlos Díaz', '08:00:00', 1, 'carlos.diaz@empresa.com', 'contrasena001'),
+(1, 'Carlos Ander Díaz', '08:00:00', 1, 'carlos.diaz@empresa.com', 'contrasena001'),
 (2, 'Sofía Pérez', '09:00:00', 2, 'sofia.perez@empresa.com', 'contrasena002'),
 (3, 'Pedro Martínez', '08:30:00', 3, 'pedro.martinez@empresa.com', 'contrasena003'),
 (4, 'Ana Gómez', '10:00:00', 4, 'ana.gomez@empresa.com', 'contrasena004'),
