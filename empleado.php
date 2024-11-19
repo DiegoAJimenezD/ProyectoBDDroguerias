@@ -8,6 +8,7 @@
     <!-- Agregar iconos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
+
     <style>
         /* Estilo para la celda de acciones */
         .acciones {
@@ -151,6 +152,47 @@
         }
     </script>
 
+
+    <style>
+        /* Estilos personalizados para los botones */
+        .editar {
+            background-color: #28a745; /* Verde */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .editar i {
+            margin-right: 5px;
+        }
+
+        .editar:hover {
+            background-color: #218838;
+        }
+
+        .eliminar {
+            background-color: #dc3545; /* Rojo */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .eliminar i {
+            margin-right: 5px;
+        }
+
+        .eliminar:hover {
+            background-color: #c82333;
+        }
+    </style>
 
 </body>
 </html>

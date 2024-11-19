@@ -230,6 +230,7 @@ $conn->close();
     </table>
 
     <script>
+
         function editarCliente(cedula) {
             window.location.href = "editarCliente.php?cedula=" + cedula;
         }
@@ -242,6 +243,25 @@ $conn->close();
 
         function recargarDatos() {
             window.location.reload();
+        // Función para recargar los datos
+        function recargarDatos() {
+            window.location.reload(); // Recarga la página
+
+        }
+
+        // Función para manejar la acción de editar
+        function editarCliente(cedula) {
+            // Redirige a la página de edición pasando la cédula como parámetro
+            window.location.href = 'editarCliente.php?cedula=' + cedula;
+        }
+
+        // Función para manejar la acción de eliminar
+        function eliminarCliente(cedula) {
+            // Preguntar al usuario si está seguro de eliminar
+            if (confirm('¿Estás seguro de eliminar este cliente?')) {
+                // Enviar una solicitud para eliminar el cliente
+                window.location.href = 'eliminarCliente.php?cedula=' + cedula;
+            }
         }
     </script>
 </body>
