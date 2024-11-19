@@ -108,10 +108,12 @@ $conn->close();
     </style>
 </head>
 <body>
+    
     <header>
         <h1>Clientes</h1>
         <nav>
             <ul>
+                
                 <li><a href="cliente.php">Clientes</a></li>
                 <li><a href="empleado.php">Empleados</a></li>
                 <li><a href="sucursal.php">Sucursales</a></li>
@@ -120,7 +122,7 @@ $conn->close();
                 <li><a href="proveedor.php">Proveedores</a></li>
                 <li><a href="pedido.php">Pedidos</a></li>
                 <li><a href="venta.php">Ventas</a></li>
-                <li><a href="administrador.php">Panel</a></li>
+                <li><a href="administrador.php">Panel</a></li>     
             </ul>
         </nav>
     </header>
@@ -184,7 +186,12 @@ $conn->close();
         window.location.href = window.location.pathname;
     }
 </script>
+
+    
+    <div class>
     <button onclick="recargarDatos()">Recargar Datos</button>
+    </div>
+   
 
     <table border="1">
         <thead>

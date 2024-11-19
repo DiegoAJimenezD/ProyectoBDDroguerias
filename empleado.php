@@ -70,6 +70,7 @@
                 <li><a href="administrador.php">Panel</a></li>
             </ul>
         </nav>
+       
     </header>
     <button onclick="recargarDatos()">Recargar Datos</button>
     <table border="1">

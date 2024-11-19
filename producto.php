@@ -10,7 +10,7 @@
     <header class="header">
         <h1>Productos</h1>
         <nav>
-        <ul>
+            <ul>
                 <li><a href="cliente.php">Clientes</a></li>
                 <li><a href="empleado.php">Empleados</a></li>
                 <li><a href="sucursal.php">Sucursales</a></li>
@@ -23,7 +23,51 @@
             </ul>
         </nav>
     </header>
+
+    <form method="GET" action="" class="formularioFiltros" id="filterForm">
+    <div class="filtro">
+        <label for="categoria">Categoría:</label>
+        <select name="categoria" id="categoria">
+            <option value="">Todas</option>
+            <?php
+            $conn = new mysqli('localhost', 'root', '', 'drogueriasconfe');
+            $sqlCategorias = "SELECT idCategoria, nombre FROM categoriaProducto";
+            $resultCategorias = $conn->query($sqlCategorias);
+
+            while ($rowCategoria = $resultCategorias->fetch_assoc()) {
+                $selected = (isset($_GET['categoria']) && $_GET['categoria'] == $rowCategoria['idCategoria']) ? 'selected' : '';
+                echo "<option value='" . $rowCategoria['idCategoria'] . "' $selected>" . $rowCategoria['nombre'] . "</option>";
+            }
+            $conn->close();  
+            ?>
+        </select>
+    </div>
+
+    <div class="filtro">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" placeholder="Buscar por nombre" value="<?= isset($_GET['nombre']) ? htmlspecialchars($_GET['nombre']) : '' ?>">
+    </div>
+
+    <div class="filtro">
+        <label for="idProducto">ID Producto:</label>
+        <input type="number" name="idProducto" id="idProducto" placeholder="Buscar por ID" value="<?= isset($_GET['idProducto']) ? htmlspecialchars($_GET['idProducto']) : '' ?>">
+    </div>
+
+    <div class="filtro">
+        <label for="precio">Precio máximo:</label>
+        <input type="number" name="precio" id="precio" min="0" step="0.01" placeholder="Precio máximo" value="<?= isset($_GET['precio']) ? htmlspecialchars($_GET['precio']) : '' ?>">
+    </div>
+
+    <div class="filtro-boton">
+        <button type="submit">Filtrar</button>
+        <button type="button" onclick="resetFilters()">Limpiar</button>
+    </div>
+</form>
+
+    <!-- Botón para recargar los datos -->
     <button onclick="window.location.reload()">Recargar Datos</button>
+
+    <!-- Tabla de Productos -->
     <table border="1">
         <thead>
             <tr>
@@ -31,56 +75,92 @@
                 <th>Nombre</th>
                 <th>Precio</th>
                 <th>Categoría</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody id="datosProducto">
             <?php
             // Conexión a la base de datos
-            $host = 'localhost'; // Cambia esto según tu configuración
-            $usuario = 'root'; // Cambia esto según tu configuración
-            $contrasena = ''; // Cambia esto según tu configuración
-            $base_de_datos = 'drogueriasconfe'; // Nombre de tu base de datos
+            $conn = new mysqli('localhost', 'root', '', 'drogueriasconfe');
 
-            // Conexión a la base de datos
-            $conn = new mysqli($host, $usuario, $contrasena, $base_de_datos);
-
-            // Verificar la conexión
-            if ($conn->connect_error) {
-                die("Conexión fallida: " . $conn->connect_error);
-            }
-
-
-            // Consulta SQL para obtener los productos ordenados ascendentemente por idProducto
+            // Consulta base para obtener productos
             $sql = "SELECT p.idProducto, p.nombre, p.precio, c.nombre AS categoria 
                     FROM producto p
                     JOIN categoriaProducto c ON p.categoriaProducto = c.idCategoria
-                    ORDER BY p.idProducto ASC"; // Orden ascendente por idProducto
+                    WHERE p.eliminado = 0";
 
-            // Consulta SQL para obtener los productos
-            $sql = "SELECT p.idProducto, p.nombre, p.precio, c.nombre AS categoria 
-                    FROM producto p
-                    JOIN categoriaProducto c ON p.categoriaProducto = c.idCategoria";
+            // Agregar filtros a la consulta
+            $conditions = [];
+            if (isset($_GET['categoria']) && $_GET['categoria'] !== '') {
+                $categoria = $conn->real_escape_string($_GET['categoria']);
+                $conditions[] = "p.categoriaProducto = '$categoria'";  // Filtrar por categoría
+            }
+            if (isset($_GET['nombre']) && $_GET['nombre'] !== '') {
+                $nombre = $conn->real_escape_string($_GET['nombre']);
+                $conditions[] = "p.nombre LIKE '%$nombre%'";  // Filtrar por nombre
+            }
+            
+            if (isset($_GET['idProducto']) && $_GET['idProducto'] !== '') {
+                $idProducto = (int) $_GET['idProducto'];
+                $conditions[] = "p.idProducto = $idProducto";  // Filtrar por ID Producto
+            }
 
+            if (isset($_GET['precio']) && $_GET['precio'] !== '') {
+                $precio = (float) $_GET['precio'];
+                $conditions[] = "p.precio <= $precio";  // Filtrar por precio máximo
+            }
+
+            // Si hay filtros, agregarlos a la consulta
+            if (!empty($conditions)) {
+                $sql .= " AND " . implode(' AND ', $conditions);
+            }
+
+            // Ejecutar la consulta
             $resultado = $conn->query($sql);
 
-            // Mostrar los datos en la tabla
+            // Mostrar los resultados
             if ($resultado->num_rows > 0) {
-                while($row = $resultado->fetch_assoc()) {
-                    echo "<tr>";
+                while ($row = $resultado->fetch_assoc()) {
+                    echo "<tr id='producto-" . $row["idProducto"] . "'>";
                     echo "<td>" . $row["idProducto"] . "</td>";
                     echo "<td>" . $row["nombre"] . "</td>";
                     echo "<td>" . $row["precio"] . "</td>";
                     echo "<td>" . $row["categoria"] . "</td>";
+                    echo "<td>
+                            <button onclick='editarProducto(" . $row["idProducto"] . ")'>Editar</button>
+                            <button onclick='eliminarProducto(" . $row["idProducto"] . ")'>Eliminar</button>
+                          </td>";
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='4'>No se encontraron productos</td></tr>";
+                echo "<tr><td colspan='5'>No se encontraron productos</td></tr>";
             }
 
-            // Cerrar la conexión
-            $conn->close();
+            $conn->close();  // Cerrar la conexión
             ?>
         </tbody>
     </table>
+
+    <script>
+        function editarProducto(idProducto) {
+            window.location.href = "editarProducto.php?idProducto=" + idProducto;
+        }
+
+        function eliminarProducto(idProducto) {
+            if (confirm("¿Seguro que deseas eliminar este producto?")) {
+                window.location.href = "eliminarProducto.php?idProducto=" + idProducto;
+            }
+        }
+
+        // Función para limpiar los filtros
+        function resetFilters() {
+            document.getElementById("categoria").value = "";  
+            document.getElementById("nombre").value = "";  
+            document.getElementById("precio").value = "";  
+            document.getElementById("idProducto").value = "";  
+            document.getElementById("filterForm").submit();  
+        }
+    </script>
+
 </body>
 </html>
