@@ -61,6 +61,7 @@ nav ul li a {
 nav ul li a:hover {
     background-color: rgba(0, 0, 0, 0.2);
 }
+
 /* Tabla */
 table {
     width: 80%; /* Reducir el ancho de la tabla */
@@ -98,7 +99,7 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 20px; /* Separar el botón de la tabla */
-    margin-left: 20px; /* Mover el botón hacia la derecha */
+    margin-left: 80px; /* Mover el botón hacia la derecha */
 }
 
 button:hover {
@@ -109,3 +110,173 @@ button:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 191, 174, 0.5);
 }
+
+/* Alineación de los botones en la columna de acciones */
+.acciones {
+    display: inline-block; /* Hace que los botones se alineen en línea */
+}
+
+.acciones button {
+    margin-right: 10px; /* Espacio entre los botones */
+}
+
+/* Estilo para el contenedor de los filtros */
+.contenedor-filtros {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #ddd; /* Borde gris claro */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Espacio interno */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    background-color: #fff; /* Fondo blanco */
+    margin: 30px auto; /* Centra el contenedor horizontalmente */
+}
+
+
+/* Estilo para la fila de filtros */
+.formulario-filtros {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los filtros se ajusten a la siguiente línea si no caben */
+    justify-content: space-between; /* Distribuye los filtros de manera uniforme */
+    gap: 10px; /* Espacio entre los filtros */
+    margin-bottom: 20px; /* Espacio debajo de los filtros */
+    width: 100%;
+}
+
+/* Estilo para cada filtro */
+.filtro {
+    display: flex;
+    flex-direction: column;
+    width: 150px; /* Ancho de cada filtro */
+}
+
+/* Estilo para los botones */
+.botones {
+    margin-top: 20px; /* Espacio entre los filtros y los botones */
+    display: flex;
+    justify-content: center; /* Centra los botones */
+    gap: 20px; /* Espacio entre los botones */
+}
+
+/* Estilo del botón de filtrar */
+.botones button[type="submit"] {
+    background-color: #4CAF50; /* Fondo verde */
+    color: white; /* Color del texto */
+    padding: 10px 20px;
+    border: 1px solid #4CAF50;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Efecto de hover sobre el botón filtrar */
+.botones button[type="submit"]:hover {
+    background-color: #45a049; /* Fondo verde más oscuro en hover */
+}
+
+/* Estilo del botón limpiar */
+.botones button[type="reset"] {
+    background-color: #f0f0f0; /* Fondo gris claro */
+    color: #333; /* Color del texto */
+    padding: 10px 20px;
+    border: 1px solid #ccc; /* Borde gris claro */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Efecto de hover sobre el botón limpiar */
+.botones button[type="reset"]:hover {
+    background-color: #e0e0e0; /* Fondo gris más oscuro en hover */
+}
+
+/* Estilo para las etiquetas de los filtros */
+.filtro label {
+    font-size: 14px; /* Tamaño de la fuente de las etiquetas */
+    font-weight: bold; /* Poner las etiquetas en negrita */
+    color: #333; /* Color gris oscuro para el texto */
+    margin-bottom: 5px; /* Espacio debajo de las etiquetas */
+    display: block; /* Asegura que cada etiqueta esté en su propia línea */
+}
+
+/* Estilo para los inputs de los filtros */
+.filtro input {
+    padding: 8px 12px; /* Espaciado interno en los campos de entrada */
+    font-size: 14px; /* Tamaño de la fuente */
+    border: 1px solid #ccc; /* Borde gris claro */
+    border-radius: 5px; /* Bordes redondeados */
+    width: 100%; /* Los campos de entrada ocupan el 100% del ancho disponible */
+    box-sizing: border-box; /* Para asegurarse de que el padding no afecte el tamaño total del input */
+    transition: border-color 0.3s ease; /* Animación suave para el cambio de borde */
+}
+
+/* Efecto cuando el input está enfocado */
+.filtro input:focus {
+    border-color: #4CAF50; /* Borde verde cuando el campo está enfocado */
+    outline: none; /* Elimina el contorno predeterminado al enfocar */
+}
+
+/* Estilo de los inputs de tipo "date" (para el campo de fecha) */
+.filtro input[type="date"] {
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+/* Estilo de los inputs de tipo "email" */
+.filtro input[type="email"] {
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+/* Estilo de los botones */
+.botones button[type="submit"] {
+    background-color: #4CAF50; /* Fondo verde */
+    color: white; /* Color del texto */
+    padding: 10px 20px;
+    border: 1px solid #4CAF50;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Efecto de hover sobre el botón filtrar */
+.botones button[type="submit"]:hover {
+    background-color: #45a049; /* Fondo verde más oscuro en hover */
+}
+
+/* Estilo del botón limpiar */
+.botones button[type="reset"] {
+    background-color: #f0f0f0; /* Fondo gris claro */
+    color: #333; /* Color del texto */
+    padding: 10px 20px;
+    border: 1px solid #ccc; /* Borde gris claro */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Efecto de hover sobre el botón limpiar */
+.botones button[type="reset"]:hover {
+    background-color: #e0e0e0; /* Fondo gris más oscuro en hover */
+}
+
+/* Estilo para el contenedor de los filtros */
+.contenedor-filtros {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #ddd; /* Borde gris claro */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Espacio interno */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    background-color: #fff; /* Fondo blanco */
+    margin: 30px auto; /* Centra el contenedor horizontalmente */
+}
+

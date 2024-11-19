@@ -15,20 +15,13 @@
         <p>Todo lo que necesitas para tu salud y bienestar</p>
     </header>
 
-
     <?php
     include 'componentes\navbar.php';
     ?>
 
-
     <section class="banner">
         <p>¡Lo que necesitas está aquí! Productos seleccionados con cuidado.</p>
     </section>
-    
-
-
-    
-   
 
     <?php
     include 'componentes\card.php';
@@ -37,8 +30,6 @@
     <?php
     include 'componentes\footer.php';
     ?>
-
-
 
 </body>
 

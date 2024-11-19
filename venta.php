@@ -20,6 +20,7 @@
                 <li><a href="proveedor.php">Proveedores</a></li>
                 <li><a href="pedido.php">Pedidos</a></li>
                 <li><a href="venta.php">Ventas</a></li>
+                <li><a href="administrador.php">Panel</a></li>
             </ul>
         </nav>
     </header>
@@ -38,7 +39,6 @@
         </ul>
     </nav>
     </header>
-    <button onclick="recargarDatos()">Recargar Datos</button>
 
     <table border="1">
         <thead>

@@ -3,9 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-11-2024 a las 08:44:56
--- Tiempo de generación: 12-11-2024 a las 18:42:26
-
+-- Tiempo de generación: 19-11-2024 a las 05:04:47
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -35,7 +33,6 @@ CREATE TABLE `cajero` (
   `tiempoServicio` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 --
 -- Volcado de datos para la tabla `cajero`
 --
@@ -51,7 +48,6 @@ INSERT INTO `cajero` (`idEmpleado`, `turno`, `tiempoServicio`) VALUES
 (28, 'Tarde', '00:00:02'),
 (34, 'Noche', '00:00:05'),
 (41, 'Mañana', '00:00:06');
-
 
 -- --------------------------------------------------------
 
@@ -110,9 +106,9 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`cedula`, `primernombre`, `segundonombre`, `primerApellido`, `segundoApellido`, `fechaNacimiento`, `direccion`, `email`, `contrasena`) VALUES
-('0987654321', 'Ana', 'María', 'Rodríguez', 'Martínez', '1985-08-20', NULL, 'ana.rodriguez@example.com', '987'),
+('0987654321', 'Ana', 'Esperanza', 'Rodríguez', 'Quintero', '1985-02-21', NULL, 'ana.rodriguez@gmail.com', '987'),
 ('1004779035', 'Juan', 'Camilo', 'Cuenca', 'Sepuveda', '2003-09-18', 'crr 23# 7', 'camilocuenca1810@gmail.com', 'camilo123'),
-
+('1004871338', 'Diego', 'Alexander', 'Jimenez', 'Jimenez', '2002-12-06', 'Bosques de Pinares Manzana 3 Casa 17', 'diego15kxl@gmail.com', 'd123'),
 ('1234567890', 'Juan', 'Carlos', 'Pérez', 'Gómez', '1990-05-15', NULL, 'juan.perez@example.com', '123'),
 ('1478523690', 'Juan', 'Carlos', 'Pérez', 'Gómez', '1990-05-15', 'Calle 123, Bogotá', 'juan.perez@mail.com', 'contrasena123'),
 ('2345678901', 'María', 'Fernanda', 'López', 'Sánchez', '1985-08-22', 'Calle 456, Medellín', 'maria.lopez@mail.com', 'contrasena456'),
@@ -121,7 +117,6 @@ INSERT INTO `cliente` (`cedula`, `primernombre`, `segundonombre`, `primerApellid
 ('5678901234', 'Luis', 'Antonio', 'García', 'Díaz', '1995-07-18', 'Calle 202, Cartagena', 'luis.garcia@mail.com', 'contrasena202'),
 ('6789012345', 'Lucía', 'Estefanía', 'Hernández', 'Paredes', '1993-02-03', 'Calle 303, Bucaramanga', 'lucia.hernandez@mail.com', 'contrasena303'),
 ('7890123456', 'Pedro', 'Alfredo', 'Jiménez', 'Vargas', '1982-09-25', 'Calle 404, Manizales', 'pedro.jimenez@mail.com', 'contrasena404');
-
 
 -- --------------------------------------------------------
 
@@ -143,8 +138,7 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`idEmpleado`, `nombre`, `horario`, `sucursal`, `email`, `contrasena`) VALUES
-
-(1, 'Carlos Díaz', '08:00:00', 1, 'carlos.diaz@empresa.com', 'contrasena001'),
+(1, 'Carlos Ander Díaz', '08:00:00', 1, 'carlos.diaz@empresa.com', 'contrasena001'),
 (2, 'Sofía Pérez', '09:00:00', 2, 'sofia.perez@empresa.com', 'contrasena002'),
 (3, 'Pedro Martínez', '08:30:00', 3, 'pedro.martinez@empresa.com', 'contrasena003'),
 (4, 'Ana Gómez', '10:00:00', 4, 'ana.gomez@empresa.com', 'contrasena004'),
@@ -195,7 +189,6 @@ INSERT INTO `empleado` (`idEmpleado`, `nombre`, `horario`, `sucursal`, `email`, 
 (49, 'Rosa Fernández', '08:30:00', 9, 'rosa.fernandez@empresa.com', 'contrasena049'),
 (50, 'Javier Ruiz', '09:00:00', 10, 'javier.ruiz@empresa.com', 'contrasena050');
 
-
 -- --------------------------------------------------------
 
 --
@@ -206,7 +199,6 @@ CREATE TABLE `empleadoventa` (
   `idEmpleado` int(11) NOT NULL,
   `idVenta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 --
 -- Volcado de datos para la tabla `empleadoventa`
@@ -223,8 +215,6 @@ INSERT INTO `empleadoventa` (`idEmpleado`, `idVenta`) VALUES
 (12, 8),
 (13, 12),
 (14, 6);
-
-
 
 -- --------------------------------------------------------
 
@@ -243,7 +233,6 @@ CREATE TABLE `factura` (
   `clienteCedula` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 --
 -- Volcado de datos para la tabla `factura`
 --
@@ -260,8 +249,6 @@ INSERT INTO `factura` (`idFactura`, `impuesto`, `precio`, `fechaCompra`, `estado
 (9, 17.00, 170000.00, '2024-11-09', 'PAGADA', '2024-11-19', 'Avenida 9 #606', '6789012345'),
 (10, 19.00, 190000.00, '2024-11-10', 'CANCELADA', '2024-11-20', 'Calle 10 #707', '7890123456');
 
-
-
 -- --------------------------------------------------------
 
 --
@@ -272,7 +259,6 @@ CREATE TABLE `facturaventa` (
   `idFactura` int(11) NOT NULL,
   `idVenta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 --
 -- Volcado de datos para la tabla `facturaventa`
@@ -290,8 +276,6 @@ INSERT INTO `facturaventa` (`idFactura`, `idVenta`) VALUES
 (9, 12),
 (10, 6);
 
-
-
 -- --------------------------------------------------------
 
 --
@@ -300,7 +284,7 @@ INSERT INTO `facturaventa` (`idFactura`, `idVenta`) VALUES
 
 CREATE TABLE `farmaceutico` (
   `idEmpleado` int(11) NOT NULL,
- `especializacion` int(11) NOT NULL,
+  `especializacion` int(11) NOT NULL,
   `turno` varchar(20) NOT NULL,
   `licenciaFarmaceutico` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -309,18 +293,17 @@ CREATE TABLE `farmaceutico` (
 -- Volcado de datos para la tabla `farmaceutico`
 --
 
-INSERT INTO `farmaceutico` (`idEmpleado`, `turno`) VALUES
-(1, 'Mañana'),
-(3, 'Mañana'),
-(4, 'Mañana'),
-(6, 'Mañana'),
-(8, 'Mañana'),
-(10, 'Mañana'),
-(11, 'Mañana'),
-(13, 'Mañana'),
-(14, 'Mañana'),
-(16, 'Mañana');
-
+INSERT INTO `farmaceutico` (`idEmpleado`, `especializacion`, `turno`, `licenciaFarmaceutico`) VALUES
+(1, 0, 'Mañana', 0),
+(3, 0, 'Mañana', 0),
+(4, 0, 'Mañana', 0),
+(6, 0, 'Mañana', 0),
+(8, 0, 'Mañana', 0),
+(10, 0, 'Mañana', 0),
+(11, 0, 'Mañana', 0),
+(13, 0, 'Mañana', 0),
+(14, 0, 'Mañana', 0),
+(16, 0, 'Mañana', 0);
 
 -- --------------------------------------------------------
 
@@ -332,7 +315,6 @@ CREATE TABLE `gerente` (
   `idEmpleado` int(11) NOT NULL,
   `titulo` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 -- --------------------------------------------------------
 
@@ -403,7 +385,6 @@ INSERT INTO `inventario` (`idInventario`, `cantidadStock`, `fecha`, `idProducto`
 (49, 180, '2024-11-13', 49),
 (50, 140, '2024-11-13', 50);
 
-
 -- --------------------------------------------------------
 
 --
@@ -428,7 +409,6 @@ CREATE TABLE `licenciafarmaceutico` (
   `descripcion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 --
 -- Volcado de datos para la tabla `licenciafarmaceutico`
 --
@@ -445,8 +425,6 @@ INSERT INTO `licenciafarmaceutico` (`idLicenciaF`, `idEmpleado`, `descripcion`) 
 (9, 14, 'Licencia para trabajar en la distribución y venta de productos farmacéuticos.'),
 (10, 16, 'Licencia para el trabajo y asesoramiento en la compra y venta de productos farmacéuticos.');
 
-
-
 -- --------------------------------------------------------
 
 --
@@ -458,7 +436,6 @@ CREATE TABLE `metodopago` (
   `nombre` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 --
 -- Volcado de datos para la tabla `metodopago`
 --
@@ -467,8 +444,6 @@ INSERT INTO `metodopago` (`idMetodoPago`, `nombre`) VALUES
 (1, 'Tarjeta de Crédito'),
 (2, 'Tarjeta de Débito'),
 (3, 'PSE');
-
-
 
 -- --------------------------------------------------------
 
@@ -497,7 +472,6 @@ INSERT INTO `pedido` (`idPedido`, `fechaPedido`) VALUES
 (9, '2024-11-19'),
 (10, '2024-11-20');
 
-
 -- --------------------------------------------------------
 
 --
@@ -510,7 +484,6 @@ CREATE TABLE `pedidoproductoproveedor` (
   `idProveedor` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 --
 -- Volcado de datos para la tabla `pedidoproductoproveedor`
@@ -528,8 +501,6 @@ INSERT INTO `pedidoproductoproveedor` (`idPedido`, `idProducto`, `idProveedor`, 
 (9, 22, 10, 250),
 (10, 25, 3, 80);
 
-
-
 -- --------------------------------------------------------
 
 --
@@ -541,7 +512,6 @@ CREATE TABLE `personalinventario` (
   `tiempoServicio` time NOT NULL,
   `idTipoResponsabilidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 --
 -- Volcado de datos para la tabla `personalinventario`
@@ -558,8 +528,6 @@ INSERT INTO `personalinventario` (`idEmpleado`, `tiempoServicio`, `idTipoRespons
 (12, '00:00:05', 3),
 (13, '00:00:04', 4),
 (14, '00:00:06', 5);
-
-
 
 -- --------------------------------------------------------
 
@@ -582,14 +550,14 @@ CREATE TABLE `producto` (
 INSERT INTO `producto` (`idProducto`, `nombre`, `precio`, `categoriaProducto`, `imagen`) VALUES
 (1, 'Paracetamol', 3500, 1, 'https://example.com/images/paracetamol.jpg'),
 (2, 'Crema Hidratante', 15000, 2, 'https://example.com/images/crema_hidratante.jpg'),
-(3, 'Paracetamol', 3500, 1, 'https://example.com/images/paracetamol.jpg'),
+(3, 'Acetaminofén', 1000, 1, 'https://example.com/images/paracetamol.jpg'),
 (4, 'Crema Hidratante', 15000, 2, 'https://example.com/images/crema_hidratante.jpg'),
 (5, 'Antibiótico', 15000, 1, 'https://example.com/images/antibiotico.jpg'),
 (6, 'Shampoo Suave', 18000, 2, 'https://example.com/images/shampoo.jpg'),
 (7, 'Base de Maquillaje', 30000, 2, 'https://example.com/images/base_maquillaje.jpg'),
 (8, 'Aspirina', 25000, 1, 'https://example.com/aspirina.jpg'),
 (9, 'Ibuprofeno', 30000, 1, 'https://example.com/ibuprofeno.jpg'),
-(10, 'Paracetamol', 20000, 1, 'https://example.com/paracetamol.jpg'),
+(10, 'Legrip', 1400, 1, 'https://example.com/paracetamol.jpg'),
 (11, 'Pomada antiinflamatoria', 35000, 1, 'https://example.com/pomada-antiinflamatoria.jpg'),
 (12, 'Jarabe para la tos', 25000, 1, 'https://example.com/jarabe-tos.jpg'),
 (13, 'Antibiótico en crema', 40000, 1, 'https://example.com/antibiotico-crema.jpg'),
@@ -631,7 +599,6 @@ INSERT INTO `producto` (`idProducto`, `nombre`, `precio`, `categoriaProducto`, `
 (49, 'Rímel', 35000, 2, 'https://example.com/rimel.jpg'),
 (50, 'Pincel para maquillaje', 30000, 2, 'https://example.com/pincel-maquillaje.jpg');
 
-
 -- --------------------------------------------------------
 
 --
@@ -642,7 +609,6 @@ CREATE TABLE `productofactura` (
   `idFactura` int(11) NOT NULL,
   `idProducto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 --
 -- Volcado de datos para la tabla `productofactura`
@@ -660,8 +626,6 @@ INSERT INTO `productofactura` (`idFactura`, `idProducto`) VALUES
 (9, 14),
 (10, 17);
 
-
-
 -- --------------------------------------------------------
 
 --
@@ -673,7 +637,6 @@ CREATE TABLE `productoproveedor` (
   `idProveedor` int(11) NOT NULL,
   `costo` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 --
 -- Volcado de datos para la tabla `productoproveedor`
@@ -690,8 +653,6 @@ INSERT INTO `productoproveedor` (`idProducto`, `idProveedor`, `costo`) VALUES
 (25, 3, 0),
 (30, 4, 0),
 (35, 6, 0);
-
-
 
 -- --------------------------------------------------------
 
@@ -721,15 +682,11 @@ INSERT INTO `proveedor` (`idProveedor`, `nombre`, `email`) VALUES
 (9, 'Medicamentos y Salud', 'servicio@medicamentosysalud.com'),
 (10, 'Bienestar Cosmético', 'contacto@bienestarcosmetico.com');
 
-
-
-
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `repartidor`
 --
-
 
 CREATE TABLE `repartidor` (
   `idEmpleado` int(11) NOT NULL
@@ -748,7 +705,6 @@ CREATE TABLE `ruta` (
   `idFactura` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 --
 -- Volcado de datos para la tabla `ruta`
 --
@@ -765,8 +721,6 @@ INSERT INTO `ruta` (`idRuta`, `horaSalida`, `horaLlegada`, `idFactura`) VALUES
 (9, '16:00:00', '18:00:00', 9),
 (10, '17:00:00', '19:00:00', 10);
 
-
-
 -- --------------------------------------------------------
 
 --
@@ -781,7 +735,6 @@ CREATE TABLE `subsidio` (
   `idFactura` int(11) NOT NULL,
   `tipoSubsidio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 --
 -- Volcado de datos para la tabla `subsidio`
@@ -798,8 +751,6 @@ INSERT INTO `subsidio` (`idSubsidio`, `monto`, `fecha`, `cedula`, `idFactura`, `
 (8, 90000, '2024-08-30', '5678901234', 8, 2),
 (9, 62000, '2024-09-15', '6789012345', 9, 3),
 (10, 58000, '2024-10-22', '7890123456', 10, 1);
-
-
 
 -- --------------------------------------------------------
 
@@ -818,7 +769,6 @@ CREATE TABLE `sucursal` (
 --
 
 INSERT INTO `sucursal` (`idSucursal`, `nombre`, `direccion`) VALUES
-
 (1, 'Sucursal Central', 'Cl. 16 # 15 -22, Armenia, Quindío'),
 (2, 'Sucursal Centro', 'Calle 1, Armenia'),
 (3, 'Sucursal Norte', 'Avenida 5, Armenia'),
@@ -838,11 +788,8 @@ INSERT INTO `sucursal` (`idSucursal`, `nombre`, `direccion`) VALUES
 
 CREATE TABLE `telefono` (
   `idTelefono` int(11) NOT NULL,
-
-
   `idEntidad` int(11) NOT NULL,
   `tipoEntidad` enum('cliente','proveedor','empleado') NOT NULL,
-
   `numero` varchar(15) NOT NULL,
   `tipoTelefono` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -857,7 +804,6 @@ CREATE TABLE `tipocertificado` (
   `idTipoCertificado` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 --
 -- Volcado de datos para la tabla `tipocertificado`
@@ -875,8 +821,6 @@ INSERT INTO `tipocertificado` (`idTipoCertificado`, `nombre`) VALUES
 (9, 'Certificado en Marketing para Droguerías'),
 (10, 'Certificado en Estrategias de Ventas en Droguerías');
 
-
-
 -- --------------------------------------------------------
 
 --
@@ -889,7 +833,6 @@ CREATE TABLE `tiporesponsabilidad` (
   `descripcion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 --
 -- Volcado de datos para la tabla `tiporesponsabilidad`
 --
@@ -900,8 +843,6 @@ INSERT INTO `tiporesponsabilidad` (`idTipoResponsabilidad`, `nombre`, `descripci
 (3, 'Auditoría de Inventarios', 'Responsabilidad de realizar auditorías periódicas para verificar la exactitud del inventario y detectar discrepancias.'),
 (4, 'Manejo de Productos Vencidos', 'Responsabilidad de gestionar y remover productos vencidos del inventario, garantizando que no se vendan productos fuera de fecha.'),
 (5, 'Actualización de Precios', 'Responsabilidad de actualizar los precios de los productos en el sistema de inventarios según las indicaciones del departamento comercial.');
-
-
 
 -- --------------------------------------------------------
 
@@ -915,7 +856,6 @@ CREATE TABLE `tiposubsidio` (
   `descripcion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 --
 -- Volcado de datos para la tabla `tiposubsidio`
 --
@@ -924,8 +864,6 @@ INSERT INTO `tiposubsidio` (`idTipoSubsidio`, `nombre`, `descripcion`) VALUES
 (1, 'Cuota Monetaria', 'Es una prestación social en dinero que está dirigida a los trabajadores afiliados a Comfenalco Quindío'),
 (2, 'Subsidio Especial', 'Sin limitación en razón de su edad, se cancela doble cuota de subsidio familiar en dinero, a los hijos, padres y hermanos huérfanos de ambos padres'),
 (3, 'Subsidio de Servicios', 'Es el derecho que tú y tus beneficiaros tienen para utilizar los servicios sociales de la Caja con tarifas preferenciales');
-
-
 
 -- --------------------------------------------------------
 
@@ -938,7 +876,6 @@ CREATE TABLE `tipotelefono` (
   `nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 --
 -- Volcado de datos para la tabla `tipotelefono`
 --
@@ -948,8 +885,6 @@ INSERT INTO `tipotelefono` (`idTipoTelefono`, `nombre`) VALUES
 (2, 'Fijo'),
 (3, 'Trabajo'),
 (4, 'Oficina');
-
-
 
 -- --------------------------------------------------------
 
@@ -966,7 +901,6 @@ CREATE TABLE `venta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
-
 -- Volcado de datos para la tabla `venta`
 --
 
@@ -993,8 +927,6 @@ INSERT INTO `venta` (`idVenta`, `descuento`, `metodoPago`, `idFactura`, `cedula`
 (20, 4, 2, 10, '7890123456');
 
 --
-
-
 -- Índices para tablas volcadas
 --
 
@@ -1014,8 +946,8 @@ ALTER TABLE `categoriaproducto`
 -- Indices de la tabla `certificado`
 --
 ALTER TABLE `certificado`
-  ADD PRIMARY KEY (`tipoCertificado`),      -- Si realmente quieres hacer esta columna la clave primaria
- ADD KEY `idEmpleado` (`idEmpleado`);
+  ADD PRIMARY KEY (`tipoCertificado`),
+  ADD KEY `idEmpleado` (`idEmpleado`);
 
 --
 -- Indices de la tabla `cliente`
@@ -1060,11 +992,13 @@ ALTER TABLE `farmaceutico`
 --
 -- Indices de la tabla `gerente`
 --
--- Índices de la tabla `gerente`
-ALTER TABLE `gerente` ADD PRIMARY KEY (`idEmpleado`);
+ALTER TABLE `gerente`
+  ADD PRIMARY KEY (`idEmpleado`);
 
--- Índices de la tabla `inventario`
-ALTER TABLE `inventario` 
+--
+-- Indices de la tabla `inventario`
+--
+ALTER TABLE `inventario`
   ADD PRIMARY KEY (`idInventario`),
   ADD KEY `idProducto` (`idProducto`);
 
@@ -1080,10 +1014,8 @@ ALTER TABLE `licenciaconduccion`
 --
 ALTER TABLE `licenciafarmaceutico`
   ADD PRIMARY KEY (`idLicenciaF`),
-
   ADD KEY `idEmpleado` (`idEmpleado`),
   ADD KEY `idEmpleado_2` (`idEmpleado`);
-
 
 --
 -- Indices de la tabla `metodopago`
@@ -1144,7 +1076,6 @@ ALTER TABLE `proveedor`
 --
 ALTER TABLE `repartidor`
   ADD PRIMARY KEY (`idEmpleado`);
- 
 
 --
 -- Indices de la tabla `ruta`
@@ -1216,90 +1147,61 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `categoriaproducto`
 --
 ALTER TABLE `categoriaproducto`
-
   MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
-
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-
   MODIFY `idEmpleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
-
 
 --
 -- AUTO_INCREMENT de la tabla `factura`
 --
 ALTER TABLE `factura`
-
   MODIFY `idFactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
-
 
 --
 -- AUTO_INCREMENT de la tabla `metodopago`
 --
 ALTER TABLE `metodopago`
-
   MODIFY `idMetodoPago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
-
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-
   MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
-
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-
   MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
-
-
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-
   MODIFY `idProveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
-
 
 --
 -- AUTO_INCREMENT de la tabla `ruta`
 --
 ALTER TABLE `ruta`
-
   MODIFY `idRuta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
-
 
 --
 -- AUTO_INCREMENT de la tabla `subsidio`
 --
 ALTER TABLE `subsidio`
-
   MODIFY `idSubsidio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
-
 
 --
 -- AUTO_INCREMENT de la tabla `sucursal`
 --
 ALTER TABLE `sucursal`
-
   MODIFY `idSucursal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
-
 
 --
 -- AUTO_INCREMENT de la tabla `telefono`
@@ -1311,45 +1213,31 @@ ALTER TABLE `telefono`
 -- AUTO_INCREMENT de la tabla `tipocertificado`
 --
 ALTER TABLE `tipocertificado`
-
   MODIFY `idTipoCertificado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
-
 
 --
 -- AUTO_INCREMENT de la tabla `tiporesponsabilidad`
 --
 ALTER TABLE `tiporesponsabilidad`
-
   MODIFY `idTipoResponsabilidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
-
 
 --
 -- AUTO_INCREMENT de la tabla `tiposubsidio`
 --
 ALTER TABLE `tiposubsidio`
-
   MODIFY `idTipoSubsidio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
-
 
 --
 -- AUTO_INCREMENT de la tabla `tipotelefono`
 --
 ALTER TABLE `tipotelefono`
-
   MODIFY `idTipoTelefono` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 
 --
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-
   MODIFY `idVenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
-
 
 --
 -- Restricciones para tablas volcadas
@@ -1405,7 +1293,6 @@ ALTER TABLE `farmaceutico`
 --
 ALTER TABLE `gerente`
   ADD CONSTRAINT `gerente_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`);
- 
 
 --
 -- Filtros para la tabla `inventario`

@@ -62,9 +62,6 @@
         </section>
     </main>
 
-    <footer>
-        <p>© 2024 - Sistema de Administración</p>
-    </footer>
 
     <script src="scripts.js"></script>
 </body>

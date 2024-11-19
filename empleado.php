@@ -5,6 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empleados</title>
     <link rel="stylesheet" href="css/stylesListas.css">
+    <!-- Agregar iconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        /* Estilo para la celda de acciones */
+        .acciones {
+            display: flex; /* Usamos flexbox para alinear los botones */
+            justify-content: space-evenly; /* Espacio uniforme entre los botones */
+            gap: 10px; /* Espacio entre los botones */
+        }
+
+        /* Estilo para los botones */
+        .acciones button {
+            padding: 5px 10px; /* Tamaño de los botones */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+            transition: background-color 0.3s ease; /* Animación suave para el color de fondo */
+            display: flex;
+            align-items: center;
+        }
+
+        /* Botón de editar (verde) */
+        .acciones button.editar {
+            background-color: #4CAF50; /* Verde */
+            color: white; /* Color del texto */
+        }
+
+        .acciones button.editar:hover {
+            background-color: #45a049; /* Verde más oscuro en hover */
+        }
+
+        /* Botón de eliminar (rojo) */
+        .acciones button.eliminar {
+            background-color: #f44336; /* Rojo */
+            color: white; /* Color del texto */
+        }
+
+        .acciones button.eliminar:hover {
+            background-color: #e53935; /* Rojo más oscuro en hover */
+        }
+
+        .acciones i {
+            margin-right: 5px; /* Espacio entre el icono y el texto */
+        }
+    </style>
+
 </head>
 <body>
     <header class="header">
@@ -19,6 +66,7 @@
                 <li><a href="proveedor.php">Proveedores</a></li>
                 <li><a href="pedido.php">Pedidos</a></li>
                 <li><a href="venta.php">Ventas</a></li>
+                <li><a href="administrador.php">Panel</a></li>
             </ul>
         </nav>
     </header>
@@ -31,6 +79,7 @@
                 <th>Horario</th>
                 <th>Sucursal</th>
                 <th>Email</th>
+                <th>Acciones</th> <!-- Columna para los botones -->
             </tr>
         </thead>
         <tbody id="datosEmpleado">
@@ -63,10 +112,18 @@
                             <td>" . $row["horario"] . "</td>
                             <td>" . $row["sucursal"] . "</td>
                             <td>" . $row["email"] . "</td>
+                            <td>
+                                <button class='editar' onclick='editarEmpleado(" . $row["idEmpleado"] . ")'>
+                                    <i class='fas fa-edit'></i> Editar
+                                </button>
+                                <button class='eliminar' onclick='eliminarEmpleado(" . $row["idEmpleado"] . ")'>
+                                    <i class='fas fa-trash-alt'></i> Eliminar
+                                </button>
+                            </td>
                           </tr>";
                 }
             } else {
-                echo "<tr><td colspan='4'>No se encontraron empleados</td></tr>";
+                echo "<tr><td colspan='6'>No se encontraron empleados</td></tr>";
             }
 
             // Cerrar la conexión
@@ -79,6 +136,21 @@
             // Para recargar los datos, puedes recargar la página o hacer una petición AJAX
             window.location.reload(); // Recarga la página
         }
+
+        function editarEmpleado(id) {
+            // Aquí puedes redirigir a la página de edición, pasando el ID del empleado
+            window.location.href = 'editarEmpleado.php?id=' + id;
+        }
+
+        function eliminarEmpleado(id) {
+            // Confirmación antes de eliminar
+            if (confirm("¿Estás seguro de que deseas eliminar este empleado?")) {
+                // Aquí puedes agregar la lógica para eliminar al empleado
+                window.location.href = 'eliminarEmpleado.php?id=' + id;
+            }
+        }
     </script>
+
+
 </body>
 </html>

@@ -45,7 +45,7 @@ $conn->close();
 
         <h1>Inventario</h1>
         <nav>
-            <ul>
+        <ul>
                 <li><a href="cliente.php">Clientes</a></li>
                 <li><a href="empleado.php">Empleados</a></li>
                 <li><a href="sucursal.php">Sucursales</a></li>
@@ -54,6 +54,7 @@ $conn->close();
                 <li><a href="proveedor.php">Proveedores</a></li>
                 <li><a href="pedido.php">Pedidos</a></li>
                 <li><a href="venta.php">Ventas</a></li>
+                <li><a href="administrador.php">Panel</a></li>
             </ul>
         </nav>
     </header>
@@ -73,7 +74,6 @@ $conn->close();
         </ul>
     </nav>
     </header>
-    <button onclick="recargarDatos()">Recargar Datos</button>
 
     <table border="1">
         <thead>

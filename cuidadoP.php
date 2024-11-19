@@ -15,19 +15,6 @@
         <p>Encuentra los mejores productos de cuidado personal</p>
     </header>
 
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a href="index.php" class="navbar-brand">
-                <img src="images/logo.png" alt="Logo Droquerías Comfenalco" class="navbar-logo">
-            </a>
-            <ul class="navbar-nav">
-                <li><a href="index.php">Inicio</a></li>
-                <li><a href="productos.php">Productos</a></li>
-                <li><a href="login.php">Iniciar sesión</a></li>
-                <li><a href="registro.php">Registrarse</a></li>
-            </ul>
-        </div>
-    </nav>
     <?php
     include 'componentes\navbar.php';
     ?>
@@ -40,30 +27,38 @@
         <h2 class="text-center">Productos de Cuidado Personal</h2>
 
         <div class="product-container">
-            <div class="card product">
-                <img src="images/cuidado1.jpg" alt="Producto Cuidado Personal 1">
-                <h5>Crema Corporal Hidratante</h5>
-                <p>$25,000</p>
-                <button>Comprar</button>
-            </div>
-            <div class="card product">
-                <img src="images/cuidado2.jpg" alt="Producto Cuidado Personal 2">
-                <h5>Shampoo Suave</h5>
-                <p>$18,000</p>
-                <button>Comprar</button>
-            </div>
-            <div class="card product">
-                <img src="images/cuidado3.jpg" alt="Producto Cuidado Personal 3">
-                <h5>Loción Calmante</h5>
-                <p>$22,000</p>
-                <button>Comprar</button>
-            </div>
-            <div class="card product">
-                <img src="images/cuidado4.jpg" alt="Producto Cuidado Personal 4">
-                <h5>Desodorante Natural</h5>
-                <p>$12,000</p>
-                <button>Comprar</button>
-            </div>
+            <?php
+            // Conectar a la base de datos
+            include 'conexion.php';  // Incluir la conexión a la base de datos
+
+            // Consulta para obtener los productos de la categoría 'Cuidado Personal' y su stock
+            $sql = "SELECT p.idProducto, p.nombre, p.precio, p.imagen, i.cantidadStock 
+                    FROM producto p
+                    JOIN categoriaproducto cp ON p.categoriaProducto = cp.idCategoria
+                    JOIN inventario i ON p.idProducto = i.idProducto
+                    WHERE cp.nombre = 'Cuidado Personal'";  // Filtramos por la categoría 'Cuidado Personal'
+
+            $result = $conn->query($sql);
+
+            // Verificar si hay resultados
+            if ($result->num_rows > 0) {
+                // Mostrar los productos
+                while($row = $result->fetch_assoc()) {
+                    echo '<div class="card product">';
+                    echo '<img src="' . $row['imagen'] . '" alt="Producto ' . $row['nombre'] . '">';
+                    echo '<h5>' . $row['nombre'] . '</h5>';
+                    echo '<p>$' . number_format($row['precio'], 0, ',', '.') . '</p>';
+                    echo '<p><strong>Stock disponible: ' . $row['cantidadStock'] . '</strong></p>';
+                    echo '<button>Comprar</button>';
+                    echo '</div>';
+                }
+            } else {
+                echo "<p>No hay productos disponibles en esta categoría.</p>";
+            }
+
+            // Cerrar la conexión
+            $conn->close();
+            ?>
         </div>
     </div>
 

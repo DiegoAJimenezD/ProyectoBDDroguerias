@@ -121,12 +121,17 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Pie de página */
-footer {
-    background-color: #333;
-    color: #fff;
+/* Footer */
+.footer {
+    background-color: #004c99; /* Azul oscuro */
+    color: white;
     text-align: center;
-    padding: 10px 0;
+    padding: 30px;
+    margin-top: 30px;
+}
+
+.footer p {
+    font-size: 1.2em; /* Aumentado el tamaño del texto en el pie de página */
 }
 
 /* Adaptaciones para móviles */
@@ -139,3 +144,5 @@ footer {
         margin-bottom: 10px;
     }
 }
+
+
