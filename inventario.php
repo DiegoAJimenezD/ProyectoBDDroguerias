@@ -58,7 +58,7 @@ $conn->close();
             </ul>
         </nav>
     </header>
-
+    <button onclick="window.location.href='estadisticas.php';">Ver Gráfica de Stock</button>
     <button onclick="recargarDatos()">Recargar Datos</button>
 
     <nav>
@@ -105,6 +105,8 @@ $conn->close();
         </tbody>
     </table>
 
+    
+
     <script>
         function recargarDatos() {
             location.reload(); // Recargar la página
@@ -113,5 +115,7 @@ $conn->close();
             <!-- Datos a cargar dinámicamente -->
         </tbody>
     </table>
+
+    
 </body>
 </html>
