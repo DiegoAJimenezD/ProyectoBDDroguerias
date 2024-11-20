@@ -65,6 +65,8 @@
 </form>
 
     <!-- Botón para recargar los datos -->
+    <button class='Estadisticas' onclick="window.location.href='productosCategoriaEstadistica.php'">
+    <i class='fas fa-star'></i> Estatisticas Ventas
     <button onclick="window.location.reload()">Recargar Datos</button>
     <button class='crear' onclick="window.location.href='crearProductos.php'">
     <i class='fas fa-star'></i> Crear

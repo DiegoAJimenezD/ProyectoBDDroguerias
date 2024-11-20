@@ -2,20 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
-
 -- Servidor: 127.0.0.1
-
--- Tiempo de generación: 19-11-2024 a las 05:04:47
-
--- Tiempo de generación: 14-11-2024 a las 08:18:42
-
+-- Tiempo de generación: 20-11-2024 a las 09:19:19
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
--- Host: 127.0.0.1
--- Generation Time: Nov 14, 2024 at 06:56 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
-
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,14 +18,35 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `drogueriasconfe`
+-- Base de datos: `drogueriasconfe`
 --
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `cajero`
---
+
+CREATE TABLE `empleado` (
+  `idEmpleado` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `horario` time DEFAULT NULL,
+  `sucursal` int(11) NOT NULL,
+  `eliminado` int(11) NOT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `contrasena` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `empleado` (`idEmpleado`, `nombre`, `horario`, `sucursal`, `eliminado`, `email`, `contrasena`)
+VALUES
+(1, 'Juan Pérez', '08:00:00', 1, 0, 'juan.perez@example.com', 'password123'), -- Sucursal Centro
+(2, 'María Gómez', '09:00:00', 1, 0, 'maria.gomez@example.com', 'password456'), -- Sucursal Centro
+(3, 'Carlos Rodríguez', '10:00:00', 2, 0, 'carlos.rodriguez@example.com', 'password789'), -- Sucursal Norte
+(4, 'Ana Torres', '08:30:00', 2, 0, 'ana.torres@example.com', 'password101'), -- Sucursal Norte
+(5, 'Luis Martínez', '07:45:00', 4, 1, 'luis.martinez@example.com', 'password202'), -- Sucursal Occidente
+(6, 'Patricia López', '11:00:00', 3, 0, 'patricia.lopez@example.com', 'password303'), -- Sucursal Sur
+(7, 'Jorge Díaz', '08:15:00', 6, 0, 'jorge.diaz@example.com', 'password404'), -- Sucursal Chapinero
+(8, 'Raquel Sánchez', '09:30:00', 6, 0, 'raquel.sanchez@example.com', 'password505'), -- Sucursal Chapinero
+(9, 'Eduardo Jiménez', '07:00:00', 7, 0, 'eduardo.jimenez@example.com', 'password606'), -- Sucursal Teusaquillo
+(10, 'Sofía Fernández', '10:30:00', 10, 1, 'sofia.fernandez@example.com', 'password707'); -- Sucursal Kennedy
+
 
 CREATE TABLE `cajero` (
   `idEmpleado` int(11) NOT NULL,
@@ -43,27 +54,123 @@ CREATE TABLE `cajero` (
   `tiempoServicio` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `cajero`
---
-
 INSERT INTO `cajero` (`idEmpleado`, `turno`, `tiempoServicio`) VALUES
-(5, 'Mañana', '00:00:04'),
-(7, 'Mañana', '00:00:01'),
-(9, 'Tarde', '00:00:04'),
-(12, 'Tarde', '00:00:03'),
-(15, 'Mañana', '00:00:03'),
-(19, 'Noche', '00:00:03'),
-(23, 'Tarde', '00:00:02'),
-(28, 'Tarde', '00:00:02'),
-(34, 'Noche', '00:00:05'),
-(41, 'Mañana', '00:00:06');
+(1, 'Mañana', '08:00:00'),
+(2, 'Tarde', '07:30:00');
 
--- --------------------------------------------------------
+CREATE TABLE `farmaceutico` (
+  `idEmpleado` int(11) NOT NULL,
+  `especializacion` int(11) NOT NULL,
+  `licenciaFarmaceutico` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Table structure for table `categoriaproducto`
---
+INSERT INTO `farmaceutico` (`idEmpleado`, `especializacion`, `licenciaFarmaceutico`) VALUES
+(3, 1, 12345),
+(4, 2, 67890);
+
+CREATE TABLE `licenciafarmaceutico` (
+  `idLicenciaF` int(11) NOT NULL,
+  `idEmpleado` int(11) NOT NULL,
+  `descripcion` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `licenciafarmaceutico` (`idLicenciaF`, `idEmpleado`, `descripcion`) VALUES
+(1, 3, 'Licencia válida por 2 años'),
+(2, 4, 'Licencia otorgada por la autoridad sanitaria');
+
+CREATE TABLE `personalinventario` (
+  `idEmpleado` int(11) NOT NULL,
+  `tiempoServicio` time NOT NULL,
+  `idTipoResponsabilidad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `personalinventario` (`idEmpleado`, `tiempoServicio`, `idTipoResponsabilidad`) VALUES
+(5, '08:00:00', 1),
+(6, '07:30:00', 2);
+
+CREATE TABLE `tiporesponsabilidad` (
+  `idTipoResponsabilidad` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `descripcion` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `tiporesponsabilidad` (`idTipoResponsabilidad`, `nombre`, `descripcion`) VALUES
+(1, 'Control de stock', 'Encargado de controlar los inventarios de productos'),
+(2, 'Reabastecimiento', 'Responsable de realizar pedidos de productos según el inventario');
+
+CREATE TABLE `gerente` (
+  `idEmpleado` int(11) NOT NULL,
+  `titulo` varchar(100) NOT NULL,
+  `certificado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `gerente` (`idEmpleado`, `titulo`, `certificado`) VALUES
+(7, 'Licenciado en Administración', 1),
+(8, 'Máster en Dirección', 2);
+
+CREATE TABLE `certificado` (
+  `tipoCertificado` int(11) NOT NULL,
+  `idEmpleado` int(11) NOT NULL,
+  `descripcion` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `certificado` (`tipoCertificado`, `idEmpleado`, `descripcion`) VALUES
+(1, 7, 'Certificado en Gestión Empresarial'),
+(2, 8, 'Certificado en Liderazgo y Gestión');
+
+CREATE TABLE `tipocertificado` (
+  `idTipoCertificado` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `tipocertificado` (`idTipoCertificado`, `nombre`) VALUES
+(1, 'Gestión Empresarial'),
+(2, 'Liderazgo y Gestión');
+
+CREATE TABLE `repartidor` (
+  `idEmpleado` int(11) NOT NULL,
+  `licenciaConduccion` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `repartidor` (`idEmpleado`, `licenciaConduccion`) VALUES
+(9, 'B123456789'),
+(10, 'C987654321');
+
+CREATE TABLE `licenciaconduccion` (
+  `idEmpleado` int(11) NOT NULL,
+  `nombre` varchar(20) NOT NULL,
+  `descripcion` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `licenciaconduccion` (`idEmpleado`, `nombre`, `descripcion`) VALUES
+(9, 'Licencia de Conducción A', 'Licencia para conducir vehículos de pasajeros'),
+(10, 'Licencia de Conducción B', 'Licencia para conducir vehículos de carga');
+
+
+CREATE TABLE `producto` (
+  `idProducto` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `precio` double NOT NULL,
+  `categoriaProducto` int(11) NOT NULL,
+  `eliminado` int(11) NOT NULL DEFAULT 0,
+  `imagen` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `producto` (`idProducto`, `nombre`, `precio`, `categoriaProducto`, `eliminado`, `imagen`) VALUES
+(1, 'Paracetamol', 3500, 1, 0, 'https://example.com/images/paracetamol.jpg'),
+(2, 'Crema Hidratante', 15000, 2, 0, 'https://example.com/images/crema_hidratante.jpg'),
+(3, 'Shampoo', 30000, 2, 0, 'https://example.com/images/shampoo.jpg'),
+(4, 'Legrip', 1400, 1, 0, 'https://example.com/images/legrip.jpg'),
+(5, 'Pomada antiinflamatoria', 35000, 1, 0, 'https://example.com/images/pomada_antiinflamatoria.jpg'),
+(6, 'Jarabe para la tos', 25000, 1, 0, 'https://example.com/images/jarabe_tos.jpg'),
+(7, 'Crema para cicatrices', 50000, 2, 0, 'https://example.com/images/crema_cicatrices.jpg'),
+(8, 'Crema hidratante', 60000, 2, 0, 'https://example.com/images/crema_hidratante_2.jpg'),
+(9, 'Gel limpiador facial', 40000, 2, 0, 'https://example.com/images/gel_limpiador.jpg'),
+(10, 'Shampoo anti-caída', 50000, 2, 0, 'https://example.com/images/shampoo_anti_caida.jpg'),
+(11, 'Crema antiarrugas', 80000, 2, 0, 'https://example.com/images/crema_antiarrugas.jpg'),
+(12, 'Exfoliante facial', 45000, 2, 0, 'https://example.com/images/exfoliante_facial.jpg'),
+(13, 'Aceite esencial de lavanda', 55000, 2, 0, 'https://example.com/images/aceite_esencial.jpg'),
+(14, 'Jabón Dove Beauty Humectante 90 Gr X 3 Und', 17950, 3, 0, 'https://example.com/images/jabon_dove.jpg');
 
 CREATE TABLE `categoriaproducto` (
   `idCategoria` int(11) NOT NULL,
@@ -72,32 +179,35 @@ CREATE TABLE `categoriaproducto` (
   `descripcion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `categoriaproducto`
---
-
 INSERT INTO `categoriaproducto` (`idCategoria`, `nombre`, `estado`, `descripcion`) VALUES
 (1, 'Medicamentos', 'ACTIVO', 'Productos farmacéuticos para el tratamiento de enfermedades'),
-(2, 'Cosméticos', 'INACTIVO', 'Productos para el cuidado personal y la belleza, incluyendo maquillaje y cuidado de la piel.'),
-(3, 'Cuidado personal', 'ACTIVO', 'Productos relacionados con el cuidado personal, como cosméticos, productos de higiene y cuidado de la piel.');
+(2, 'Cosméticos', 'ACTIVO', 'Productos para el cuidado personal y la belleza, incluyendo maquillaje y cuidado de la piel.'),
+(3, 'Higiene Personal', 'ACTIVO', 'Productos relacionados con la limpieza personal.');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `certificado`
---
-
-CREATE TABLE `certificado` (
-  `tipoCertificado` int(11) NOT NULL,
-  `idEmpleado` int(11) NOT NULL,
-  `descripcion` text DEFAULT NULL
+CREATE TABLE `inventario` (
+  `idInventario` int(11) NOT NULL,
+  `cantidadStock` int(11) NOT NULL,
+  `fecha` date DEFAULT NULL,
+  `idProducto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
+INSERT INTO `inventario` (`idInventario`, `cantidadStock`, `fecha`, `idProducto`) VALUES
+(1, 50, CURDATE(), 1),
+(2, 50, CURDATE(), 2),
+(3, 50, CURDATE(), 3),
+(4, 50, CURDATE(), 4),
+(5, 50, CURDATE(), 5),
+(6, 50, CURDATE(), 6),
+(7, 50, CURDATE(), 7),
+(8, 50, CURDATE(), 8),
+(9, 50, CURDATE(), 9),
+(10, 50, CURDATE(), 10),
+(11, 50, CURDATE(), 11),
+(12, 50, CURDATE(), 12),
+(13, 50, CURDATE(), 13),
+(14, 50, CURDATE(), 14);
 
---
--- Table structure for table `cliente`
---
 
 CREATE TABLE `cliente` (
   `cedula` varchar(20) NOT NULL,
@@ -111,126 +221,69 @@ CREATE TABLE `cliente` (
   `contrasena` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `cliente`
---
+INSERT INTO `cliente` (`cedula`, `primernombre`, `segundonombre`, `primerApellido`, `segundoApellido`, `fechaNacimiento`, `direccion`, `email`, `contrasena`)
+VALUES
+('1234567890', 'Carlos', 'Andrés', 'Pérez', 'Sánchez', '1985-07-15', 'Calle Ficticia 123, Ciudad X', 'carlos.perez@example.com', 'password123'),
+('2345678901', 'María', 'Fernanda', 'Gómez', 'Lopez', '1990-03-25', 'Avenida Central 456, Ciudad Y', 'maria.gomez@example.com', 'password456'),
+('3456789012', 'Luis', 'Eduardo', 'Rodríguez', 'Martínez', '1992-06-10', 'Carrera 5, Edificio Z, Ciudad Z', 'luis.rodriguez@example.com', 'password789'),
+('4567890123', 'Ana', 'Beatriz', 'Torres', 'Ramírez', '1988-02-22', 'Calle Verde 789, Ciudad A', 'ana.torres@example.com', 'password101'),
+('5678901234', 'José', 'Antonio', 'Martínez', 'Hernández', '1995-09-30', 'Calle Sol 101, Ciudad B', 'jose.martinez@example.com', 'password202'),
+('6789012345', 'Patricia', 'Elena', 'González', 'Muñoz', '1980-11-18', 'Avenida Libertad 201, Ciudad C', 'patricia.gonzalez@example.com', 'password303'),
+('7890123456', 'Juan', 'Carlos', 'López', 'Paredes', '1993-12-05', 'Calle Norte 323, Ciudad D', 'juan.lopez@example.com', 'password404'),
+('8901234567', 'Raquel', 'Inés', 'Martínez', 'Vásquez', '1987-08-14', 'Calle Río 454, Ciudad E', 'raquel.martinez@example.com', 'password505'),
+('9012345678', 'Eduardo', 'Luis', 'Jiménez', 'Torres', '1998-05-21', 'Calle del Mar 565, Ciudad F', 'eduardo.jimenez@example.com', 'password606'),
+('0123456789', 'Sofía', 'Paola', 'Fernández', 'Díaz', '1997-01-30', 'Calle Árbol 676, Ciudad G', 'sofia.fernandez@example.com', 'password707');
 
-INSERT INTO `cliente` (`cedula`, `primernombre`, `segundonombre`, `primerApellido`, `segundoApellido`, `fechaNacimiento`, `direccion`, `email`, `contrasena`) VALUES
-('0987654321', 'Ana', 'Esperanza', 'Rodríguez', 'Quintero', '1985-02-21', NULL, 'ana.rodriguez@gmail.com', '987'),
-('1004779035', 'Juan', 'Camilo', 'Cuenca', 'Sepuveda', '2003-09-18', 'crr 23# 7', 'camilocuenca1810@gmail.com', 'camilo123'),
-('1004871338', 'Diego', 'Alexander', 'Jimenez', 'Jimenez', '2002-12-06', 'Bosques de Pinares Manzana 3 Casa 17', 'diego15kxl@gmail.com', 'd123'),
-('1234567890', 'Juan', 'Carlos', 'Pérez', 'Gómez', '1990-05-15', NULL, 'juan.perez@example.com', '123'),
-('1478523690', 'Juan', 'Carlos', 'Pérez', 'Gómez', '1990-05-15', 'Calle 123, Bogotá', 'juan.perez@mail.com', 'contrasena123'),
-('2345678901', 'María', 'Fernanda', 'López', 'Sánchez', '1985-08-22', 'Calle 456, Medellín', 'maria.lopez@mail.com', 'contrasena456'),
-('3456789012', 'Carlos', 'Eduardo', 'Martínez', 'Ruiz', '1992-11-30', 'Calle 789, Cali', 'carlos.martinez@mail.com', 'contrasena789'),
-('4567890123', 'Ana', 'Isabel', 'Rodríguez', 'Morales', '1988-03-12', 'Calle 101, Barranquilla', 'ana.rodriguez@mail.com', 'contrasena101'),
-('5678901234', 'Luis', 'Antonio', 'García', 'Díaz', '1995-07-18', 'Calle 202, Cartagena', 'luis.garcia@mail.com', 'contrasena202'),
-('6789012345', 'Lucía', 'Estefanía', 'Hernández', 'Paredes', '1993-02-03', 'Calle 303, Bucaramanga', 'lucia.hernandez@mail.com', 'contrasena303'),
-('7890123456', 'Pedro', 'Alfredo', 'Jiménez', 'Vargas', '1982-09-25', 'Calle 404, Manizales', 'pedro.jimenez@mail.com', 'contrasena404');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `empleado`
---
-
-CREATE TABLE `empleado` (
-  `idEmpleado` int(11) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `horario` time DEFAULT NULL,
-  `sucursal` int(11) NOT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `contrasena` varchar(100) DEFAULT NULL
+CREATE TABLE `venta` (
+  `idVenta` int(11) NOT NULL,
+  `descuento` double NOT NULL,
+  `metodoPago` int(11) NOT NULL,
+  `idFactura` int(11) NOT NULL,
+  `cedula` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `empleado`
---
+INSERT INTO `venta` (`idVenta`, `descuento`, `metodoPago`, `idFactura`, `cedula`) VALUES
+(1, 500.00, 1, 1, '1234567890'),
+(2, 1000.00, 2, 2, '2345678901'),
+(3, 1500.00, 3, 3, '3456789012'),
+(4, 2000.00, 1, 4, '4567890123'),
+(5, 300.00, 2, 5, '5678901234'),
+(6, 700.00, 3, 6, '6789012345'),
+(7, 800.00, 1, 7, '7890123456'),
+(8, 1000.00, 2, 8, '8901234567'),
+(9, 1200.00, 3, 9, '9012345678'),
+(10, 1500.00, 1, 10, '0123456789');
 
-INSERT INTO `empleado` (`idEmpleado`, `nombre`, `horario`, `sucursal`, `email`, `contrasena`) VALUES
-(1, 'Carlos Ander Díaz', '08:00:00', 1, 'carlos.diaz@empresa.com', 'contrasena001'),
-(2, 'Sofía Pérez', '09:00:00', 2, 'sofia.perez@empresa.com', 'contrasena002'),
-(3, 'Pedro Martínez', '08:30:00', 3, 'pedro.martinez@empresa.com', 'contrasena003'),
-(4, 'Ana Gómez', '10:00:00', 4, 'ana.gomez@empresa.com', 'contrasena004'),
-(5, 'Luis Rodríguez', '08:00:00', 5, 'luis.rodriguez@empresa.com', 'contrasena005'),
-(6, 'María Jiménez', '09:30:00', 6, 'maria.jimenez@empresa.com', 'contrasena006'),
-(7, 'Fernando López', '07:45:00', 7, 'fernando.lopez@empresa.com', 'contrasena007'),
-(8, 'Lucía García', '08:15:00', 8, 'lucia.garcia@empresa.com', 'contrasena008'),
-(9, 'Juan Sánchez', '09:00:00', 9, 'juan.sanchez@empresa.com', 'contrasena009'),
-(10, 'Marta Torres', '08:30:00', 10, 'marta.torres@empresa.com', 'contrasena010'),
-(11, 'David Ruiz', '09:00:00', 1, 'david.ruiz@empresa.com', 'contrasena011'),
-(12, 'Laura Pérez', '08:00:00', 2, 'laura.perez@empresa.com', 'contrasena012'),
-(13, 'José Martínez', '09:30:00', 3, 'jose.martinez@empresa.com', 'contrasena013'),
-(14, 'Carmen López', '08:00:00', 4, 'carmen.lopez@empresa.com', 'contrasena014'),
-(15, 'Fernando González', '10:00:00', 5, 'fernando.gonzalez@empresa.com', 'contrasena015'),
-(16, 'Ricardo Díaz', '08:15:00', 6, 'ricardo.diaz@empresa.com', 'contrasena016'),
-(17, 'Paula Jiménez', '07:45:00', 7, 'paula.jimenez@empresa.com', 'contrasena017'),
-(18, 'Antonio Rodríguez', '08:30:00', 8, 'antonio.rodriguez@empresa.com', 'contrasena018'),
-(19, 'Claudia Martínez', '09:00:00', 9, 'claudia.martinez@empresa.com', 'contrasena019'),
-(20, 'Luis Fernández', '08:00:00', 10, 'luis.fernandez@empresa.com', 'contrasena020'),
-(21, 'Beatriz Torres', '09:30:00', 1, 'beatriz.torres@empresa.com', 'contrasena021'),
-(22, 'Ricardo Sánchez', '08:15:00', 2, 'ricardo.sanchez@empresa.com', 'contrasena022'),
-(23, 'Javier González', '08:00:00', 3, 'javier.gonzalez@empresa.com', 'contrasena023'),
-(24, 'Elena López', '10:00:00', 4, 'elena.lopez@empresa.com', 'contrasena024'),
-(25, 'Andrés Martínez', '08:30:00', 5, 'andres.martinez@empresa.com', 'contrasena025'),
-(26, 'Mónica García', '09:00:00', 6, 'monica.garcia@empresa.com', 'contrasena026'),
-(27, 'Carlos Sánchez', '08:00:00', 7, 'carlos.sanchez@empresa.com', 'contrasena027'),
-(28, 'Rosa Pérez', '09:30:00', 8, 'rosa.perez@empresa.com', 'contrasena028'),
-(29, 'José Gómez', '08:00:00', 9, 'jose.gomez@empresa.com', 'contrasena029'),
-(30, 'Patricia Rodríguez', '09:00:00', 10, 'patricia.rodriguez@empresa.com', 'contrasena030'),
-(31, 'Vicente Díaz', '08:30:00', 1, 'vicente.diaz@empresa.com', 'contrasena031'),
-(32, 'Teresa López', '08:15:00', 2, 'teresa.lopez@empresa.com', 'contrasena032'),
-(33, 'Carlos Fernández', '07:45:00', 3, 'carlos.fernandez@empresa.com', 'contrasena033'),
-(34, 'Silvia González', '08:00:00', 4, 'silvia.gonzalez@empresa.com', 'contrasena034'),
-(35, 'Manuel Rodríguez', '08:00:00', 5, 'manuel.rodriguez@empresa.com', 'contrasena035'),
-(36, 'Patricia Sánchez', '09:30:00', 6, 'patricia.sanchez@empresa.com', 'contrasena036'),
-(37, 'Juanita Torres', '08:00:00', 7, 'juanita.torres@empresa.com', 'contrasena037'),
-(38, 'David García', '09:30:00', 8, 'david.garcia@empresa.com', 'contrasena038'),
-(39, 'Lucía Fernández', '08:00:00', 9, 'lucia.fernandez@empresa.com', 'contrasena039'),
-(40, 'José López', '08:15:00', 10, 'jose.lopez@empresa.com', 'contrasena040'),
-(41, 'Antonio Sánchez', '09:00:00', 1, 'antonio.sanchez@empresa.com', 'contrasena041'),
-(42, 'Ana Torres', '08:30:00', 2, 'ana.torres@empresa.com', 'contrasena042'),
-(43, 'Ricardo Rodríguez', '07:45:00', 3, 'ricardo.rodriguez@empresa.com', 'contrasena043'),
-(44, 'María García', '08:00:00', 4, 'maria.garcia@empresa.com', 'contrasena044'),
-(45, 'José Fernández', '09:30:00', 5, 'jose.fernandez@empresa.com', 'contrasena045'),
-(46, 'Patricia Ruiz', '08:15:00', 6, 'patricia.ruiz@empresa.com', 'contrasena046'),
-(47, 'Carmen Rodríguez', '09:00:00', 7, 'carmen.rodriguez@empresa.com', 'contrasena047'),
-(48, 'Luis González', '08:00:00', 8, 'luis.gonzalez@empresa.com', 'contrasena048'),
-(49, 'Rosa Fernández', '08:30:00', 9, 'rosa.fernandez@empresa.com', 'contrasena049'),
-(50, 'Javier Ruiz', '09:00:00', 10, 'javier.ruiz@empresa.com', 'contrasena050');
+CREATE TABLE `metodopago` (
+  `idMetodoPago` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
+INSERT INTO `metodopago` (`idMetodoPago`, `nombre`) VALUES
+(1, 'Efectivo'),
+(2, 'Tarjeta'),
+(3, 'Transferencia');
 
---
--- Table structure for table `empleadoventa`
---
 
 CREATE TABLE `empleadoventa` (
   `idEmpleado` int(11) NOT NULL,
   `idVenta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `empleadoventa`
---
 
 INSERT INTO `empleadoventa` (`idEmpleado`, `idVenta`) VALUES
-(2, 5),
-(3, 7),
-(4, 10),
-(6, 2),
-(8, 15),
-(9, 3),
-(11, 1),
-(12, 8),
-(13, 12),
-(14, 6);
+(1, 1),  -- Juan Pérez realizó la venta 1
+(2, 2),  -- María Gómez realizó la venta 2
+(3, 3),  -- Carlos Rodríguez realizó la venta 3
+(4, 4),  -- Ana Torres realizó la venta 4
+(6, 5),  -- Patricia López realizó la venta 5
+(7, 6),  -- Jorge Díaz realizó la venta 6
+(8, 7),  -- Raquel Sánchez realizó la venta 7
+(9, 8),  -- Eduardo Jiménez realizó la venta 8
+(10, 9), -- Sofía Fernández realizó la venta 9
+(1, 10); -- Juan Pérez realizó la venta 10
 
--- --------------------------------------------------------
-
---
--- Table structure for table `factura`
---
 
 CREATE TABLE `factura` (
   `idFactura` int(11) NOT NULL,
@@ -243,471 +296,61 @@ CREATE TABLE `factura` (
   `clienteCedula` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `factura`
---
-
 INSERT INTO `factura` (`idFactura`, `impuesto`, `precio`, `fechaCompra`, `estado`, `fechaVencimiento`, `domicilio`, `clienteCedula`) VALUES
-(1, 15.00, 150000.00, '2024-11-01', 'PAGADA', '2024-11-10', 'Calle 1 #123', '0987654321'),
-(2, 12.00, 120000.00, '2024-11-02', 'PENDIENTE', '2024-11-12', 'Carrera 2 #456', '1004779035'),
-(3, 18.00, 180000.00, '2024-11-03', 'CANCELADA', '2024-11-13', 'Avenida 3 #789', '1234567890'),
-(4, 10.00, 100000.00, '2024-11-04', 'PAGADA', '2024-11-14', 'Calle 4 #101', '1478523690'),
-(5, 20.00, 200000.00, '2024-11-05', 'PENDIENTE', '2024-11-15', 'Carrera 5 #202', '2345678901'),
-(6, 14.00, 140000.00, '2024-11-06', 'CANCELADA', '2024-11-16', 'Avenida 6 #303', '3456789012'),
-(7, 22.00, 220000.00, '2024-11-07', 'PAGADA', '2024-11-17', 'Calle 7 #404', '4567890123'),
-(8, 16.00, 160000.00, '2024-11-08', 'PENDIENTE', '2024-11-18', 'Carrera 8 #505', '5678901234'),
-(9, 17.00, 170000.00, '2024-11-09', 'PAGADA', '2024-11-19', 'Avenida 9 #606', '6789012345'),
-(10, 19.00, 190000.00, '2024-11-10', 'CANCELADA', '2024-11-20', 'Calle 10 #707', '7890123456');
+(1, 500.00, 18000.00, '2024-11-20', 'PENDIENTE', '2024-12-05', 'Calle Ficticia 123, Ciudad X', '1234567890'),
+(2, 1000.00, 25000.00, '2024-11-21', 'PENDIENTE', '2024-12-06', 'Avenida Central 456, Ciudad Y', '2345678901'),
+(3, 700.00, 35000.00, '2024-11-22', 'PENDIENTE', '2024-12-07', 'Carrera 5, Edificio Z, Ciudad Z', '3456789012'),
+(4, 800.00, 42000.00, '2024-11-23', 'PENDIENTE', '2024-12-08', 'Calle Verde 789, Ciudad A', '4567890123'),
+(5, 600.00, 27000.00, '2024-11-24', 'PENDIENTE', '2024-12-09', 'Calle Sol 101, Ciudad B', '5678901234'),
+(6, 1200.00, 38000.00, '2024-11-25', 'PENDIENTE', '2024-12-10', 'Avenida Libertad 201, Ciudad C', '6789012345'),
+(7, 900.00, 32000.00, '2024-11-26', 'PENDIENTE', '2024-12-11', 'Calle Norte 323, Ciudad D', '7890123456'),
+(8, 1100.00, 46000.00, '2024-11-27', 'PENDIENTE', '2024-12-12', 'Calle Río 454, Ciudad E', '8901234567'),
+(9, 1000.00, 50000.00, '2024-11-28', 'PENDIENTE', '2024-12-13', 'Calle del Mar 565, Ciudad F', '9012345678'),
+(10, 1300.00, 55000.00, '2024-11-29', 'PENDIENTE', '2024-12-14', 'Calle Árbol 676, Ciudad G', '0123456789');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `facturaventa`
---
 
 CREATE TABLE `facturaventa` (
   `idFactura` int(11) NOT NULL,
   `idVenta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `facturaventa`
---
-
 INSERT INTO `facturaventa` (`idFactura`, `idVenta`) VALUES
-(1, 5),
-(2, 7),
-(3, 10),
-(4, 2),
-(5, 15),
-(6, 3),
-(7, 1),
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
 (8, 8),
-(9, 12),
-(10, 6);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `farmaceutico`
---
-
-CREATE TABLE `farmaceutico` (
-  `idEmpleado` int(11) NOT NULL,
-  `especializacion` int(11) NOT NULL,
-  `turno` varchar(20) NOT NULL,
-  `licenciaFarmaceutico` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `farmaceutico`
---
-
-INSERT INTO `farmaceutico` (`idEmpleado`, `especializacion`, `turno`, `licenciaFarmaceutico`) VALUES
-(1, 0, 'Mañana', 0),
-(3, 0, 'Mañana', 0),
-(4, 0, 'Mañana', 0),
-(6, 0, 'Mañana', 0),
-(8, 0, 'Mañana', 0),
-(10, 0, 'Mañana', 0),
-(11, 0, 'Mañana', 0),
-(13, 0, 'Mañana', 0),
-(14, 0, 'Mañana', 0),
-(16, 0, 'Mañana', 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `gerente`
---
-
-CREATE TABLE `gerente` (
-  `idEmpleado` int(11) NOT NULL,
-  `titulo` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `inventario`
---
-
-CREATE TABLE `inventario` (
-  `idInventario` int(11) NOT NULL,
-  `cantidadStock` int(11) NOT NULL,
-  `fecha` date DEFAULT NULL,
-  `idProducto` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `inventario`
---
-
-INSERT INTO `inventario` (`idInventario`, `cantidadStock`, `fecha`, `idProducto`) VALUES
-(1, 120, '2024-11-10', 1),
-(2, 20, '2024-11-10', 2),
-(3, 100, '2024-11-10', 3),
-(4, 50, '2024-11-10', 4),
-(5, 30, '2024-11-10', 5),
-(6, 80, '2024-11-10', 6),
-(7, 60, '2024-11-10', 7),
-(8, 100, '2024-11-13', 8),
-(9, 150, '2024-11-13', 9),
-(10, 200, '2024-11-13', 10),
-(11, 250, '2024-11-13', 11),
-(12, 300, '2024-11-13', 12),
-(13, 120, '2024-11-13', 13),
-(14, 180, '2024-11-13', 14),
-(15, 220, '2024-11-13', 15),
-(16, 90, '2024-11-13', 16),
-(17, 160, '2024-11-13', 17),
-(18, 80, '2024-11-13', 18),
-(19, 210, '2024-11-13', 19),
-(20, 130, '2024-11-13', 20),
-(21, 140, '2024-11-13', 21),
-(22, 170, '2024-11-13', 22),
-(23, 50, '2024-11-13', 23),
-(24, 200, '2024-11-13', 24),
-(25, 130, '2024-11-13', 25),
-(26, 250, '2024-11-13', 26),
-(27, 300, '2024-11-13', 27),
-(28, 190, '2024-11-13', 28),
-(29, 140, '2024-11-13', 29),
-(30, 210, '2024-11-13', 30),
-(31, 160, '2024-11-13', 31),
-(32, 300, '2024-11-13', 32),
-(33, 180, '2024-11-13', 33),
-(34, 250, '2024-11-13', 34),
-(35, 110, '2024-11-13', 35),
-(36, 120, '2024-11-13', 36),
-(37, 180, '2024-11-13', 37),
-(38, 200, '2024-11-13', 38),
-(39, 90, '2024-11-13', 39),
-(40, 160, '2024-11-13', 40),
-(41, 130, '2024-11-13', 41),
-(42, 220, '2024-11-13', 42),
-(43, 110, '2024-11-13', 43),
-(44, 170, '2024-11-13', 44),
-(45, 200, '2024-11-13', 45),
-(46, 150, '2024-11-13', 46),
-(47, 250, '2024-11-13', 47),
-(48, 130, '2024-11-13', 48),
-(49, 180, '2024-11-13', 49),
-(50, 140, '2024-11-13', 50);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `licenciaconduccion`
---
-
-CREATE TABLE `licenciaconduccion` (
-  `idEmpleado` int(11) NOT NULL,
-  `nombre` varchar(20) NOT NULL,
-  `descripcion` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `licenciafarmaceutico`
---
-
-CREATE TABLE `licenciafarmaceutico` (
-  `idLicenciaF` int(11) NOT NULL,
-  `idEmpleado` int(11) NOT NULL,
-  `descripcion` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `licenciafarmaceutico`
---
-
-INSERT INTO `licenciafarmaceutico` (`idLicenciaF`, `idEmpleado`, `descripcion`) VALUES
-(1, 1, 'Licencia para la práctica profesional como farmacéutico en droguerías.'),
-(2, 3, 'Licencia para ejercer como farmacéutico en ventas de medicamentos.'),
-(3, 4, 'Licencia que habilita al farmacéutico para trabajar en gestión de productos farmacéuticos.'),
-(4, 6, 'Licencia de farmacéutico para atención al cliente en droguerías.'),
-(5, 8, 'Licencia otorgada para supervisión y control de inventarios farmacéuticos.'),
-(6, 10, 'Licencia para el manejo de medicamentos controlados y asesoramiento farmacéutico.'),
-(7, 11, 'Licencia para atención en áreas de salud relacionadas con medicamentos.'),
-(8, 13, 'Licencia para el control de medicamentos en droguerías y asesoría en salud.'),
-(9, 14, 'Licencia para trabajar en la distribución y venta de productos farmacéuticos.'),
-(10, 16, 'Licencia para el trabajo y asesoramiento en la compra y venta de productos farmacéuticos.');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `metodopago`
---
-
-CREATE TABLE `metodopago` (
-  `idMetodoPago` int(11) NOT NULL,
-  `nombre` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `metodopago`
---
-
-INSERT INTO `metodopago` (`idMetodoPago`, `nombre`) VALUES
-(1, 'Tarjeta de Crédito'),
-(2, 'Tarjeta de Débito'),
-(3, 'PSE');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pedido`
---
-
-CREATE TABLE `pedido` (
-  `idPedido` int(11) NOT NULL,
-  `fechaPedido` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `pedido`
---
-
-INSERT INTO `pedido` (`idPedido`, `fechaPedido`) VALUES
-(1, '2024-11-01'),
-(2, '2024-11-08'),
-(3, '2024-11-13'),
-(4, '2024-11-14'),
-(5, '2024-11-15'),
-(6, '2024-11-16'),
-(7, '2024-11-17'),
-(8, '2024-11-18'),
-(9, '2024-11-19'),
-(10, '2024-11-20');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pedidoproductoproveedor`
---
-
-CREATE TABLE `pedidoproductoproveedor` (
-  `idPedido` int(11) NOT NULL,
-  `idProducto` int(11) NOT NULL,
-  `idProveedor` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `pedidoproductoproveedor`
---
-
-INSERT INTO `pedidoproductoproveedor` (`idPedido`, `idProducto`, `idProveedor`, `cantidad`) VALUES
-(1, 30, 4, 180),
-(2, 35, 6, 110),
-(3, 2, 3, 100),
-(4, 5, 4, 50),
-(5, 7, 6, 200),
-(6, 8, 7, 150),
-(7, 12, 8, 120),
-(8, 20, 9, 300),
-(9, 22, 10, 250),
-(10, 25, 3, 80);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `personalinventario`
---
-
-CREATE TABLE `personalinventario` (
-  `idEmpleado` int(11) NOT NULL,
-  `tiempoServicio` time NOT NULL,
-  `idTipoResponsabilidad` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `personalinventario`
---
-
-INSERT INTO `personalinventario` (`idEmpleado`, `tiempoServicio`, `idTipoResponsabilidad`) VALUES
-(2, '00:00:03', 1),
-(3, '00:00:05', 2),
-(4, '00:00:04', 3),
-(6, '00:00:02', 4),
-(8, '00:00:06', 5),
-(9, '00:00:03', 1),
-(11, '00:00:07', 2),
-(12, '00:00:05', 3),
-(13, '00:00:04', 4),
-(14, '00:00:06', 5);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `producto`
---
-
-CREATE TABLE `producto` (
-  `idProducto` int(11) NOT NULL,
-  `nombre` varchar(255) NOT NULL,
-  `precio` double NOT NULL,
-  `categoriaProducto` int(11) NOT NULL,
-  `eliminado` tinyint(1) DEFAULT 0,
-  `imagen` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `producto`
---
-
-INSERT INTO `producto` (`idProducto`, `nombre`, `precio`, `categoriaProducto`, `eliminado`, `imagen`) VALUES
-(1, 'Paracetamol', 3500, 1, 1, 'https://example.com/images/paracetamol.jpg'),
-(2, 'acetaminofen', 15000, 2, 0, 'https://example.com/images/crema_hidratante.jpg'),
-(3, 'Viagra', 1000, 1, 0, 'https://example.com/images/paracetamol.jpg'),
-(4, 'Crema Hidratante', 15000, 2, 0, 'https://example.com/images/crema_hidratante.jpg'),
-(5, 'Antibiótico', 15000, 1, 0, 'https://example.com/images/antibiotico.jpg'),
-(6, 'Shampoo Suave', 18000, 2, 0, 'https://example.com/images/shampoo.jpg'),
-(7, 'Base de Maquillaje', 30000, 2, 0, 'https://example.com/images/base_maquillaje.jpg'),
-(8, 'Aspirina', 25000, 1, 0, 'https://example.com/aspirina.jpg'),
-(9, 'Ibuprofeno', 30000, 1, 0, 'https://example.com/ibuprofeno.jpg'),
-(10, 'Legrip', 1400, 1, 0, 'https://example.com/paracetamol.jpg'),
-(11, 'Pomada antiinflamatoria', 35000, 1, 0, 'https://example.com/pomada-antiinflamatoria.jpg'),
-(12, 'Jarabe para la tos', 25000, 1, 0, 'https://example.com/jarabe-tos.jpg'),
-(13, 'Antibiótico en crema', 40000, 1, 0, 'https://example.com/antibiotico-crema.jpg'),
-(14, 'Crema para cicatrices', 50000, 2, 0, 'https://example.com/crema-cicatrices.jpg'),
-(15, 'Crema hidratante', 60000, 2, 0, 'https://example.com/crema-hidratante.jpg'),
-(16, 'Gel limpiador facial', 40000, 2, 0, 'https://example.com/gel-limpiador.jpg'),
-(17, 'Shampoo anti-caída', 50000, 2, 0, 'https://example.com/shampoo-anti-caida.jpg'),
-(18, 'Crema antiarrugas', 80000, 2, 0, 'https://example.com/crema-antiarrugas.jpg'),
-(19, 'Exfoliante facial', 45000, 2, 0, 'https://example.com/exfoliante.jpg'),
-(20, 'Aceite esencial de lavanda', 55000, 2, 0, 'https://example.com/aceite-lavanda.jpg'),
-(21, 'Protector solar SPF 50', 38000, 2, 0, 'https://example.com/protector-solar.jpg'),
-(22, 'Pasta dental blanqueadora', 15000, 3, 0, 'https://example.com/pasta-dental.jpg'),
-(23, 'Cepillo de dientes eléctrico', 120000, 3, 0, 'https://example.com/cepillo-electrico.jpg'),
-(24, 'Desodorante en spray', 15000, 3, 0, 'https://example.com/desodorante-spray.jpg'),
-(25, 'Jabón líquido antibacteriano', 12000, 3, 0, 'https://example.com/jabon-antibacterial.jpg'),
-(26, 'Gel antibacterial', 9000, 3, 0, 'https://example.com/gel-antibacterial.jpg'),
-(27, 'Crema para manos', 18000, 3, 0, 'https://example.com/crema-manos.jpg'),
-(28, 'Champú hidratante', 28000, 2, 0, 'https://example.com/champu-hidratante.jpg'),
-(29, 'Acondicionador reparador', 32000, 2, 0, 'https://example.com/acondicionador-reparador.jpg'),
-(30, 'Limpiador de cara suave', 37000, 2, 0, 'https://example.com/limpiador-cara-suave.jpg'),
-(31, 'Tiritas adhesivas', 10000, 1, 0, 'https://example.com/tiritas.jpg'),
-(32, 'Vitamina C en tabletas', 60000, 1, 0, 'https://example.com/vitamina-c.jpg'),
-(33, 'Crema para pies', 20000, 3, 0, 'https://example.com/crema-pies.jpg'),
-(34, 'Desinfectante para manos', 12000, 3, 0, 'https://example.com/desinfectante-manos.jpg'),
-(35, 'Crema depilatoria', 15000, 3, 0, 'https://example.com/crema-depilatoria.jpg'),
-(36, 'Suero fisiológico', 12000, 1, 0, 'https://example.com/suero-fisiologico.jpg'),
-(37, 'Manteca de karité', 50000, 2, 0, 'https://example.com/manteca-karite.jpg'),
-(38, 'Bálsamo labial', 40000, 2, 0, 'https://example.com/balsamo-labial.jpg'),
-(39, 'Crema para acné', 45000, 2, 0, 'https://example.com/crema-acne.jpg'),
-(40, 'Pomada para quemaduras', 35000, 1, 0, 'https://example.com/pomada-quemaduras.jpg'),
-(41, 'Antiséptico en spray', 25000, 1, 0, 'https://example.com/antiseptico-spray.jpg'),
-(42, 'Lentes de sol protector UV', 60000, 3, 0, 'https://example.com/lentes-solar.jpg'),
-(43, 'Aceite de argán', 68000, 2, 0, 'https://example.com/aceite-argan.jpg'),
-(44, 'Geles de baño aromáticos', 50000, 2, 0, 'https://example.com/gel-bano-aromatico.jpg'),
-(45, 'Cera para depilación', 30000, 3, 0, 'https://example.com/cera-depilacion.jpg'),
-(46, 'Tónico facial', 45000, 2, 0, 'https://example.com/tonico-facial.jpg'),
-(47, 'Mascarilla capilar', 30000, 2, 0, 'https://example.com/mascarilla-capilar.jpg'),
-(48, 'Jabón para rostro', 20000, 2, 0, 'https://example.com/jabon-rostro.jpg'),
-(49, 'Rímel', 35000, 2, 0, 'https://example.com/rimel.jpg'),
-(50, 'Pincel para maquillaje', 30000, 2, 0, 'https://example.com/pincel-maquillaje.jpg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `productofactura`
---
+(9, 9),
+(10, 10);
 
 CREATE TABLE `productofactura` (
   `idFactura` int(11) NOT NULL,
   `idProducto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `productofactura`
---
-
 INSERT INTO `productofactura` (`idFactura`, `idProducto`) VALUES
+(1, 1),
 (1, 2),
-(2, 5),
-(3, 8),
-(4, 12),
-(5, 15),
-(6, 18),
-(7, 3),
-(8, 10),
-(9, 14),
-(10, 17);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `productoproveedor`
---
-
-CREATE TABLE `productoproveedor` (
-  `idProducto` int(11) NOT NULL,
-  `idProveedor` int(11) NOT NULL,
-  `costo` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `productoproveedor`
---
-
-INSERT INTO `productoproveedor` (`idProducto`, `idProveedor`, `costo`) VALUES
-(2, 3, 0),
-(5, 4, 0),
-(7, 6, 0),
-(8, 7, 0),
-(12, 8, 0),
-(20, 9, 0),
-(22, 10, 0),
-(25, 3, 0),
-(30, 4, 0),
-(35, 6, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `proveedor`
---
-
-CREATE TABLE `proveedor` (
-  `idProveedor` int(11) NOT NULL,
-  `nombre` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `proveedor`
---
-
-INSERT INTO `proveedor` (`idProveedor`, `nombre`, `email`) VALUES
-(1, 'Laboratorios ABC', 'contacto@laboratoriosabc.com'),
-(2, 'Farmacéutica XYZ', 'info@farmaceuticaxyz.com'),
-(3, 'Farmacéutica Salud y Bienestar', 'contacto@farmasalud.com'),
-(4, 'Cosméticos Bella', 'ventas@cosmeticabella.com'),
-(5, 'Medicación Natural', 'info@medicanatural.com'),
-(6, 'Higiene y Cuidado', 'atencion@higieneycuidado.com'),
-(7, 'Dermocosméticos Avanzados', 'contacto@dermocosmeticos.com'),
-(8, 'Cuidado Personal Total', 'soporte@cuidadopersonal.com'),
-(9, 'Medicamentos y Salud', 'servicio@medicamentosysalud.com'),
-(10, 'Bienestar Cosmético', 'contacto@bienestarcosmetico.com');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `repartidor`
---
-
-CREATE TABLE `repartidor` (
-  `idEmpleado` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `ruta`
---
+(2, 3),
+(2, 4),
+(3, 5),
+(3, 6),
+(4, 7),
+(4, 8),
+(5, 9),
+(5, 10),
+(6, 11),
+(6, 12),
+(7, 13),
+(7, 14),
+(8, 1),
+(8, 2),
+(9, 3),
+(9, 4),
+(10, 5);
 
 CREATE TABLE `ruta` (
   `idRuta` int(11) NOT NULL,
@@ -715,10 +358,6 @@ CREATE TABLE `ruta` (
   `horaLlegada` time NOT NULL,
   `idFactura` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `ruta`
---
 
 INSERT INTO `ruta` (`idRuta`, `horaSalida`, `horaLlegada`, `idFactura`) VALUES
 (1, '08:00:00', '10:00:00', 1),
@@ -732,11 +371,113 @@ INSERT INTO `ruta` (`idRuta`, `horaSalida`, `horaLlegada`, `idFactura`) VALUES
 (9, '16:00:00', '18:00:00', 9),
 (10, '17:00:00', '19:00:00', 10);
 
--- --------------------------------------------------------
+CREATE TABLE `proveedor` (
+  `idProveedor` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Table structure for table `subsidio`
---
+INSERT INTO `proveedor` (`idProveedor`, `nombre`, `email`)
+VALUES
+(1, 'Proveedor A', 'proveedorA@example.com'),
+(2, 'Proveedor B', 'proveedorB@example.com'),
+(3, 'Proveedor C', 'proveedorC@example.com'),
+(4, 'Proveedor D', 'proveedorD@example.com'),
+(5, 'Proveedor E', 'proveedorE@example.com'),
+(6, 'Proveedor F', 'proveedorF@example.com'),
+(7, 'Proveedor G', 'proveedorG@example.com'),
+(8, 'Proveedor H', 'proveedorH@example.com'),
+(9, 'Proveedor I', 'proveedorI@example.com'),
+(10, 'Proveedor J', 'proveedorJ@example.com');
+
+
+
+CREATE TABLE `productoproveedor` (
+  `idProducto` int(11) NOT NULL,
+  `idProveedor` int(11) NOT NULL,
+  `costo` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `productoproveedor` (`idProducto`, `idProveedor`, `costo`) VALUES
+(1, 1, 3000),  -- Paracetamol de Proveedor A
+(1, 2, 3200),  -- Paracetamol de Proveedor B
+(2, 3, 12000), -- Crema Hidratante de Proveedor C
+(2, 4, 15000), -- Crema Hidratante de Proveedor D
+(3, 2, 25),    -- Shampoo de Proveedor B
+(3, 5, 28),    -- Shampoo de Proveedor E
+(4, 6, 1200),  -- Legrip de Proveedor F
+(5, 7, 34000), -- Pomada antiinflamatoria de Proveedor G
+(6, 8, 24000), -- Jarabe para la tos de Proveedor H
+(7, 9, 48000), -- Crema para cicatrices de Proveedor I
+(8, 10, 59000), -- Crema hidratante de Proveedor J
+(9, 6, 39000),  -- Gel limpiador facial de Proveedor F
+(10, 4, 48000), -- Shampoo anti-caída de Proveedor D
+(11, 7, 77000), -- Crema antiarrugas de Proveedor G
+(12, 9, 44000), -- Exfoliante facial de Proveedor I
+(13, 3, 53000), -- Aceite esencial de lavanda de Proveedor C
+(14, 5, 17500); -- Jabón Dove de Proveedor E
+
+
+
+CREATE TABLE `pedido` (
+  `idPedido` int(11) NOT NULL,
+  `fechaPedido` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `pedido` (`idPedido`, `fechaPedido`) VALUES
+(1, '2024-10-01'),
+(2, '2024-10-05'),
+(3, '2024-10-10'),
+(4, '2024-10-15'),
+(5, '2024-10-20'),
+(6, '2024-10-25'),
+(7, '2024-10-30'),
+(8, '2024-11-01'),
+(9, '2024-11-05'),
+(10, '2024-11-10');
+
+
+CREATE TABLE `pedidoproductoproveedor` (
+  `idPedido` int(11) NOT NULL,
+  `idProducto` int(11) NOT NULL,
+  `idProveedor` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Insertar en la tabla pedidoproductoproveedor
+INSERT INTO `pedidoproductoproveedor` (`idPedido`, `idProducto`, `idProveedor`, `cantidad`) VALUES
+(1, 1, 1, 5),   -- Pedido 1: 5 unidades de Paracetamol de Proveedor A
+(1, 2, 2, 3),   -- Pedido 1: 3 unidades de Crema Hidratante de Proveedor B
+(2, 3, 3, 10),  -- Pedido 2: 10 unidades de Shampoo de Proveedor C
+(2, 4, 1, 2),   -- Pedido 2: 2 unidades de Legrip de Proveedor A
+(3, 5, 4, 6),   -- Pedido 3: 6 unidades de Pomada antiinflamatoria de Proveedor D
+(3, 6, 5, 4),   -- Pedido 3: 4 unidades de Jarabe para la tos de Proveedor E
+(4, 7, 6, 8),   -- Pedido 4: 8 unidades de Crema para cicatrices de Proveedor F
+(5, 8, 7, 5),   -- Pedido 5: 5 unidades de Crema hidratante de Proveedor G
+(6, 9, 8, 7),   -- Pedido 6: 7 unidades de Gel limpiador facial de Proveedor H
+(7, 10, 9, 3),  -- Pedido 7: 3 unidades de Shampoo anti-caída de Proveedor I
+(8, 11, 10, 2), -- Pedido 8: 2 unidades de Crema antiarrugas de Proveedor J
+(9, 12, 3, 9),  -- Pedido 9: 9 unidades de Exfoliante facial de Proveedor C
+(10, 13, 4, 4), -- Pedido 10: 4 unidades de Aceite esencial de lavanda de Proveedor D
+(10, 14, 5, 6); -- Pedido 10: 6 unidades de Jabón Dove Beauty Humectante 90 Gr X 3 Und de Proveedor E
+
+CREATE TABLE `sucursal` (
+  `idSucursal` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `direccion` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `sucursal` (`idSucursal`, `nombre`, `direccion`) VALUES
+(1, 'Sucursal Centro', 'Carrera 7 #10-20, Bogotá, Colombia'),
+(2, 'Sucursal Norte', 'Calle 100 #20-50, Bogotá, Colombia'),
+(3, 'Sucursal Sur', 'Avenida 68 #45-30, Bogotá, Colombia'),
+(4, 'Sucursal Occidente', 'Calle 13 #80-90, Bogotá, Colombia'),
+(5, 'Sucursal Oriente', 'Calle 45 #33-12, Bogotá, Colombia'),
+(6, 'Sucursal Chapinero', 'Carrera 15 #50-30, Bogotá, Colombia'),
+(7, 'Sucursal Teusaquillo', 'Carrera 30 #60-70, Bogotá, Colombia'),
+(8, 'Sucursal Suba', 'Calle 94 #11-80, Bogotá, Colombia'),
+(9, 'Sucursal Fontibón', 'Avenida El Dorado #56-15, Bogotá, Colombia'),
+(10, 'Sucursal Kennedy', 'Calle 10 #40-12, Bogotá, Colombia');
 
 CREATE TABLE `subsidio` (
   `idSubsidio` int(11) NOT NULL,
@@ -747,55 +488,30 @@ CREATE TABLE `subsidio` (
   `tipoSubsidio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `subsidio`
---
-
 INSERT INTO `subsidio` (`idSubsidio`, `monto`, `fecha`, `cedula`, `idFactura`, `tipoSubsidio`) VALUES
-(1, 50000, '2024-01-15', '0987654321', 1, 1),
-(2, 75000, '2024-02-10', '1004779035', 2, 2),
-(3, 60000, '2024-03-05', '1234567890', 3, 3),
-(4, 80000, '2024-04-12', '1478523690', 4, 1),
-(5, 55000, '2024-05-20', '2345678901', 5, 2),
-(6, 70000, '2024-06-18', '3456789012', 6, 3),
-(7, 65000, '2024-07-25', '4567890123', 7, 1),
-(8, 90000, '2024-08-30', '5678901234', 8, 2),
-(9, 62000, '2024-09-15', '6789012345', 9, 3),
-(10, 58000, '2024-10-22', '7890123456', 10, 1);
+(1, 5000.00, '2024-11-21', '1234567890', 1, 1),
+(2, 10000.00, '2024-11-22', '2345678901', 2, 2),
+(3, 15000.00, '2024-11-23', '3456789012', 3, 3),
+(4, 20000.00, '2024-11-24', '4567890123', 4, 4),
+(5, 5000.00, '2024-11-25', '5678901234', 5, 1),
+(6, 8000.00, '2024-11-26', '6789012345', 6, 2),
+(7, 12000.00, '2024-11-27', '7890123456', 7, 3),
+(8, 15000.00, '2024-11-28', '8901234567', 8, 4),
+(9, 7000.00, '2024-11-29', '9012345678', 9, 1),
+(10, 9000.00, '2024-11-30', '0123456789', 10, 2);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `sucursal`
---
-
-CREATE TABLE `sucursal` (
-  `idSucursal` int(11) NOT NULL,
+CREATE TABLE `tiposubsidio` (
+  `idTipoSubsidio` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
-  `direccion` varchar(255) NOT NULL
+  `descripcion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `sucursal`
---
+INSERT INTO `tiposubsidio` (`idTipoSubsidio`, `nombre`, `descripcion`) VALUES
+(1, 'Subsidio Alimentario', 'Subsidio destinado a la compra de alimentos para los clientes de bajos recursos.'),
+(2, 'Subsidio Vivienda', 'Subsidio destinado a la adquisición o mejora de vivienda para los clientes.'),
+(3, 'Subsidio Educativo', 'Subsidio para apoyar los costos educativos de los clientes.'),
+(4, 'Subsidio de Salud', 'Subsidio para cubrir gastos médicos de los clientes.');
 
-INSERT INTO `sucursal` (`idSucursal`, `nombre`, `direccion`) VALUES
-(1, 'Sucursal Central', 'Cl. 16 # 15 -22, Armenia, Quindío'),
-(2, 'Sucursal Centro', 'Calle 1, Armenia'),
-(3, 'Sucursal Norte', 'Avenida 5, Armenia'),
-(4, 'Sucursal Sur', 'Carrera 10, Armenia'),
-(5, 'Sucursal Este', 'Calle 50, Armenia'),
-(6, 'Sucursal Oeste', 'Avenida 80, Armenia'),
-(7, 'Sucursal Norte 2', 'Calle 200, Armenia'),
-(8, 'Sucursal Sur 2', 'Carrera 300, Armenia'),
-(9, 'Sucursal Centro 2', 'Avenida 400, Armenia'),
-(10, 'Sucursal Internacional', 'Calle 500, Armenia');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `telefono`
---
 
 CREATE TABLE `telefono` (
   `idTelefono` int(11) NOT NULL,
@@ -805,243 +521,132 @@ CREATE TABLE `telefono` (
   `tipoTelefono` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
+INSERT INTO `telefono` (`idTelefono`, `idEntidad`, `tipoEntidad`, `numero`, `tipoTelefono`) VALUES
+-- Teléfonos de empleados
+(1, 1, 'empleado', '3101234567', 2), -- Juan Pérez - Celular
+(2, 2, 'empleado', '3122345678', 2), -- María Gómez - Celular
+(3, 3, 'empleado', '3203456789', 2), -- Carlos Rodríguez - Celular
+(4, 4, 'empleado', '3154567890', 2), -- Ana Torres - Celular
+(5, 5, 'empleado', '6011234567', 1), -- Luis Martínez - Fijo
+(6, 6, 'empleado', '6012345678', 1), -- Patricia López - Fijo
 
---
--- Table structure for table `tipocertificado`
---
+-- Teléfonos de clientes
+(7, 1, 'cliente', '3009876543', 2), -- Cliente 1 - Celular
+(8, 2, 'cliente', '3159876543', 2), -- Cliente 2 - Celular
 
-CREATE TABLE `tipocertificado` (
-  `idTipoCertificado` int(11) NOT NULL,
-  `nombre` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tipocertificado`
---
-
-INSERT INTO `tipocertificado` (`idTipoCertificado`, `nombre`) VALUES
-(1, 'Certificado de Gerente de Droguería'),
-(2, 'Certificado en Gestión Farmacéutica'),
-(3, 'Certificado en Dirección de Droguerías'),
-(4, 'Certificado en Gestión de Inventarios Farmacéuticos'),
-(5, 'Certificado en Administración de Droguerías'),
-(6, 'Certificado de Liderazgo en Salud'),
-(7, 'Certificado en Gestión Comercial para Droguerías'),
-(8, 'Certificado en Normativa y Regulación Farmacéutica'),
-(9, 'Certificado en Marketing para Droguerías'),
-(10, 'Certificado en Estrategias de Ventas en Droguerías');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tiporesponsabilidad`
---
-
-CREATE TABLE `tiporesponsabilidad` (
-  `idTipoResponsabilidad` int(11) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `descripcion` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tiporesponsabilidad`
---
-
-INSERT INTO `tiporesponsabilidad` (`idTipoResponsabilidad`, `nombre`, `descripcion`) VALUES
-(1, 'Gestión de Inventarios', 'Responsabilidad de controlar y mantener el inventario actualizado, incluyendo el seguimiento de productos y existencias.'),
-(2, 'Control de Stock', 'Responsabilidad de asegurar que haya suficiente stock de productos y realizar los pedidos necesarios cuando los niveles de inventario sean bajos.'),
-(3, 'Auditoría de Inventarios', 'Responsabilidad de realizar auditorías periódicas para verificar la exactitud del inventario y detectar discrepancias.'),
-(4, 'Manejo de Productos Vencidos', 'Responsabilidad de gestionar y remover productos vencidos del inventario, garantizando que no se vendan productos fuera de fecha.'),
-(5, 'Actualización de Precios', 'Responsabilidad de actualizar los precios de los productos en el sistema de inventarios según las indicaciones del departamento comercial.');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tiposubsidio`
---
-
-CREATE TABLE `tiposubsidio` (
-  `idTipoSubsidio` int(11) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `descripcion` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tiposubsidio`
---
-
-INSERT INTO `tiposubsidio` (`idTipoSubsidio`, `nombre`, `descripcion`) VALUES
-(1, 'Cuota Monetaria', 'Es una prestación social en dinero que está dirigida a los trabajadores afiliados a Comfenalco Quindío'),
-(2, 'Subsidio Especial', 'Sin limitación en razón de su edad, se cancela doble cuota de subsidio familiar en dinero, a los hijos, padres y hermanos huérfanos de ambos padres'),
-(3, 'Subsidio de Servicios', 'Es el derecho que tú y tus beneficiaros tienen para utilizar los servicios sociales de la Caja con tarifas preferenciales');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tipotelefono`
---
+-- Teléfonos de proveedores
+(9, 1, 'proveedor', '6017654321', 1), -- Proveedor 1 - Fijo
+(10, 2, 'proveedor', '6018765432', 1); -- Proveedor 2 - Fijo
 
 CREATE TABLE `tipotelefono` (
   `idTipoTelefono` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tipotelefono`
---
-
 INSERT INTO `tipotelefono` (`idTipoTelefono`, `nombre`) VALUES
-(1, 'Celular'),
-(2, 'Fijo'),
+(1, 'Fijo'),
+(2, 'Celular'),
 (3, 'Trabajo'),
-(4, 'Oficina');
+(4, 'Casa');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `venta`
---
-
-CREATE TABLE `venta` (
-  `idVenta` int(11) NOT NULL,
-  `descuento` double NOT NULL,
-  `metodoPago` int(11) NOT NULL,
-  `idFactura` int(11) NOT NULL,
-  `cedula` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `venta`
---
-
-INSERT INTO `venta` (`idVenta`, `descuento`, `metodoPago`, `idFactura`, `cedula`) VALUES
-(1, 10, 1, 1, '0987654321'),
-(2, 5, 2, 2, '1004779035'),
-(3, 15, 3, 3, '1234567890'),
-(4, 8, 1, 4, '1478523690'),
-(5, 12, 2, 5, '2345678901'),
-(6, 20, 3, 6, '3456789012'),
-(7, 10, 1, 7, '4567890123'),
-(8, 7, 2, 8, '5678901234'),
-(9, 13, 3, 9, '6789012345'),
-(10, 18, 1, 10, '7890123456'),
-(11, 9, 2, 1, '0987654321'),
-(12, 11, 3, 2, '1004779035'),
-(13, 5, 1, 3, '1234567890'),
-(14, 6, 2, 4, '1478523690'),
-(15, 14, 3, 5, '2345678901'),
-(16, 16, 1, 6, '3456789012'),
-(17, 17, 2, 7, '4567890123'),
-(18, 19, 3, 8, '5678901234'),
-(19, 8, 1, 9, '6789012345'),
-(20, 4, 2, 10, '7890123456');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `cajero`
---
 ALTER TABLE `cajero`
   ADD PRIMARY KEY (`idEmpleado`,`turno`);
 
 --
--- Indexes for table `categoriaproducto`
+-- Indices de la tabla `categoriaproducto`
 --
 ALTER TABLE `categoriaproducto`
   ADD PRIMARY KEY (`idCategoria`);
 
 --
--- Indexes for table `certificado`
+-- Indices de la tabla `certificado`
 --
 ALTER TABLE `certificado`
   ADD PRIMARY KEY (`tipoCertificado`),
   ADD KEY `idEmpleado` (`idEmpleado`);
 
 --
--- Indexes for table `cliente`
+-- Indices de la tabla `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`cedula`);
 
 --
--- Indexes for table `empleado`
+-- Indices de la tabla `empleado`
 --
 ALTER TABLE `empleado`
   ADD PRIMARY KEY (`idEmpleado`),
   ADD KEY `sucursal` (`sucursal`);
 
 --
--- Indexes for table `empleadoventa`
+-- Indices de la tabla `empleadoventa`
 --
 ALTER TABLE `empleadoventa`
   ADD PRIMARY KEY (`idEmpleado`,`idVenta`),
   ADD KEY `idVenta` (`idVenta`);
 
 --
--- Indexes for table `factura`
+-- Indices de la tabla `factura`
 --
 ALTER TABLE `factura`
   ADD PRIMARY KEY (`idFactura`),
   ADD KEY `clienteCedula` (`clienteCedula`);
 
 --
--- Indexes for table `facturaventa`
+-- Indices de la tabla `facturaventa`
 --
 ALTER TABLE `facturaventa`
   ADD PRIMARY KEY (`idFactura`,`idVenta`),
   ADD KEY `idVenta` (`idVenta`);
 
 --
--- Indexes for table `farmaceutico`
+-- Indices de la tabla `farmaceutico`
 --
 ALTER TABLE `farmaceutico`
   ADD PRIMARY KEY (`idEmpleado`);
 
 --
--- Indexes for table `gerente`
+-- Indices de la tabla `gerente`
 --
 ALTER TABLE `gerente`
-  ADD PRIMARY KEY (`idEmpleado`);
+  ADD PRIMARY KEY (`idEmpleado`),
+  ADD KEY `certificado` (`certificado`);
 
 --
--- Indexes for table `inventario`
+-- Indices de la tabla `inventario`
 --
 ALTER TABLE `inventario`
   ADD PRIMARY KEY (`idInventario`),
   ADD KEY `idProducto` (`idProducto`);
 
 --
--- Indexes for table `licenciaconduccion`
+-- Indices de la tabla `licenciaconduccion`
 --
 ALTER TABLE `licenciaconduccion`
   ADD PRIMARY KEY (`nombre`),
   ADD KEY `idEmpleado` (`idEmpleado`);
 
 --
--- Indexes for table `licenciafarmaceutico`
+-- Indices de la tabla `licenciafarmaceutico`
 --
 ALTER TABLE `licenciafarmaceutico`
   ADD PRIMARY KEY (`idLicenciaF`),
-  ADD KEY `idEmpleado` (`idEmpleado`),
-  ADD KEY `idEmpleado_2` (`idEmpleado`);
+  ADD KEY `idEmpleado` (`idEmpleado`);
 
 --
--- Indexes for table `metodopago`
+-- Indices de la tabla `metodopago`
 --
 ALTER TABLE `metodopago`
   ADD PRIMARY KEY (`idMetodoPago`);
 
 --
--- Indexes for table `pedido`
+-- Indices de la tabla `pedido`
 --
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`idPedido`);
 
 --
--- Indexes for table `pedidoproductoproveedor`
+-- Indices de la tabla `pedidoproductoproveedor`
 --
 ALTER TABLE `pedidoproductoproveedor`
   ADD PRIMARY KEY (`idPedido`,`idProducto`,`idProveedor`),
@@ -1049,54 +654,55 @@ ALTER TABLE `pedidoproductoproveedor`
   ADD KEY `idProveedor` (`idProveedor`);
 
 --
--- Indexes for table `personalinventario`
+-- Indices de la tabla `personalinventario`
 --
 ALTER TABLE `personalinventario`
   ADD PRIMARY KEY (`idEmpleado`),
   ADD KEY `idTipoResponsabilidad` (`idTipoResponsabilidad`);
 
 --
--- Indexes for table `producto`
+-- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`idProducto`),
   ADD KEY `categoriaProducto` (`categoriaProducto`);
 
 --
--- Indexes for table `productofactura`
+-- Indices de la tabla `productofactura`
 --
 ALTER TABLE `productofactura`
   ADD PRIMARY KEY (`idFactura`,`idProducto`),
   ADD KEY `idProducto` (`idProducto`);
 
 --
--- Indexes for table `productoproveedor`
+-- Indices de la tabla `productoproveedor`
 --
 ALTER TABLE `productoproveedor`
   ADD PRIMARY KEY (`idProducto`,`idProveedor`),
   ADD KEY `idProveedor` (`idProveedor`);
 
 --
--- Indexes for table `proveedor`
+-- Indices de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
   ADD PRIMARY KEY (`idProveedor`);
 
 --
--- Indexes for table `repartidor`
+-- Indices de la tabla `repartidor`
 --
 ALTER TABLE `repartidor`
-  ADD PRIMARY KEY (`idEmpleado`);
+  ADD PRIMARY KEY (`idEmpleado`),
+  ADD KEY `licenciaConduccion` (`licenciaConduccion`);
 
 --
--- Indexes for table `ruta`
+-- Indices de la tabla `ruta`
 --
 ALTER TABLE `ruta`
   ADD PRIMARY KEY (`idRuta`),
   ADD KEY `idFactura` (`idFactura`);
 
 --
--- Indexes for table `subsidio`
+-- Indices de la tabla `subsidio`
 --
 ALTER TABLE `subsidio`
   ADD PRIMARY KEY (`idSubsidio`),
@@ -1105,44 +711,44 @@ ALTER TABLE `subsidio`
   ADD KEY `tipoSubsidio` (`tipoSubsidio`);
 
 --
--- Indexes for table `sucursal`
+-- Indices de la tabla `sucursal`
 --
 ALTER TABLE `sucursal`
   ADD PRIMARY KEY (`idSucursal`);
 
 --
--- Indexes for table `telefono`
+-- Indices de la tabla `telefono`
 --
 ALTER TABLE `telefono`
   ADD PRIMARY KEY (`idTelefono`),
   ADD KEY `tipoTelefono` (`tipoTelefono`);
 
 --
--- Indexes for table `tipocertificado`
+-- Indices de la tabla `tipocertificado`
 --
 ALTER TABLE `tipocertificado`
   ADD PRIMARY KEY (`idTipoCertificado`);
 
 --
--- Indexes for table `tiporesponsabilidad`
+-- Indices de la tabla `tiporesponsabilidad`
 --
 ALTER TABLE `tiporesponsabilidad`
   ADD PRIMARY KEY (`idTipoResponsabilidad`);
 
 --
--- Indexes for table `tiposubsidio`
+-- Indices de la tabla `tiposubsidio`
 --
 ALTER TABLE `tiposubsidio`
   ADD PRIMARY KEY (`idTipoSubsidio`);
 
 --
--- Indexes for table `tipotelefono`
+-- Indices de la tabla `tipotelefono`
 --
 ALTER TABLE `tipotelefono`
   ADD PRIMARY KEY (`idTipoTelefono`);
 
 --
--- Indexes for table `venta`
+-- Indices de la tabla `venta`
 --
 ALTER TABLE `venta`
   ADD PRIMARY KEY (`idVenta`),
@@ -1151,180 +757,187 @@ ALTER TABLE `venta`
   ADD KEY `cedula` (`cedula`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `categoriaproducto`
+-- AUTO_INCREMENT de la tabla `categoriaproducto`
 --
 ALTER TABLE `categoriaproducto`
   MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `empleado`
+-- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `idEmpleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `idEmpleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `factura`
+-- AUTO_INCREMENT de la tabla `factura`
 --
 ALTER TABLE `factura`
-  MODIFY `idFactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idFactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT for table `metodopago`
+-- AUTO_INCREMENT de la tabla `inventario`
+--
+ALTER TABLE `inventario`
+  MODIFY `idInventario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT de la tabla `metodopago`
 --
 ALTER TABLE `metodopago`
   MODIFY `idMetodoPago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `pedido`
+-- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `producto`
+-- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `proveedor`
+-- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `idProveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idProveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `ruta`
+-- AUTO_INCREMENT de la tabla `ruta`
 --
 ALTER TABLE `ruta`
-  MODIFY `idRuta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idRuta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `subsidio`
+-- AUTO_INCREMENT de la tabla `subsidio`
 --
 ALTER TABLE `subsidio`
-  MODIFY `idSubsidio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idSubsidio` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `sucursal`
+-- AUTO_INCREMENT de la tabla `sucursal`
 --
 ALTER TABLE `sucursal`
-  MODIFY `idSucursal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idSucursal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `telefono`
+-- AUTO_INCREMENT de la tabla `telefono`
 --
 ALTER TABLE `telefono`
   MODIFY `idTelefono` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tipocertificado`
+-- AUTO_INCREMENT de la tabla `tipocertificado`
 --
 ALTER TABLE `tipocertificado`
-  MODIFY `idTipoCertificado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idTipoCertificado` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tiporesponsabilidad`
+-- AUTO_INCREMENT de la tabla `tiporesponsabilidad`
 --
 ALTER TABLE `tiporesponsabilidad`
-  MODIFY `idTipoResponsabilidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idTipoResponsabilidad` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tiposubsidio`
+-- AUTO_INCREMENT de la tabla `tiposubsidio`
 --
 ALTER TABLE `tiposubsidio`
-  MODIFY `idTipoSubsidio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idTipoSubsidio` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tipotelefono`
+-- AUTO_INCREMENT de la tabla `tipotelefono`
 --
 ALTER TABLE `tipotelefono`
-  MODIFY `idTipoTelefono` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idTipoTelefono` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `venta`
+-- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `idVenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idVenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `cajero`
+-- Filtros para la tabla `cajero`
 --
 ALTER TABLE `cajero`
   ADD CONSTRAINT `cajero_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`);
 
 --
--- Constraints for table `certificado`
+-- Filtros para la tabla `certificado`
 --
 ALTER TABLE `certificado`
   ADD CONSTRAINT `certificado_ibfk_1` FOREIGN KEY (`tipoCertificado`) REFERENCES `tipocertificado` (`idTipoCertificado`),
   ADD CONSTRAINT `certificado_ibfk_2` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`);
 
 --
--- Constraints for table `empleado`
+-- Filtros para la tabla `empleado`
 --
 ALTER TABLE `empleado`
   ADD CONSTRAINT `empleado_ibfk_1` FOREIGN KEY (`sucursal`) REFERENCES `sucursal` (`idSucursal`);
 
 --
--- Constraints for table `empleadoventa`
+-- Filtros para la tabla `empleadoventa`
 --
 ALTER TABLE `empleadoventa`
   ADD CONSTRAINT `empleadoventa_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`),
   ADD CONSTRAINT `empleadoventa_ibfk_2` FOREIGN KEY (`idVenta`) REFERENCES `venta` (`idVenta`);
 
 --
--- Constraints for table `factura`
+-- Filtros para la tabla `factura`
 --
 ALTER TABLE `factura`
   ADD CONSTRAINT `factura_ibfk_1` FOREIGN KEY (`clienteCedula`) REFERENCES `cliente` (`cedula`);
 
 --
--- Constraints for table `facturaventa`
+-- Filtros para la tabla `facturaventa`
 --
 ALTER TABLE `facturaventa`
   ADD CONSTRAINT `facturaventa_ibfk_1` FOREIGN KEY (`idFactura`) REFERENCES `factura` (`idFactura`),
   ADD CONSTRAINT `facturaventa_ibfk_2` FOREIGN KEY (`idVenta`) REFERENCES `venta` (`idVenta`);
 
 --
--- Constraints for table `farmaceutico`
+-- Filtros para la tabla `farmaceutico`
 --
 ALTER TABLE `farmaceutico`
   ADD CONSTRAINT `farmaceutico_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`);
 
 --
--- Constraints for table `gerente`
+-- Filtros para la tabla `gerente`
 --
 ALTER TABLE `gerente`
-  ADD CONSTRAINT `gerente_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`);
+  ADD CONSTRAINT `gerente_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`),
+  ADD CONSTRAINT `gerente_ibfk_2` FOREIGN KEY (`certificado`) REFERENCES `certificado` (`tipoCertificado`);
 
 --
--- Constraints for table `inventario`
+-- Filtros para la tabla `inventario`
 --
 ALTER TABLE `inventario`
   ADD CONSTRAINT `inventario_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`);
 
 --
--- Constraints for table `licenciaconduccion`
+-- Filtros para la tabla `licenciaconduccion`
 --
 ALTER TABLE `licenciaconduccion`
   ADD CONSTRAINT `licenciaconduccion_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`);
 
 --
--- Constraints for table `licenciafarmaceutico`
+-- Filtros para la tabla `licenciafarmaceutico`
 --
 ALTER TABLE `licenciafarmaceutico`
   ADD CONSTRAINT `licenciafarmaceutico_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`);
 
 --
--- Constraints for table `pedidoproductoproveedor`
+-- Filtros para la tabla `pedidoproductoproveedor`
 --
 ALTER TABLE `pedidoproductoproveedor`
   ADD CONSTRAINT `pedidoproductoproveedor_ibfk_1` FOREIGN KEY (`idPedido`) REFERENCES `pedido` (`idPedido`),
@@ -1332,46 +945,47 @@ ALTER TABLE `pedidoproductoproveedor`
   ADD CONSTRAINT `pedidoproductoproveedor_ibfk_3` FOREIGN KEY (`idProveedor`) REFERENCES `proveedor` (`idProveedor`);
 
 --
--- Constraints for table `personalinventario`
+-- Filtros para la tabla `personalinventario`
 --
 ALTER TABLE `personalinventario`
   ADD CONSTRAINT `personalinventario_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`),
   ADD CONSTRAINT `personalinventario_ibfk_2` FOREIGN KEY (`idTipoResponsabilidad`) REFERENCES `tiporesponsabilidad` (`idTipoResponsabilidad`);
 
 --
--- Constraints for table `producto`
+-- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
   ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`categoriaProducto`) REFERENCES `categoriaproducto` (`idCategoria`);
 
 --
--- Constraints for table `productofactura`
+-- Filtros para la tabla `productofactura`
 --
 ALTER TABLE `productofactura`
   ADD CONSTRAINT `productofactura_ibfk_1` FOREIGN KEY (`idFactura`) REFERENCES `factura` (`idFactura`),
   ADD CONSTRAINT `productofactura_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`);
 
 --
--- Constraints for table `productoproveedor`
+-- Filtros para la tabla `productoproveedor`
 --
 ALTER TABLE `productoproveedor`
   ADD CONSTRAINT `productoproveedor_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`),
   ADD CONSTRAINT `productoproveedor_ibfk_2` FOREIGN KEY (`idProveedor`) REFERENCES `proveedor` (`idProveedor`);
 
 --
--- Constraints for table `repartidor`
+-- Filtros para la tabla `repartidor`
 --
 ALTER TABLE `repartidor`
-  ADD CONSTRAINT `repartidor_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`);
+  ADD CONSTRAINT `repartidor_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`),
+  ADD CONSTRAINT `repartidor_ibfk_2` FOREIGN KEY (`licenciaConduccion`) REFERENCES `licenciaconduccion` (`nombre`);
 
 --
--- Constraints for table `ruta`
+-- Filtros para la tabla `ruta`
 --
 ALTER TABLE `ruta`
   ADD CONSTRAINT `ruta_ibfk_1` FOREIGN KEY (`idFactura`) REFERENCES `factura` (`idFactura`);
 
 --
--- Constraints for table `subsidio`
+-- Filtros para la tabla `subsidio`
 --
 ALTER TABLE `subsidio`
   ADD CONSTRAINT `subsidio_ibfk_1` FOREIGN KEY (`cedula`) REFERENCES `cliente` (`cedula`),
@@ -1379,13 +993,13 @@ ALTER TABLE `subsidio`
   ADD CONSTRAINT `subsidio_ibfk_3` FOREIGN KEY (`tipoSubsidio`) REFERENCES `tiposubsidio` (`idTipoSubsidio`);
 
 --
--- Constraints for table `telefono`
+-- Filtros para la tabla `telefono`
 --
 ALTER TABLE `telefono`
   ADD CONSTRAINT `telefono_ibfk_1` FOREIGN KEY (`tipoTelefono`) REFERENCES `tipotelefono` (`idTipoTelefono`);
 
 --
--- Constraints for table `venta`
+-- Filtros para la tabla `venta`
 --
 ALTER TABLE `venta`
   ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`metodoPago`) REFERENCES `metodopago` (`idMetodoPago`),

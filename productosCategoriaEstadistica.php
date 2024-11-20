@@ -49,10 +49,12 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos Más Vendidos por Categoría</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <h2>Productos Más Vendidos por Categoría</h2>
     <button onclick="window.location.href='producto.php';">Volver a Productos</button>
+    <button id="downloadBtn">Descargar como PDF</button>
 
     <!-- Mostrar productos más vendidos por categoría -->
     <div id="productosMasVendidos">
@@ -74,43 +76,84 @@ $conn->close();
         var categorias = <?php echo json_encode($categorias); ?>;
 
         // Preparar los datos para la gráfica
-        var labels = Object.keys(categorias); // Etiquetas de categoría
-        var data = labels.map(function(categoria) {
-            // Total de productos vendidos por cada categoría
-            return categorias[categoria].reduce(function(total, producto) {
-                return total + producto.cantidad;
-            }, 0);
+        var labels = Object.keys(categorias); // Etiquetas de categorías
+        var datasets = [];
+
+        // Crear un conjunto de datos por cada producto
+        Object.keys(categorias).forEach(function(categoria, index) {
+            categorias[categoria].forEach(function(producto) {
+                let dataset = datasets.find(ds => ds.label === producto.producto);
+                if (!dataset) {
+                    dataset = {
+                        label: producto.producto,
+                        data: Array(labels.length).fill(0),
+                        backgroundColor: `hsl(${Math.random() * 360}, 70%, 60%)`
+                    };
+                    datasets.push(dataset);
+                }
+                dataset.data[index] = producto.cantidad;
+            });
         });
 
-        // Crear la gráfica
+        // Crear la gráfica de barras apiladas
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
-            type: 'bar', // Cambiar a 'pie' para una gráfica circular
+            type: 'bar',
             data: {
-                labels: labels,  // Etiquetas de categorías
-                datasets: [{
-                    label: 'Productos Más Vendidos por Categoría',
-                    data: data,  // Total de productos vendidos por categoría
-                    backgroundColor: ['#ff5733', '#33ff57', '#3357ff', '#ff33a8', '#f3c300'], // Colores para las categorías
-                    borderColor: ['#ff5733', '#33ff57', '#3357ff', '#ff33a8', '#f3c300'],
-                    borderWidth: 1
-                }]
+                labels: labels,  // Categorías
+                datasets: datasets  // Productos dentro de las categorías
             },
             options: {
                 responsive: true,
                 plugins: {
-                    legend: {
-                        position: 'top',
-                    },
                     tooltip: {
                         callbacks: {
                             label: function(tooltipItem) {
-                                return tooltipItem.label + ': ' + tooltipItem.raw + ' unidades';
+                                return tooltipItem.dataset.label + ': ' + tooltipItem.raw + ' unidades';
                             }
                         }
+                    },
+                    legend: {
+                        position: 'top',
+                    }
+                },
+                scales: {
+                    x: {
+                        stacked: true // Apilar barras en el eje X
+                    },
+                    y: {
+                        stacked: true // Apilar barras en el eje Y
                     }
                 }
             }
+        });
+
+        // Función para generar el PDF
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF();
+            
+            // Agregar el título y la gráfica al PDF
+            pdf.setFontSize(16);
+            pdf.text("Estadísticas de Facturas por Estado", 20, 20);
+            
+            // Convertir la imagen de la gráfica a base64
+            var imgData = ctx.canvas.toDataURL("image/png");
+            pdf.addImage(ctx.canvas, 'PNG', 10, 30, 180, 160);
+            
+            // Agregar los productos más vendidos al PDF
+            let yPosition = 200;
+            Object.keys(categorias).forEach(function(categoria) {
+                pdf.text(categoria, 20, yPosition);
+                yPosition += 10;
+                categorias[categoria].forEach(function(producto) {
+                    pdf.text(`${producto.producto} - ${producto.cantidad} unidades`, 20, yPosition);
+                    yPosition += 10;
+                });
+            });
+
+            // Guardar el PDF
+            pdf.save('estadisticas_facturas.pdf');
         });
     </script>
 </body>
