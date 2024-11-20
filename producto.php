@@ -71,11 +71,6 @@
 
 </button>
 
-    <button class='crear' onclick="window.location.href='crearProductos.php'">
-        <i class='fas fa-star'></i> Crear
-    </button>
-
-
     <!-- Tabla de Productos -->
     <table border="1">
         <thead>

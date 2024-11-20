@@ -38,17 +38,10 @@
 
 
         <section id="reportes" class="grid-item">
-            <img src="images/inventario.png" alt="Reportes">
+            <img src="images/reportes.png" alt="Reportes">
             <h2>Reportes</h2>
             <button onclick="window.location.href='reportes.php';">Descargar Reportes</button>
         </section>
-        
-        <section id="cerrar-sesion" class="grid-item">
-            <img src="images/logout.png" alt="Cerrar Sesión">
-            <h2>Cerrar Sesión</h2>
-            <button onclick="window.location.href='logout.php';">Cerrar Sesión</button>
-        </section>
-
         
         <section id="cerrar-sesion" class="grid-item">
             <img src="images/logout.png" alt="Cerrar Sesión">
