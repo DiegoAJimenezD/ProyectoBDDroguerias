@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $impuesto = $precioProducto * 0.19; // Ejemplo de cálculo de impuesto (19%)
     $precioTotal = $precioProducto - $descuento + $impuesto; // Calculamos el precio total
     $fechaCompra = date('Y-m-d H:i:s'); // Fecha actual de la compra
-    $estado = 'PENDIENTE'; // Estado de la factura (pendiente)
+    $estado = 'PAGADA'; // Estado de la factura (pagada)
 
     try {
         $conn->begin_transaction();  // Iniciar la transacción
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $queryInventario->execute();
 
         $conn->commit();  // Confirmar la transacción
-        echo "Compra realizada con éxito.";
+        header("Location: factura.php?idFactura=$idFactura");
     } catch (Exception $e) {
         $conn->rollback();  // Revertir la transacción en caso de error
         echo "Error al procesar la compra: " . $e->getMessage();
