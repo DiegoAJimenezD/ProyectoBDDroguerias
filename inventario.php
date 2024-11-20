@@ -46,34 +46,20 @@ $conn->close();
         <h1>Inventario</h1>
         <nav>
         <ul>
-                <li><a href="cliente.php">Clientes</a></li>
+        <li>
                 <li><a href="empleado.php">Empleados</a></li>
-                <li><a href="sucursal.php">Sucursales</a></li>
                 <li><a href="producto.php">Productos</a></li>
-                <li><a href="inventario.php">Inventario</a></li>
                 <li><a href="proveedor.php">Proveedores</a></li>
-                <li><a href="pedido.php">Pedidos</a></li>
-                <li><a href="venta.php">Ventas</a></li>
+                <li><a href="inventario.php">Inventario</a></li>
                 <li><a href="administrador.php">Panel</a></li>   
             </ul>
         </nav>
     </header>
-    <button onclick="window.location.href='estadisticasStock.php';">Ver Gráfica de Stock</button>
+    <button onclick="window.location.href='estadisticas.php';">Ver Gráfica de Stock</button>
     <button onclick="recargarDatos()">Recargar Datos</button>
-
-    <nav>
-        <ul>
-            <li><a href="cliente.php">Clientes</a></li>
-            <li><a href="empleado.php">Empleados</a></li>
-            <li><a href="sucursal.php">Sucursales</a></li>
-            <li><a href="producto.php">Productos</a></li>
-            <li><a href="inventario.php">Inventario</a></li>
-            <li><a href="proveedor.php">Proveedores</a></li>
-            <li><a href="pedido.php">Pedidos</a></li>
-            <li><a href="venta.php">Ventas</a></li>
-            <li><a href="login.php">regresar</a></li>
-        </ul>
-    </nav>
+    <button class='crear' onclick="window.location.href='crearInventario.php'">
+    <i class='fas fa-star'></i> Crear
+</button>
     </header>
 
     <table border="1">

@@ -6,12 +6,14 @@
     font-family: Arial, sans-serif;
 }
 
-/* Estilo del cuerpo */
+/* Estilos del cuerpo */
 body {
     background-color: #f4f4f9;
     color: #333;
     display: flex;
     flex-direction: column;
+    align-items: center; /* Centra el contenido horizontalmente */
+    justify-content: center; /* Centra el contenido verticalmente */
     min-height: 100vh;
 }
 
@@ -22,6 +24,8 @@ header {
     text-align: center;
     padding: 50px 20px; /* Aumentar el padding para que haya más espacio */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave debajo del header */
+    width: 100%;
+    height: 218px;
 }
 
 /* Título del header */
@@ -70,12 +74,16 @@ nav ul li a:hover {
 
 /* Estilos del main */
 main {
-    flex: 1;
-    padding: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas */
+    grid-template-rows: repeat(2, 1fr); /* Dos filas */
+    gap: 20px; /* Espacio entre elementos */
+    width: 80%;
+    max-width: 1200px;
+    padding: 20px;
+    flex: 1;
 }
+
 
 /* Secciones */
 section {
