@@ -80,6 +80,18 @@ $conn->close();
         <?php endforeach; ?>
     </div>
 
+    <!-- Mostrar productos más vendidos por categoría -->
+    <div id="productosMasVendidos">
+        <?php foreach ($categorias as $categoria => $productos): ?>
+            <h3><?php echo $categoria; ?></h3>
+            <ul>
+                <?php foreach ($productos as $producto): ?>
+                    <li><?php echo $producto['producto']; ?> - <?php echo $producto['cantidad']; ?> unidades</li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endforeach; ?>
+    </div>
+
     <!-- Gráfica aquí -->
     <canvas id="myChart" width="400" height="200"></canvas>
 
@@ -114,6 +126,7 @@ $conn->close();
             data: {
                 labels: labels,  // Categorías
                 datasets: datasets  // Productos dentro de las categorías
+
 
         var labels = Object.keys(categorias); // Etiquetas de categoría
         var data = labels.map(function(categoria) {
