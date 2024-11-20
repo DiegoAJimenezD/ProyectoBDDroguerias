@@ -96,7 +96,8 @@
                 <input type="password" id="contrasena" name="contrasena" required>
             </div>
 
-            <button type="submit">Crear empleado</button>
+            <button type="submit">Guardar empleado</button>
+
         </form>
     </div>
 

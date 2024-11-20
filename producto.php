@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos</title>
     <link rel="stylesheet" href="css/stylesListas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 </head>
 <body>
     <header class="header">
         <h1>Productos</h1>
         <nav>
             <ul>
-            <li><a href="empleado.php">Empleados</a></li>
+
+                <li><a href="empleado.php">Empleados</a></li>
                 <li><a href="producto.php">Productos</a></li>
                 <li><a href="proveedor.php">Proveedores</a></li>
                 <li><a href="inventario.php">Inventario</a></li>
@@ -20,49 +23,44 @@
         </nav>
     </header>
 
-    <form method="GET" action="">
-    <div class="contenedor-filtros">
-    <div class="formulario-filtros">
-    <div class="filtro">
-        <label for="categoria">Categoría:</label>
-        <select name="categoria" id="categoria">
-            <option value="">Todas</option>
-            <?php
-            $conn = new mysqli('localhost', 'root', '', 'drogueriasconfe');
-            $sqlCategorias = "SELECT idCategoria, nombre FROM categoriaProducto";
-            $resultCategorias = $conn->query($sqlCategorias);
 
-            while ($rowCategoria = $resultCategorias->fetch_assoc()) {
-                $selected = (isset($_GET['categoria']) && $_GET['categoria'] == $rowCategoria['idCategoria']) ? 'selected' : '';
-                echo "<option value='" . $rowCategoria['idCategoria'] . "' $selected>" . $rowCategoria['nombre'] . "</option>";
-            }
-            $conn->close();  
-            ?>
-        </select>
-    </div>
+    <!-- Formulario de filtros -->
+ <!-- Formulario de filtros -->
+ <form method="GET" action="" id="filterForm">
+        <div class="contenedor-filtros">
+            <div class="formulario-filtros">
+                <div class="filtro">
+                    <label for="idProducto">ID Producto:</label>
+                    <input type="text" name="idProducto" id="idProducto" placeholder="Ingrese ID del producto" value="<?= isset($_GET['idProducto']) ? htmlspecialchars($_GET['idProducto']) : '' ?>">
+                </div>
 
-    <div class="filtro">
-        <label for="nombre">Nombre:</label>
-        <input type="text" name="nombre" id="nombre" placeholder="Buscar por nombre" value="<?= isset($_GET['nombre']) ? htmlspecialchars($_GET['nombre']) : '' ?>">
-    </div>
+                <div class="filtro">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre" placeholder="Ingrese nombre" value="<?= isset($_GET['nombre']) ? htmlspecialchars($_GET['nombre']) : '' ?>">
+                </div>
 
-    <div class="filtro">
-        <label for="idProducto">ID Producto:</label>
-        <input type="number" name="idProducto" id="idProducto" placeholder="Buscar por ID" value="<?= isset($_GET['idProducto']) ? htmlspecialchars($_GET['idProducto']) : '' ?>">
-    </div>
+                <div class="filtro">
+                    <label for="precio">Precio:</label>
+                    <input type="number" name="precio" id="precio" placeholder="Ingrese precio" value="<?= isset($_GET['precio']) ? htmlspecialchars($_GET['precio']) : '' ?>" min="0" step="any">
+                </div>
 
-    <div class="filtro">
-        <label for="precio">Precio:</label>
-        <input type="number" name="precio" id="precio" min="0" step="0.01" placeholder="Precio" value="<?= isset($_GET['precio']) ? htmlspecialchars($_GET['precio']) : '' ?>">
-    </div>
+                <div class="filtro">
+                    <label for="categoria">Categoría:</label>
+                    <select name="categoria" id="categoria">
+                        <option value="">Seleccionar categoría</option>
+                        <option value="Medicamentos" <?= isset($_GET['categoria']) && $_GET['categoria'] == 'Medicamentos' ? 'selected' : '' ?>>Medicamentos</option>
+                        <option value="Cosmeticos" <?= isset($_GET['categoria']) && $_GET['categoria'] == 'Cosmeticos' ? 'selected' : '' ?>>Cosméticos</option>
+                        <option value="Higiene Personal" <?= isset($_GET['categoria']) && $_GET['categoria'] == 'Higiene Personal' ? 'selected' : '' ?>>Higiene Personal</option>
+                    </select>
+                </div>
+            </div>
 
-    <div class="filtro-boton">
-        <button type="submit">Filtrar</button>
-        <button type="button" onclick="resetForm()">Limpiar</button>
-    </div>
+            <div class="botones">
+                <button type="submit">Filtrar</button>
+                <button type="reset" onclick="resetFilters()">Limpiar</button>
+            </div>
         </div>
-        </div>
-</form>
+    </form>
 
     <!-- Botón para recargar los datos -->
     <button class='Estadisticas' onclick="window.location.href='productosCategoriaEstadistica.php'">
@@ -70,6 +68,7 @@
     <button onclick="window.location.reload()">Recargar Datos</button>
     <button class='crear' onclick="window.location.href='crearProductos.php'">
     <i class='fas fa-star'></i> Crear
+
 </button>
 
     <!-- Tabla de Productos -->
@@ -98,7 +97,7 @@
             $conditions = [];
             if (isset($_GET['categoria']) && $_GET['categoria'] !== '') {
                 $categoria = $conn->real_escape_string($_GET['categoria']);
-                $conditions[] = "p.categoriaProducto = '$categoria'";  // Filtrar por categoría
+                $conditions[] = "c.nombre = '$categoria'";  // Filtrar por categoría
             }
             if (isset($_GET['nombre']) && $_GET['nombre'] !== '') {
                 $nombre = $conn->real_escape_string($_GET['nombre']);
@@ -133,8 +132,8 @@
                     echo "<td>" . $row["precio"] . "</td>";
                     echo "<td>" . $row["categoria"] . "</td>";
                     echo "<td>
-                            <button onclick='editarProducto(" . $row["idProducto"] . ")'>Editar</button>
-                            <button onclick='eliminarProducto(" . $row["idProducto"] . ")'>Eliminar</button>
+                            <button onclick='editarProducto(" . $row["idProducto"] . ")'> <i class='fas fa-edit'></i> Editar</button>
+                            <button onclick='eliminarProducto(" . $row["idProducto"] . ")'> <i class='fas fa-trash-alt'></i>Eliminar</button>
                           </td>";
                     echo "</tr>";
                 }
@@ -148,10 +147,12 @@
     </table>
 
     <script>
-
-function resetForm() {
-            document.querySelector("form").reset();
-            window.location.href = window.location.pathname;
+        function resetFilters() {
+            document.getElementById("categoria").value = "";  
+            document.getElementById("nombre").value = "";  
+            document.getElementById("precio").value = "";  
+            document.getElementById("idProducto").value = "";  
+            document.getElementById("filterForm").submit();  
         }
         function editarProducto(idProducto) {
             window.location.href = "editarProducto.php?idProducto=" + idProducto;
@@ -162,16 +163,6 @@ function resetForm() {
                 window.location.href = "eliminarProducto.php?idProducto=" + idProducto;
             }
         }
-
-        // Función para limpiar los filtros
-        function resetFilters() {
-            document.getElementById("categoria").value = "";  
-            document.getElementById("nombre").value = "";  
-            document.getElementById("precio").value = "";  
-            document.getElementById("idProducto").value = "";  
-            document.getElementById("filterForm").submit();  
-        }
     </script>
-
 </body>
 </html>

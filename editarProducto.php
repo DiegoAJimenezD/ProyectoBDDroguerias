@@ -69,9 +69,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1>Editar Producto</h1>
         <nav>
             <ul>
-            <li><a href="cliente.php">Clientes</a></li>
-                <li><a href="empleado.php">Empleados</a></li>
+
+            <li><a href="empleado.php">Empleados</a></li>
                 <li><a href="producto.php">Productos</a></li>
+                <li><a href="proveedor.php">Proveedores</a></li>
                 <li><a href="inventario.php">Inventario</a></li>
                 <li><a href="administrador.php">Panel</a></li> 
             </ul>
