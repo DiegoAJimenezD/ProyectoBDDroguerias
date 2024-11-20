@@ -26,7 +26,7 @@ if ($result_empleado->num_rows > 0) {
     $empleado = $result_empleado->fetch_assoc();
     $_SESSION['usuario'] = $empleado['nombre']; // Guardar nombre del empleado en la sesión
     $_SESSION['tipo_usuario'] = 'empleado'; // Guardar tipo de usuario en la sesión
-    header("Location: empleado.php");
+    header("Location: administrador.php");
     exit();
 }
 
