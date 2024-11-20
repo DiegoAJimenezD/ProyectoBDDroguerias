@@ -14,97 +14,84 @@ if ($conn->connect_error) {
 }
 
 // Consulta SQL para obtener los productos más vendidos por categoría
-$sql = "SELECT c.nombre AS categoria, p.nombre AS producto, COUNT(pv.idProducto) AS cantidadVendida
+$sql = "SELECT p.categoriaProducto, c.nombre AS categoriaNombre, COUNT(pf.idProducto) AS cantidadVendida
         FROM producto p
-        JOIN categoriaProducto c ON p.categoriaProducto = c.idCategoria
-        JOIN productoVenta pv ON p.idProducto = pv.idProducto
-        GROUP BY c.idCategoria, p.idProducto
-        ORDER BY c.idCategoria, cantidadVendida DESC";
+        JOIN productofactura pf ON p.idProducto = pf.idProducto
+        JOIN factura f ON pf.idFactura = f.idFactura
+        JOIN venta v ON f.idFactura = v.idFactura
+        JOIN categoriaproducto c ON p.categoriaProducto = c.idCategoria
+        WHERE f.estado = 'PAGADA'
+        GROUP BY p.categoriaProducto
+        ORDER BY cantidadVendida DESC";
+
 $result = $conn->query($sql);
 
 // Verificar si la consulta devuelve resultados
-$productos = [];
+$categorias = [];
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $productos[] = $row;
+        $categorias[] = $row;
     }
 }
 
 // Cerrar la conexión
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estadísticas de Productos Más Vendidos por Categoría</title>
+    <title>Productos Más Vendidos por Categoría</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h2>Gráfica de Productos Más Vendidos por Categoría</h2>
+    <h2>Productos Más Vendidos por Categoría</h2>
     <button onclick="window.location.href='productos.php';">Volver a Productos</button>
 
     <!-- Gráfica aquí -->
-    <canvas id="productosChart" width="400" height="200"></canvas>
+    <canvas id="myChart" width="400" height="200"></canvas>
 
     <script>
         // Datos obtenidos desde PHP
-        var productos = <?php echo json_encode($productos); ?>;
-        
-        // Preparar los datos para la gráfica
-        var categorias = [];
-        var productosPorCategoria = {};
+        var categorias = <?php echo json_encode($categorias); ?>;
 
-        // Organizar los productos por categoría
-        productos.forEach(function(item) {
-            if (!productosPorCategoria[item.categoria]) {
-                productosPorCategoria[item.categoria] = [];
-            }
-            productosPorCategoria[item.categoria].push({
-                producto: item.producto,
-                cantidadVendida: item.cantidadVendida
-            });
+        // Preparar los datos para la gráfica
+        var labels = categorias.map(function(item) {
+            return item.categoriaNombre;  // Etiquetas de categoría
         });
 
-        // Preparar etiquetas y datos para la gráfica
-        var labels = [];
-        var data = [];
-
-        // Limitar a los 5 productos más vendidos por categoría para no sobrecargar la gráfica
-        for (const categoria in productosPorCategoria) {
-            var categoriaData = productosPorCategoria[categoria];
-            categoriaData.sort(function(a, b) {
-                return b.cantidadVendida - a.cantidadVendida; // Ordenar por cantidad de ventas descendente
-            });
-
-            labels.push(categoria);
-            data.push(categoriaData.slice(0, 5)); // Tomar solo los 5 más vendidos
-        }
+        var data = categorias.map(function(item) {
+            return item.cantidadVendida;  // Cantidad de productos vendidos
+        });
 
         // Crear la gráfica
-        var ctx = document.getElementById('productosChart').getContext('2d');
-        var productosChart = new Chart(ctx, {
-            type: 'bar',
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar', // Cambiar a 'pie' para una gráfica circular
             data: {
-                labels: labels,
-                datasets: data.map(function(categoriaData, index) {
-                    return {
-                        label: labels[index],
-                        data: categoriaData.map(function(item) {
-                            return item.cantidadVendida;
-                        }),
-                        backgroundColor: '#ff5733', // Color de la barra
-                        borderColor: '#ff5733',
-                        borderWidth: 1
-                    };
-                })
+                labels: labels,  // Etiquetas de categorías
+                datasets: [{
+                    label: 'Productos Más Vendidos por Categoría',
+                    data: data,  // Cantidad de productos vendidos por categoría
+                    backgroundColor: ['#ff5733', '#33ff57', '#3357ff', '#ff33a8', '#f3c300'], // Colores para las categorías
+                    borderColor: ['#ff5733', '#33ff57', '#3357ff', '#ff33a8', '#f3c300'],
+                    borderWidth: 1
+                }]
             },
             options: {
                 responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw + ' unidades';
+                            }
+                        }
                     }
                 }
             }
