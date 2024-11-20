@@ -64,6 +64,7 @@
     </div>
 </form>
 
+    <button onclick="window.location.href='productosCategoriaEstadistica.php';">Ver Gráfica de Stock</button>
     <!-- Botón para recargar los datos -->
     <button onclick="window.location.reload()">Recargar Datos</button>
 
