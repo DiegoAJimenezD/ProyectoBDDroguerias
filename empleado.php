@@ -8,72 +8,120 @@
     <!-- Agregar iconos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-
     <style>
         /* Estilo para la celda de acciones */
         .acciones {
-            display: flex; /* Usamos flexbox para alinear los botones */
-            justify-content: space-evenly; /* Espacio uniforme entre los botones */
-            gap: 10px; /* Espacio entre los botones */
+            display: flex;
+            justify-content: space-evenly;
+            gap: 10px;
         }
 
-        /* Estilo para los botones */
         .acciones button {
-            padding: 5px 10px; /* Tamaño de los botones */
-            cursor: pointer; /* Cambia el cursor al pasar por encima */
-            border: none; /* Sin borde */
-            border-radius: 5px; /* Bordes redondeados */
-            transition: background-color 0.3s ease; /* Animación suave para el color de fondo */
+            padding: 5px 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
             display: flex;
             align-items: center;
         }
 
-        /* Botón de editar (verde) */
         .acciones button.editar {
-            background-color: #4CAF50; /* Verde */
-            color: white; /* Color del texto */
+            background-color: #4CAF50;
+            color: white;
         }
 
         .acciones button.editar:hover {
-            background-color: #45a049; /* Verde más oscuro en hover */
+            background-color: #45a049;
         }
 
-        /* Botón de eliminar (rojo) */
         .acciones button.eliminar {
-            background-color: #f44336; /* Rojo */
-            color: white; /* Color del texto */
+            background-color: #f44336;
+            color: white;
         }
 
         .acciones button.eliminar:hover {
-            background-color: #e53935; /* Rojo más oscuro en hover */
+            background-color: #e53935;
         }
 
         .acciones i {
-            margin-right: 5px; /* Espacio entre el icono y el texto */
+            margin-right: 5px;
         }
     </style>
-
 </head>
 <body>
     <header class="header">
         <h1>Empleados</h1>
         <nav>
             <ul>
-                <li><a href="cliente.php">Clientes</a></li>
-                <li><a href="empleado.php">Empleados</a></li>
-                <li><a href="sucursal.php">Sucursales</a></li>
+            <li><a href="empleado.php">Empleados</a></li>
                 <li><a href="producto.php">Productos</a></li>
-                <li><a href="inventario.php">Inventario</a></li>
                 <li><a href="proveedor.php">Proveedores</a></li>
-                <li><a href="pedido.php">Pedidos</a></li>
-                <li><a href="venta.php">Ventas</a></li>
-                <li><a href="administrador.php">Panel</a></li>
+                <li><a href="inventario.php">Inventario</a></li>
+                <li><a href="administrador.php">Panel</a></li>  
             </ul>
         </nav>
-       
     </header>
-    <button onclick="window.location.href='estadisitcaVentasEmpleado.php';">Ver Grafica Ventas</button>
-    <button onclick="recargarDatos()">Recargar Datos</button>
+
+    <!-- Formulario de filtros -->
+    <form method="GET" action="">
+        <div class="contenedor-filtros">
+            <div class="formulario-filtros">
+                <div class="filtro">
+                    <label for="idEmpleado">ID Empleado:</label>
+                    <input type="text" name="idEmpleado" id="idEmpleado" placeholder="Ingrese ID de empleado" value="<?= isset($_GET['idEmpleado']) ? htmlspecialchars($_GET['idEmpleado']) : '' ?>">
+                </div>
+
+                <div class="filtro">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre" placeholder="Ingrese nombre" value="<?= isset($_GET['nombre']) ? htmlspecialchars($_GET['nombre']) : '' ?>">
+                </div>
+
+                <div class="filtro">
+                    <label for="horario">Horario:</label>
+                    <input type="time" name="horario" id="horario" value="<?= isset($_GET['horario']) ? htmlspecialchars($_GET['horario']) : '' ?>">
+                </div>
+
+                <div class="filtro">
+                    <label for="sucursal">Sucursal (solo números):</label>
+                    <input type="number" name="sucursal" id="sucursal" placeholder="Ingrese número de sucursal" value="<?= isset($_GET['sucursal']) ? htmlspecialchars($_GET['sucursal']) : '' ?>" min="1">
+                </div>
+
+                <div class="filtro">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" placeholder="Ingrese email" value="<?= isset($_GET['email']) ? htmlspecialchars($_GET['email']) : '' ?>">
+                </div>
+            </div>
+
+            <div class="botones">
+                <button type="submit">Filtrar</button>
+                <button type="reset" onclick="resetForm()">Limpiar</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        function resetForm() {
+            document.querySelector("form").reset();
+            window.location.href = window.location.pathname;
+        }
+
+        function recargarDatos() {
+            window.location.reload(); // Recarga la página
+        }
+    </script>
+
+    <!-- Botón de recarga de datos -->
+<!-- Botón para recargar los datos con icono -->
+<button onclick="recargarDatos()">
+    <i class="fas fa-sync-alt"></i> Recargar Datos
+</button>
+
+    <button class='crear' onclick="window.location.href='crearEmpleado.php'">
+    <i class='fas fa-star'></i> Crear
+</button>
+
+    <!-- Tabla de empleados -->
     <table border="1">
         <thead>
             <tr>
@@ -82,16 +130,16 @@
                 <th>Horario</th>
                 <th>Sucursal</th>
                 <th>Email</th>
-                <th>Acciones</th> <!-- Columna para los botones -->
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody id="datosEmpleado">
             <?php
             // Conectar a la base de datos
-            $servername = "localhost";  // Servidor de la base de datos
-            $username = "root";         // Usuario de MySQL
-            $password = "";             // Contraseña de MySQL
-            $dbname = "drogueriasconfe"; // Nombre de la base de datos
+            $servername = "localhost";  
+            $username = "root";         
+            $password = "";             
+            $dbname = "drogueriasconfe"; 
 
             // Crear la conexión
             $conn = new mysqli($servername, $username, $password, $dbname);
@@ -101,14 +149,45 @@
                 die("Conexión fallida: " . $conn->connect_error);
             }
 
-            // Consulta para obtener todos los empleados
-            $sql = "SELECT idEmpleado, nombre, horario, sucursal, email FROM empleado";
+            // Inicializar la consulta base
+            $sql = "SELECT idEmpleado, nombre, horario, sucursal, email FROM empleado WHERE eliminado = 0";
+
+            // Filtrar por ID de empleado si se proporciona
+            if (isset($_GET['idEmpleado']) && !empty($_GET['idEmpleado'])) {
+                $idEmpleado = $_GET['idEmpleado'];
+                $sql .= " AND idEmpleado LIKE '%$idEmpleado%'";
+            }
+
+            // Filtrar por nombre si se proporciona
+            if (isset($_GET['nombre']) && !empty($_GET['nombre'])) {
+                $nombre = $_GET['nombre'];
+                $sql .= " AND nombre LIKE '%$nombre%'";
+            }
+
+            // Filtrar por horario si se proporciona
+            if (isset($_GET['horario']) && !empty($_GET['horario'])) {
+                $horario = $_GET['horario'];
+                $sql .= " AND horario = '$horario'";
+            }
+
+            // Filtrar por sucursal si se proporciona
+            if (isset($_GET['sucursal']) && !empty($_GET['sucursal'])) {
+                $sucursal = $_GET['sucursal'];
+                $sql .= " AND sucursal = $sucursal";
+            }
+
+            // Filtrar por email si se proporciona
+            if (isset($_GET['email']) && !empty($_GET['email'])) {
+                $email = $_GET['email'];
+                $sql .= " AND email LIKE '%$email%'";
+            }
+
+            // Ejecutar la consulta
             $result = $conn->query($sql);
 
             // Verificar si hay resultados
             if ($result->num_rows > 0) {
-                // Mostrar los datos en formato de tabla HTML
-                while($row = $result->fetch_assoc()) {
+                while ($row = $result->fetch_assoc()) {
                     echo "<tr>
                             <td>" . $row["idEmpleado"] . "</td>
                             <td>" . $row["nombre"] . "</td>
@@ -134,67 +213,17 @@
             ?>
         </tbody>
     </table>
-    <script>
-        function recargarDatos() {
-            // Para recargar los datos, puedes recargar la página o hacer una petición AJAX
-            window.location.reload(); // Recarga la página
-        }
 
+    <script>
         function editarEmpleado(id) {
-            // Aquí puedes redirigir a la página de edición, pasando el ID del empleado
             window.location.href = 'editarEmpleado.php?id=' + id;
         }
 
-        function eliminarEmpleado(id) {
-            // Confirmación antes de eliminar
-            if (confirm("¿Estás seguro de que deseas eliminar este empleado?")) {
-                // Aquí puedes agregar la lógica para eliminar al empleado
-                window.location.href = 'eliminarEmpleado.php?id=' + id;
+        function eliminarEmpleado(idEmpleado) {
+            if (confirm("¿Seguro que deseas eliminar este empleado?")) {
+                window.location.href = "eliminarEmpleado.php?idEmpleado=" + idEmpleado;
             }
         }
     </script>
-
-
-    <style>
-        /* Estilos personalizados para los botones */
-        .editar {
-            background-color: #28a745; /* Verde */
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 5px;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .editar i {
-            margin-right: 5px;
-        }
-
-        .editar:hover {
-            background-color: #218838;
-        }
-
-        .eliminar {
-            background-color: #dc3545; /* Rojo */
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 5px;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .eliminar i {
-            margin-right: 5px;
-        }
-
-        .eliminar:hover {
-            background-color: #c82333;
-        }
-    </style>
-
 </body>
 </html>
