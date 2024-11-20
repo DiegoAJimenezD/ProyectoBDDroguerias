@@ -58,7 +58,7 @@ $conn->close();
             </ul>
         </nav>
     </header>
-    <button onclick="window.location.href='estadisticas.php';">Ver Gráfica de Stock</button>
+    <button onclick="window.location.href='estadisticasStock.php';">Ver Gráfica de Stock</button>
     <button onclick="recargarDatos()">Recargar Datos</button>
 
     <nav>

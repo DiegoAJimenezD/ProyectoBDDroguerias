@@ -72,6 +72,7 @@
         </nav>
        
     </header>
+    <button onclick="window.location.href='estadisitcaVentasEmpleado.php';">Ver Grafica Ventas</button>
     <button onclick="recargarDatos()">Recargar Datos</button>
     <table border="1">
         <thead>
