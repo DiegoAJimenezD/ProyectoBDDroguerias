@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.factura-container {
+    width: 60%;
+    margin: 20px auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.factura-header {
+    text-align: center;
+    border-bottom: 2px solid #333;
+    padding-bottom: 15px;
+}
+
+.factura-header .logo {
+    max-width: 150px;
+    margin-bottom: 10px;
+}
+
+.factura-content {
+    padding: 20px 0;
+}
+
+.factura-content h2 {
+    color: #444;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.factura-content p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.factura-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.factura-footer button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.factura-footer button:hover {
+    background-color: #0056b3;
+}
