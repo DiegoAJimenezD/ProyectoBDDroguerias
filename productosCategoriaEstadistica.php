@@ -68,18 +68,6 @@ $conn->close();
         <?php endforeach; ?>
     </div>
 
-    <!-- Mostrar productos más vendidos por categoría -->
-    <div id="productosMasVendidos">
-        <?php foreach ($categorias as $categoria => $productos): ?>
-            <h3><?php echo $categoria; ?></h3>
-            <ul>
-                <?php foreach ($productos as $producto): ?>
-                    <li><?php echo $producto['producto']; ?> - <?php echo $producto['cantidad']; ?> unidades</li>
-                <?php endforeach; ?>
-            </ul>
-        <?php endforeach; ?>
-    </div>
-
     <!-- Gráfica aquí -->
     <canvas id="myChart" width="400" height="200"></canvas>
 
@@ -88,7 +76,7 @@ $conn->close();
         var categorias = <?php echo json_encode($categorias); ?>;
 
         // Preparar los datos para la gráfica
-        var labels = Object.keys(categorias); // Etiquetas de categorías
+        var labels = Object.keys(categorias);  // Etiquetas de categorías
         var datasets = [];
 
         // Crear un conjunto de datos por cada producto
@@ -114,28 +102,6 @@ $conn->close();
             data: {
                 labels: labels,  // Categorías
                 datasets: datasets  // Productos dentro de las categorías
-
-        var labels = Object.keys(categorias); // Etiquetas de categoría
-        var data = labels.map(function(categoria) {
-            // Total de productos vendidos por cada categoría
-            return categorias[categoria].reduce(function(total, producto) {
-                return total + producto.cantidad;
-            }, 0);
-        });
-
-        // Crear la gráfica
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar', // Cambiar a 'pie' para una gráfica circular
-            data: {
-                labels: labels,  // Etiquetas de categorías
-                datasets: [{
-                    label: 'Productos Más Vendidos por Categoría',
-                    data: data,  // Total de productos vendidos por categoría
-                    backgroundColor: ['#ff5733', '#33ff57', '#3357ff', '#ff33a8', '#f3c300'], // Colores para las categorías
-                    borderColor: ['#ff5733', '#33ff57', '#3357ff', '#ff33a8', '#f3c300'],
-                    borderWidth: 1
-                }]
             },
             options: {
                 responsive: true,
