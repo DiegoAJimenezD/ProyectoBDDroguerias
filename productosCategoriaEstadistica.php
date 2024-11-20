@@ -48,7 +48,7 @@ $conn->close();
 </head>
 <body>
     <h2>Productos Más Vendidos por Categoría</h2>
-    <button onclick="window.location.href='productos.php';">Volver a Productos</button>
+    <button onclick="window.location.href='producto.php';">Volver a Productos</button>
 
     <!-- Gráfica aquí -->
     <canvas id="myChart" width="400" height="200"></canvas>
