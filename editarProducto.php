@@ -69,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1>Editar Producto</h1>
         <nav>
             <ul>
+
             <li><a href="empleado.php">Empleados</a></li>
                 <li><a href="producto.php">Productos</a></li>
                 <li><a href="proveedor.php">Proveedores</a></li>

@@ -31,15 +31,6 @@ if (!$factura) {
     exit;
 }
 
-// Función para convertir la imagen a base64
-function imageToBase64($path) {
-    $image = file_get_contents($path);
-    return 'data:image/png;base64,' . base64_encode($image);
-}
-
-// Ruta de la imagen en tu proyecto
-$logoBase64 = imageToBase64('images/logo.png');
-
 
 
 $conn->close();

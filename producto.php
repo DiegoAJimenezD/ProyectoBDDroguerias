@@ -13,6 +13,7 @@
         <h1>Productos</h1>
         <nav>
             <ul>
+
                 <li><a href="empleado.php">Empleados</a></li>
                 <li><a href="producto.php">Productos</a></li>
                 <li><a href="proveedor.php">Proveedores</a></li>
@@ -22,8 +23,10 @@
         </nav>
     </header>
 
+
     <!-- Formulario de filtros -->
-    <form method="GET" action="" id="filterForm">
+ <!-- Formulario de filtros -->
+ <form method="GET" action="" id="filterForm">
         <div class="contenedor-filtros">
             <div class="formulario-filtros">
                 <div class="filtro">
@@ -68,6 +71,7 @@
     <button class='crear' onclick="window.location.href='crearProductos.php'">
         <i class='fas fa-star'></i> Crear
     </button>
+
 
     <!-- Tabla de Productos -->
     <table border="1">
@@ -117,6 +121,7 @@
                 $sql .= " AND " . implode(' AND ', $conditions);
             }
 
+
             // Ejecutar la consulta
             $resultado = $conn->query($sql);
 
@@ -151,7 +156,6 @@
             document.getElementById("idProducto").value = "";  
             document.getElementById("filterForm").submit();  
         }
-
         function editarProducto(idProducto) {
             window.location.href = "editarProducto.php?idProducto=" + idProducto;
         }

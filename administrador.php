@@ -36,6 +36,7 @@
             <button onclick="window.location.href='inventario.php';">Gestionar Inventario</button>
         </section>
 
+
         <section id="reportes" class="grid-item">
             <img src="images/inventario.png" alt="Reportes">
             <h2>Reportes</h2>
@@ -47,6 +48,14 @@
             <h2>Cerrar Sesión</h2>
             <button onclick="window.location.href='logout.php';">Cerrar Sesión</button>
         </section>
+
+        
+        <section id="cerrar-sesion" class="grid-item">
+            <img src="images/logout.png" alt="Cerrar Sesión">
+            <h2>Cerrar Sesión</h2>
+            <button onclick="window.location.href='logout.php';">Cerrar Sesión</button>
+        </section>
+
     </main>
 
     <script src="scripts.js"></script>

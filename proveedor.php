@@ -18,6 +18,7 @@
             <li><a href="inventario.php">Inventario</a></li>
             <li><a href="administrador.php">Panel</a></li>
         </ul>
+
         </nav>
     </header>
 
