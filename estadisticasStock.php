@@ -1,5 +1,3 @@
-
-
 <?php
 // Conexión a la base de datos
 $servername = "localhost";
@@ -37,6 +35,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estadísticas de Stock</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -45,11 +44,13 @@ $conn->close();
 
     <!-- Gráfica aquí -->
     <canvas id="stockChart" width="400" height="200"></canvas>
+    <br><br>
+    <button id="downloadBtn">Descargar como PDF</button>
 
     <script>
         // Datos obtenidos desde PHP
         var productos = <?php echo json_encode($productos); ?>;
-        
+
         // Preparar los datos para la gráfica
         var labels = productos.map(function(item) {
             return 'Producto ' + item.idProducto;
@@ -68,7 +69,7 @@ $conn->close();
                 datasets: [{
                     label: 'Cantidad de Stock',
                     data: data,
-                    backgroundColor: ['#ff5733', '#33ff57', '#3357ff', '#ff33a8', '#f3c300'], // Puedes cambiar los colores
+                    backgroundColor: ['#ff5733', '#33ff57', '#3357ff', '#ff33a8', '#f3c300'],
                     borderColor: ['#ff5733', '#33ff57', '#3357ff', '#ff33a8', '#f3c300'],
                     borderWidth: 1
                 }]
@@ -81,6 +82,23 @@ $conn->close();
                     }
                 }
             }
+        });
+
+        // Función para generar el PDF
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            // Crear un nuevo PDF
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF();
+
+            // Usar Chart.js para generar el gráfico directamente en el PDF
+            pdf.setFontSize(16);
+            pdf.text("Estadísticas de Stock", 20, 20);
+
+            // Establecer el tamaño y posición del gráfico en el PDF
+            pdf.addImage(ctx.canvas, 'PNG', 10, 30, 180, 160); // El canvas como imagen en el PDF
+
+            // Descargar el PDF
+            pdf.save('estadisticas_stock.pdf');
         });
     </script>
 </body>
