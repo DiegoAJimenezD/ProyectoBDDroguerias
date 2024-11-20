@@ -48,7 +48,7 @@ $conn->close();
 </head>
 <body>
     <h2>Productos Más Vendidos por Categoría</h2>
-    <button onclick="window.location.href='producto.php';">Volver a Productos</button>
+    <button onclick="window.location.href='productos.php';">Volver a Productos</button>
 
     <!-- Gráfica aquí -->
     <canvas id="myChart" width="400" height="200"></canvas>
@@ -69,7 +69,7 @@ $conn->close();
         // Crear la gráfica
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
-            type: 'bar', // Cambiar a 'pie' para una gráfica circular
+            type: 'pie', // Cambiar a 'pie' para una gráfica circular
             data: {
                 labels: labels,  // Etiquetas de categorías
                 datasets: [{
