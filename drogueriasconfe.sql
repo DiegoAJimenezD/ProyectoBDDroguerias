@@ -2,20 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
-
 -- Servidor: 127.0.0.1
-
--- Tiempo de generación: 19-11-2024 a las 05:04:47
-
--- Tiempo de generación: 14-11-2024 a las 08:18:42
-
+-- Tiempo de generación: 20-11-2024 a las 04:03:49
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
--- Host: 127.0.0.1
--- Generation Time: Nov 14, 2024 at 06:56 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
-
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `drogueriasconfe`
+-- Base de datos: `drogueriasconfe`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cajero`
+-- Estructura de tabla para la tabla `cajero`
 --
 
 CREATE TABLE `cajero` (
@@ -43,26 +33,10 @@ CREATE TABLE `cajero` (
   `tiempoServicio` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `cajero`
---
-
-INSERT INTO `cajero` (`idEmpleado`, `turno`, `tiempoServicio`) VALUES
-(5, 'Mañana', '00:00:04'),
-(7, 'Mañana', '00:00:01'),
-(9, 'Tarde', '00:00:04'),
-(12, 'Tarde', '00:00:03'),
-(15, 'Mañana', '00:00:03'),
-(19, 'Noche', '00:00:03'),
-(23, 'Tarde', '00:00:02'),
-(28, 'Tarde', '00:00:02'),
-(34, 'Noche', '00:00:05'),
-(41, 'Mañana', '00:00:06');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categoriaproducto`
+-- Estructura de tabla para la tabla `categoriaproducto`
 --
 
 CREATE TABLE `categoriaproducto` (
@@ -73,18 +47,18 @@ CREATE TABLE `categoriaproducto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `categoriaproducto`
+-- Volcado de datos para la tabla `categoriaproducto`
 --
 
 INSERT INTO `categoriaproducto` (`idCategoria`, `nombre`, `estado`, `descripcion`) VALUES
 (1, 'Medicamentos', 'ACTIVO', 'Productos farmacéuticos para el tratamiento de enfermedades'),
-(2, 'Cosméticos', 'INACTIVO', 'Productos para el cuidado personal y la belleza, incluyendo maquillaje y cuidado de la piel.'),
-(3, 'Cuidado personal', 'ACTIVO', 'Productos relacionados con el cuidado personal, como cosméticos, productos de higiene y cuidado de la piel.');
+(2, 'Cosméticos', 'ACTIVO', 'Productos para el cuidado personal y la belleza, incluyendo maquillaje y cuidado de la piel.'),
+(3, 'Higiene Personal', 'ACTIVO', 'Productos relacionados con la limpieza personal.');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `certificado`
+-- Estructura de tabla para la tabla `certificado`
 --
 
 CREATE TABLE `certificado` (
@@ -96,7 +70,7 @@ CREATE TABLE `certificado` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cliente`
+-- Estructura de tabla para la tabla `cliente`
 --
 
 CREATE TABLE `cliente` (
@@ -112,26 +86,17 @@ CREATE TABLE `cliente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `cliente`
+-- Volcado de datos para la tabla `cliente`
 --
 
 INSERT INTO `cliente` (`cedula`, `primernombre`, `segundonombre`, `primerApellido`, `segundoApellido`, `fechaNacimiento`, `direccion`, `email`, `contrasena`) VALUES
-('0987654321', 'Ana', 'Esperanza', 'Rodríguez', 'Quintero', '1985-02-21', NULL, 'ana.rodriguez@gmail.com', '987'),
-('1004779035', 'Juan', 'Camilo', 'Cuenca', 'Sepuveda', '2003-09-18', 'crr 23# 7', 'camilocuenca1810@gmail.com', 'camilo123'),
-('1004871338', 'Diego', 'Alexander', 'Jimenez', 'Jimenez', '2002-12-06', 'Bosques de Pinares Manzana 3 Casa 17', 'diego15kxl@gmail.com', 'd123'),
-('1234567890', 'Juan', 'Carlos', 'Pérez', 'Gómez', '1990-05-15', NULL, 'juan.perez@example.com', '123'),
-('1478523690', 'Juan', 'Carlos', 'Pérez', 'Gómez', '1990-05-15', 'Calle 123, Bogotá', 'juan.perez@mail.com', 'contrasena123'),
-('2345678901', 'María', 'Fernanda', 'López', 'Sánchez', '1985-08-22', 'Calle 456, Medellín', 'maria.lopez@mail.com', 'contrasena456'),
-('3456789012', 'Carlos', 'Eduardo', 'Martínez', 'Ruiz', '1992-11-30', 'Calle 789, Cali', 'carlos.martinez@mail.com', 'contrasena789'),
-('4567890123', 'Ana', 'Isabel', 'Rodríguez', 'Morales', '1988-03-12', 'Calle 101, Barranquilla', 'ana.rodriguez@mail.com', 'contrasena101'),
-('5678901234', 'Luis', 'Antonio', 'García', 'Díaz', '1995-07-18', 'Calle 202, Cartagena', 'luis.garcia@mail.com', 'contrasena202'),
-('6789012345', 'Lucía', 'Estefanía', 'Hernández', 'Paredes', '1993-02-03', 'Calle 303, Bucaramanga', 'lucia.hernandez@mail.com', 'contrasena303'),
-('7890123456', 'Pedro', 'Alfredo', 'Jiménez', 'Vargas', '1982-09-25', 'Calle 404, Manizales', 'pedro.jimenez@mail.com', 'contrasena404');
+('0987654321', 'Ana', 'María', 'Rodríguez', 'Martínez', '1985-08-20', NULL, 'ana.rodriguez@example.com', '987'),
+('1234567890', 'Juan', 'Carlos', 'Pérez', 'Gómez', '1990-05-15', NULL, 'juan.perez@example.com', '123');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `empleado`
+-- Estructura de tabla para la tabla `empleado`
 --
 
 CREATE TABLE `empleado` (
@@ -144,65 +109,16 @@ CREATE TABLE `empleado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `empleado`
+-- Volcado de datos para la tabla `empleado`
 --
 
 INSERT INTO `empleado` (`idEmpleado`, `nombre`, `horario`, `sucursal`, `email`, `contrasena`) VALUES
-(1, 'Carlos Ander Díaz', '08:00:00', 1, 'carlos.diaz@empresa.com', 'contrasena001'),
-(2, 'Sofía Pérez', '09:00:00', 2, 'sofia.perez@empresa.com', 'contrasena002'),
-(3, 'Pedro Martínez', '08:30:00', 3, 'pedro.martinez@empresa.com', 'contrasena003'),
-(4, 'Ana Gómez', '10:00:00', 4, 'ana.gomez@empresa.com', 'contrasena004'),
-(5, 'Luis Rodríguez', '08:00:00', 5, 'luis.rodriguez@empresa.com', 'contrasena005'),
-(6, 'María Jiménez', '09:30:00', 6, 'maria.jimenez@empresa.com', 'contrasena006'),
-(7, 'Fernando López', '07:45:00', 7, 'fernando.lopez@empresa.com', 'contrasena007'),
-(8, 'Lucía García', '08:15:00', 8, 'lucia.garcia@empresa.com', 'contrasena008'),
-(9, 'Juan Sánchez', '09:00:00', 9, 'juan.sanchez@empresa.com', 'contrasena009'),
-(10, 'Marta Torres', '08:30:00', 10, 'marta.torres@empresa.com', 'contrasena010'),
-(11, 'David Ruiz', '09:00:00', 1, 'david.ruiz@empresa.com', 'contrasena011'),
-(12, 'Laura Pérez', '08:00:00', 2, 'laura.perez@empresa.com', 'contrasena012'),
-(13, 'José Martínez', '09:30:00', 3, 'jose.martinez@empresa.com', 'contrasena013'),
-(14, 'Carmen López', '08:00:00', 4, 'carmen.lopez@empresa.com', 'contrasena014'),
-(15, 'Fernando González', '10:00:00', 5, 'fernando.gonzalez@empresa.com', 'contrasena015'),
-(16, 'Ricardo Díaz', '08:15:00', 6, 'ricardo.diaz@empresa.com', 'contrasena016'),
-(17, 'Paula Jiménez', '07:45:00', 7, 'paula.jimenez@empresa.com', 'contrasena017'),
-(18, 'Antonio Rodríguez', '08:30:00', 8, 'antonio.rodriguez@empresa.com', 'contrasena018'),
-(19, 'Claudia Martínez', '09:00:00', 9, 'claudia.martinez@empresa.com', 'contrasena019'),
-(20, 'Luis Fernández', '08:00:00', 10, 'luis.fernandez@empresa.com', 'contrasena020'),
-(21, 'Beatriz Torres', '09:30:00', 1, 'beatriz.torres@empresa.com', 'contrasena021'),
-(22, 'Ricardo Sánchez', '08:15:00', 2, 'ricardo.sanchez@empresa.com', 'contrasena022'),
-(23, 'Javier González', '08:00:00', 3, 'javier.gonzalez@empresa.com', 'contrasena023'),
-(24, 'Elena López', '10:00:00', 4, 'elena.lopez@empresa.com', 'contrasena024'),
-(25, 'Andrés Martínez', '08:30:00', 5, 'andres.martinez@empresa.com', 'contrasena025'),
-(26, 'Mónica García', '09:00:00', 6, 'monica.garcia@empresa.com', 'contrasena026'),
-(27, 'Carlos Sánchez', '08:00:00', 7, 'carlos.sanchez@empresa.com', 'contrasena027'),
-(28, 'Rosa Pérez', '09:30:00', 8, 'rosa.perez@empresa.com', 'contrasena028'),
-(29, 'José Gómez', '08:00:00', 9, 'jose.gomez@empresa.com', 'contrasena029'),
-(30, 'Patricia Rodríguez', '09:00:00', 10, 'patricia.rodriguez@empresa.com', 'contrasena030'),
-(31, 'Vicente Díaz', '08:30:00', 1, 'vicente.diaz@empresa.com', 'contrasena031'),
-(32, 'Teresa López', '08:15:00', 2, 'teresa.lopez@empresa.com', 'contrasena032'),
-(33, 'Carlos Fernández', '07:45:00', 3, 'carlos.fernandez@empresa.com', 'contrasena033'),
-(34, 'Silvia González', '08:00:00', 4, 'silvia.gonzalez@empresa.com', 'contrasena034'),
-(35, 'Manuel Rodríguez', '08:00:00', 5, 'manuel.rodriguez@empresa.com', 'contrasena035'),
-(36, 'Patricia Sánchez', '09:30:00', 6, 'patricia.sanchez@empresa.com', 'contrasena036'),
-(37, 'Juanita Torres', '08:00:00', 7, 'juanita.torres@empresa.com', 'contrasena037'),
-(38, 'David García', '09:30:00', 8, 'david.garcia@empresa.com', 'contrasena038'),
-(39, 'Lucía Fernández', '08:00:00', 9, 'lucia.fernandez@empresa.com', 'contrasena039'),
-(40, 'José López', '08:15:00', 10, 'jose.lopez@empresa.com', 'contrasena040'),
-(41, 'Antonio Sánchez', '09:00:00', 1, 'antonio.sanchez@empresa.com', 'contrasena041'),
-(42, 'Ana Torres', '08:30:00', 2, 'ana.torres@empresa.com', 'contrasena042'),
-(43, 'Ricardo Rodríguez', '07:45:00', 3, 'ricardo.rodriguez@empresa.com', 'contrasena043'),
-(44, 'María García', '08:00:00', 4, 'maria.garcia@empresa.com', 'contrasena044'),
-(45, 'José Fernández', '09:30:00', 5, 'jose.fernandez@empresa.com', 'contrasena045'),
-(46, 'Patricia Ruiz', '08:15:00', 6, 'patricia.ruiz@empresa.com', 'contrasena046'),
-(47, 'Carmen Rodríguez', '09:00:00', 7, 'carmen.rodriguez@empresa.com', 'contrasena047'),
-(48, 'Luis González', '08:00:00', 8, 'luis.gonzalez@empresa.com', 'contrasena048'),
-(49, 'Rosa Fernández', '08:30:00', 9, 'rosa.fernandez@empresa.com', 'contrasena049'),
-(50, 'Javier Ruiz', '09:00:00', 10, 'javier.ruiz@empresa.com', 'contrasena050');
+(1, 'Carlos Gómez', '09:00:00', 1, 'carlos.gomez@example.com', 'carlos123');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `empleadoventa`
+-- Estructura de tabla para la tabla `empleadoventa`
 --
 
 CREATE TABLE `empleadoventa` (
@@ -210,26 +126,10 @@ CREATE TABLE `empleadoventa` (
   `idVenta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `empleadoventa`
---
-
-INSERT INTO `empleadoventa` (`idEmpleado`, `idVenta`) VALUES
-(2, 5),
-(3, 7),
-(4, 10),
-(6, 2),
-(8, 15),
-(9, 3),
-(11, 1),
-(12, 8),
-(13, 12),
-(14, 6);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `factura`
+-- Estructura de tabla para la tabla `factura`
 --
 
 CREATE TABLE `factura` (
@@ -244,25 +144,20 @@ CREATE TABLE `factura` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `factura`
+-- Volcado de datos para la tabla `factura`
 --
 
 INSERT INTO `factura` (`idFactura`, `impuesto`, `precio`, `fechaCompra`, `estado`, `fechaVencimiento`, `domicilio`, `clienteCedula`) VALUES
-(1, 15.00, 150000.00, '2024-11-01', 'PAGADA', '2024-11-10', 'Calle 1 #123', '0987654321'),
-(2, 12.00, 120000.00, '2024-11-02', 'PENDIENTE', '2024-11-12', 'Carrera 2 #456', '1004779035'),
-(3, 18.00, 180000.00, '2024-11-03', 'CANCELADA', '2024-11-13', 'Avenida 3 #789', '1234567890'),
-(4, 10.00, 100000.00, '2024-11-04', 'PAGADA', '2024-11-14', 'Calle 4 #101', '1478523690'),
-(5, 20.00, 200000.00, '2024-11-05', 'PENDIENTE', '2024-11-15', 'Carrera 5 #202', '2345678901'),
-(6, 14.00, 140000.00, '2024-11-06', 'CANCELADA', '2024-11-16', 'Avenida 6 #303', '3456789012'),
-(7, 22.00, 220000.00, '2024-11-07', 'PAGADA', '2024-11-17', 'Calle 7 #404', '4567890123'),
-(8, 16.00, 160000.00, '2024-11-08', 'PENDIENTE', '2024-11-18', 'Carrera 8 #505', '5678901234'),
-(9, 17.00, 170000.00, '2024-11-09', 'PAGADA', '2024-11-19', 'Avenida 9 #606', '6789012345'),
-(10, 19.00, 190000.00, '2024-11-10', 'CANCELADA', '2024-11-20', 'Calle 10 #707', '7890123456');
+(1, NULL, NULL, NULL, 'PENDIENTE', NULL, NULL, NULL),
+(2, NULL, NULL, NULL, 'PENDIENTE', NULL, NULL, NULL),
+(3, 9500.00, 59500.00, '2024-11-19', 'PENDIENTE', NULL, NULL, '1234567890'),
+(4, 665.00, 4165.00, '2024-11-19', 'PENDIENTE', NULL, NULL, '1234567890'),
+(5, 15200.00, 95200.00, '2024-11-19', 'PENDIENTE', NULL, NULL, '1234567890');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `facturaventa`
+-- Estructura de tabla para la tabla `facturaventa`
 --
 
 CREATE TABLE `facturaventa` (
@@ -270,66 +165,34 @@ CREATE TABLE `facturaventa` (
   `idVenta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `facturaventa`
---
-
-INSERT INTO `facturaventa` (`idFactura`, `idVenta`) VALUES
-(1, 5),
-(2, 7),
-(3, 10),
-(4, 2),
-(5, 15),
-(6, 3),
-(7, 1),
-(8, 8),
-(9, 12),
-(10, 6);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `farmaceutico`
+-- Estructura de tabla para la tabla `farmaceutico`
 --
 
 CREATE TABLE `farmaceutico` (
   `idEmpleado` int(11) NOT NULL,
   `especializacion` int(11) NOT NULL,
-  `turno` varchar(20) NOT NULL,
   `licenciaFarmaceutico` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `farmaceutico`
---
-
-INSERT INTO `farmaceutico` (`idEmpleado`, `especializacion`, `turno`, `licenciaFarmaceutico`) VALUES
-(1, 0, 'Mañana', 0),
-(3, 0, 'Mañana', 0),
-(4, 0, 'Mañana', 0),
-(6, 0, 'Mañana', 0),
-(8, 0, 'Mañana', 0),
-(10, 0, 'Mañana', 0),
-(11, 0, 'Mañana', 0),
-(13, 0, 'Mañana', 0),
-(14, 0, 'Mañana', 0),
-(16, 0, 'Mañana', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gerente`
+-- Estructura de tabla para la tabla `gerente`
 --
 
 CREATE TABLE `gerente` (
   `idEmpleado` int(11) NOT NULL,
-  `titulo` varchar(100) NOT NULL
+  `titulo` varchar(100) NOT NULL,
+  `certificado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `inventario`
+-- Estructura de tabla para la tabla `inventario`
 --
 
 CREATE TABLE `inventario` (
@@ -340,65 +203,31 @@ CREATE TABLE `inventario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `inventario`
+-- Volcado de datos para la tabla `inventario`
 --
 
 INSERT INTO `inventario` (`idInventario`, `cantidadStock`, `fecha`, `idProducto`) VALUES
-(1, 120, '2024-11-10', 1),
-(2, 20, '2024-11-10', 2),
-(3, 100, '2024-11-10', 3),
-(4, 50, '2024-11-10', 4),
-(5, 30, '2024-11-10', 5),
-(6, 80, '2024-11-10', 6),
-(7, 60, '2024-11-10', 7),
-(8, 100, '2024-11-13', 8),
-(9, 150, '2024-11-13', 9),
-(10, 200, '2024-11-13', 10),
-(11, 250, '2024-11-13', 11),
-(12, 300, '2024-11-13', 12),
-(13, 120, '2024-11-13', 13),
-(14, 180, '2024-11-13', 14),
-(15, 220, '2024-11-13', 15),
-(16, 90, '2024-11-13', 16),
-(17, 160, '2024-11-13', 17),
-(18, 80, '2024-11-13', 18),
-(19, 210, '2024-11-13', 19),
-(20, 130, '2024-11-13', 20),
-(21, 140, '2024-11-13', 21),
-(22, 170, '2024-11-13', 22),
-(23, 50, '2024-11-13', 23),
-(24, 200, '2024-11-13', 24),
-(25, 130, '2024-11-13', 25),
-(26, 250, '2024-11-13', 26),
-(27, 300, '2024-11-13', 27),
-(28, 190, '2024-11-13', 28),
-(29, 140, '2024-11-13', 29),
-(30, 210, '2024-11-13', 30),
-(31, 160, '2024-11-13', 31),
-(32, 300, '2024-11-13', 32),
-(33, 180, '2024-11-13', 33),
-(34, 250, '2024-11-13', 34),
-(35, 110, '2024-11-13', 35),
-(36, 120, '2024-11-13', 36),
-(37, 180, '2024-11-13', 37),
-(38, 200, '2024-11-13', 38),
-(39, 90, '2024-11-13', 39),
-(40, 160, '2024-11-13', 40),
-(41, 130, '2024-11-13', 41),
-(42, 220, '2024-11-13', 42),
-(43, 110, '2024-11-13', 43),
-(44, 170, '2024-11-13', 44),
-(45, 200, '2024-11-13', 45),
-(46, 150, '2024-11-13', 46),
-(47, 250, '2024-11-13', 47),
-(48, 130, '2024-11-13', 48),
-(49, 180, '2024-11-13', 49),
-(50, 140, '2024-11-13', 50);
+(1, 49, '2024-11-17', 1),
+(2, 30, '2024-11-17', 2),
+(3, 20, '2024-11-17', 9),
+(4, 100, '2024-11-17', 10),
+(5, 50, '2024-11-17', 11),
+(6, 100, '2024-11-17', 10),
+(7, 50, '2024-11-17', 11),
+(8, 75, '2024-11-17', 12),
+(9, 40, '2024-11-17', 13),
+(10, 30, '2024-11-17', 14),
+(11, 60, '2024-11-17', 15),
+(12, 45, '2024-11-17', 16),
+(13, 50, '2024-11-17', 17),
+(14, 34, '2024-11-17', 18),
+(15, 25, '2024-11-17', 19),
+(16, 20, '2024-11-17', 20);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `licenciaconduccion`
+-- Estructura de tabla para la tabla `licenciaconduccion`
 --
 
 CREATE TABLE `licenciaconduccion` (
@@ -410,7 +239,7 @@ CREATE TABLE `licenciaconduccion` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `licenciafarmaceutico`
+-- Estructura de tabla para la tabla `licenciafarmaceutico`
 --
 
 CREATE TABLE `licenciafarmaceutico` (
@@ -419,26 +248,10 @@ CREATE TABLE `licenciafarmaceutico` (
   `descripcion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `licenciafarmaceutico`
---
-
-INSERT INTO `licenciafarmaceutico` (`idLicenciaF`, `idEmpleado`, `descripcion`) VALUES
-(1, 1, 'Licencia para la práctica profesional como farmacéutico en droguerías.'),
-(2, 3, 'Licencia para ejercer como farmacéutico en ventas de medicamentos.'),
-(3, 4, 'Licencia que habilita al farmacéutico para trabajar en gestión de productos farmacéuticos.'),
-(4, 6, 'Licencia de farmacéutico para atención al cliente en droguerías.'),
-(5, 8, 'Licencia otorgada para supervisión y control de inventarios farmacéuticos.'),
-(6, 10, 'Licencia para el manejo de medicamentos controlados y asesoramiento farmacéutico.'),
-(7, 11, 'Licencia para atención en áreas de salud relacionadas con medicamentos.'),
-(8, 13, 'Licencia para el control de medicamentos en droguerías y asesoría en salud.'),
-(9, 14, 'Licencia para trabajar en la distribución y venta de productos farmacéuticos.'),
-(10, 16, 'Licencia para el trabajo y asesoramiento en la compra y venta de productos farmacéuticos.');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `metodopago`
+-- Estructura de tabla para la tabla `metodopago`
 --
 
 CREATE TABLE `metodopago` (
@@ -447,18 +260,18 @@ CREATE TABLE `metodopago` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `metodopago`
+-- Volcado de datos para la tabla `metodopago`
 --
 
 INSERT INTO `metodopago` (`idMetodoPago`, `nombre`) VALUES
-(1, 'Tarjeta de Crédito'),
-(2, 'Tarjeta de Débito'),
-(3, 'PSE');
+(1, 'Efectivo'),
+(2, 'Tarjeta'),
+(3, 'Transferencia');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pedido`
+-- Estructura de tabla para la tabla `pedido`
 --
 
 CREATE TABLE `pedido` (
@@ -467,25 +280,17 @@ CREATE TABLE `pedido` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `pedido`
+-- Volcado de datos para la tabla `pedido`
 --
 
 INSERT INTO `pedido` (`idPedido`, `fechaPedido`) VALUES
 (1, '2024-11-01'),
-(2, '2024-11-08'),
-(3, '2024-11-13'),
-(4, '2024-11-14'),
-(5, '2024-11-15'),
-(6, '2024-11-16'),
-(7, '2024-11-17'),
-(8, '2024-11-18'),
-(9, '2024-11-19'),
-(10, '2024-11-20');
+(2, '2024-11-08');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pedidoproductoproveedor`
+-- Estructura de tabla para la tabla `pedidoproductoproveedor`
 --
 
 CREATE TABLE `pedidoproductoproveedor` (
@@ -495,26 +300,10 @@ CREATE TABLE `pedidoproductoproveedor` (
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `pedidoproductoproveedor`
---
-
-INSERT INTO `pedidoproductoproveedor` (`idPedido`, `idProducto`, `idProveedor`, `cantidad`) VALUES
-(1, 30, 4, 180),
-(2, 35, 6, 110),
-(3, 2, 3, 100),
-(4, 5, 4, 50),
-(5, 7, 6, 200),
-(6, 8, 7, 150),
-(7, 12, 8, 120),
-(8, 20, 9, 300),
-(9, 22, 10, 250),
-(10, 25, 3, 80);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `personalinventario`
+-- Estructura de tabla para la tabla `personalinventario`
 --
 
 CREATE TABLE `personalinventario` (
@@ -523,26 +312,10 @@ CREATE TABLE `personalinventario` (
   `idTipoResponsabilidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `personalinventario`
---
-
-INSERT INTO `personalinventario` (`idEmpleado`, `tiempoServicio`, `idTipoResponsabilidad`) VALUES
-(2, '00:00:03', 1),
-(3, '00:00:05', 2),
-(4, '00:00:04', 3),
-(6, '00:00:02', 4),
-(8, '00:00:06', 5),
-(9, '00:00:03', 1),
-(11, '00:00:07', 2),
-(12, '00:00:05', 3),
-(13, '00:00:04', 4),
-(14, '00:00:06', 5);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `producto`
+-- Estructura de tabla para la tabla `producto`
 --
 
 CREATE TABLE `producto` (
@@ -550,70 +323,34 @@ CREATE TABLE `producto` (
   `nombre` varchar(255) NOT NULL,
   `precio` double NOT NULL,
   `categoriaProducto` int(11) NOT NULL,
-  `eliminado` tinyint(1) DEFAULT 0,
+  `eliminado` int(11) NOT NULL DEFAULT 0,
   `imagen` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `producto`
+-- Volcado de datos para la tabla `producto`
 --
 
 INSERT INTO `producto` (`idProducto`, `nombre`, `precio`, `categoriaProducto`, `eliminado`, `imagen`) VALUES
-(1, 'Paracetamol', 3500, 1, 1, 'https://example.com/images/paracetamol.jpg'),
-(2, 'acetaminofen', 15000, 2, 0, 'https://example.com/images/crema_hidratante.jpg'),
-(3, 'Viagra', 1000, 1, 0, 'https://example.com/images/paracetamol.jpg'),
-(4, 'Crema Hidratante', 15000, 2, 0, 'https://example.com/images/crema_hidratante.jpg'),
-(5, 'Antibiótico', 15000, 1, 0, 'https://example.com/images/antibiotico.jpg'),
-(6, 'Shampoo Suave', 18000, 2, 0, 'https://example.com/images/shampoo.jpg'),
-(7, 'Base de Maquillaje', 30000, 2, 0, 'https://example.com/images/base_maquillaje.jpg'),
-(8, 'Aspirina', 25000, 1, 0, 'https://example.com/aspirina.jpg'),
-(9, 'Ibuprofeno', 30000, 1, 0, 'https://example.com/ibuprofeno.jpg'),
-(10, 'Legrip', 1400, 1, 0, 'https://example.com/paracetamol.jpg'),
-(11, 'Pomada antiinflamatoria', 35000, 1, 0, 'https://example.com/pomada-antiinflamatoria.jpg'),
-(12, 'Jarabe para la tos', 25000, 1, 0, 'https://example.com/jarabe-tos.jpg'),
-(13, 'Antibiótico en crema', 40000, 1, 0, 'https://example.com/antibiotico-crema.jpg'),
-(14, 'Crema para cicatrices', 50000, 2, 0, 'https://example.com/crema-cicatrices.jpg'),
-(15, 'Crema hidratante', 60000, 2, 0, 'https://example.com/crema-hidratante.jpg'),
-(16, 'Gel limpiador facial', 40000, 2, 0, 'https://example.com/gel-limpiador.jpg'),
-(17, 'Shampoo anti-caída', 50000, 2, 0, 'https://example.com/shampoo-anti-caida.jpg'),
-(18, 'Crema antiarrugas', 80000, 2, 0, 'https://example.com/crema-antiarrugas.jpg'),
-(19, 'Exfoliante facial', 45000, 2, 0, 'https://example.com/exfoliante.jpg'),
-(20, 'Aceite esencial de lavanda', 55000, 2, 0, 'https://example.com/aceite-lavanda.jpg'),
-(21, 'Protector solar SPF 50', 38000, 2, 0, 'https://example.com/protector-solar.jpg'),
-(22, 'Pasta dental blanqueadora', 15000, 3, 0, 'https://example.com/pasta-dental.jpg'),
-(23, 'Cepillo de dientes eléctrico', 120000, 3, 0, 'https://example.com/cepillo-electrico.jpg'),
-(24, 'Desodorante en spray', 15000, 3, 0, 'https://example.com/desodorante-spray.jpg'),
-(25, 'Jabón líquido antibacteriano', 12000, 3, 0, 'https://example.com/jabon-antibacterial.jpg'),
-(26, 'Gel antibacterial', 9000, 3, 0, 'https://example.com/gel-antibacterial.jpg'),
-(27, 'Crema para manos', 18000, 3, 0, 'https://example.com/crema-manos.jpg'),
-(28, 'Champú hidratante', 28000, 2, 0, 'https://example.com/champu-hidratante.jpg'),
-(29, 'Acondicionador reparador', 32000, 2, 0, 'https://example.com/acondicionador-reparador.jpg'),
-(30, 'Limpiador de cara suave', 37000, 2, 0, 'https://example.com/limpiador-cara-suave.jpg'),
-(31, 'Tiritas adhesivas', 10000, 1, 0, 'https://example.com/tiritas.jpg'),
-(32, 'Vitamina C en tabletas', 60000, 1, 0, 'https://example.com/vitamina-c.jpg'),
-(33, 'Crema para pies', 20000, 3, 0, 'https://example.com/crema-pies.jpg'),
-(34, 'Desinfectante para manos', 12000, 3, 0, 'https://example.com/desinfectante-manos.jpg'),
-(35, 'Crema depilatoria', 15000, 3, 0, 'https://example.com/crema-depilatoria.jpg'),
-(36, 'Suero fisiológico', 12000, 1, 0, 'https://example.com/suero-fisiologico.jpg'),
-(37, 'Manteca de karité', 50000, 2, 0, 'https://example.com/manteca-karite.jpg'),
-(38, 'Bálsamo labial', 40000, 2, 0, 'https://example.com/balsamo-labial.jpg'),
-(39, 'Crema para acné', 45000, 2, 0, 'https://example.com/crema-acne.jpg'),
-(40, 'Pomada para quemaduras', 35000, 1, 0, 'https://example.com/pomada-quemaduras.jpg'),
-(41, 'Antiséptico en spray', 25000, 1, 0, 'https://example.com/antiseptico-spray.jpg'),
-(42, 'Lentes de sol protector UV', 60000, 3, 0, 'https://example.com/lentes-solar.jpg'),
-(43, 'Aceite de argán', 68000, 2, 0, 'https://example.com/aceite-argan.jpg'),
-(44, 'Geles de baño aromáticos', 50000, 2, 0, 'https://example.com/gel-bano-aromatico.jpg'),
-(45, 'Cera para depilación', 30000, 3, 0, 'https://example.com/cera-depilacion.jpg'),
-(46, 'Tónico facial', 45000, 2, 0, 'https://example.com/tonico-facial.jpg'),
-(47, 'Mascarilla capilar', 30000, 2, 0, 'https://example.com/mascarilla-capilar.jpg'),
-(48, 'Jabón para rostro', 20000, 2, 0, 'https://example.com/jabon-rostro.jpg'),
-(49, 'Rímel', 35000, 2, 0, 'https://example.com/rimel.jpg'),
-(50, 'Pincel para maquillaje', 30000, 2, 0, 'https://example.com/pincel-maquillaje.jpg');
+(1, 'Paracetamol', 3500, 1, 0, 'https://cdn.aerohealthcare.com/wp-content/uploads/2024/09/HV20G_01_1000px_5ba9ff294055adc7ededeb1c9f94f71d-600x600.png'),
+(2, 'Crema Hidratante', 15000, 2, 0, 'https://laskin.com.co/cdn/shop/files/7707208614314.png?v=1707616926'),
+(9, 'Shampoo', 30, 2, 0, 'data:image/jpeg;base64,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'),
+(10, 'Legrip', 1400, 1, 0, 'https://www.drogueriasanjorge.com/wp-content/uploads/2021/11/7704768001943.jpg'),
+(11, 'Pomada antiinflamatoria', 35000, 1, 0, 'data:image/jpeg;base64,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'),
+(12, 'Jarabe para la tos', 25000, 1, 0, 'https://images.ctfassets.net/j0994xxhz671/Xtehv9811lt7Ch8xGrIj3/e9ec1ae136a9dfc7d54364bb013099d7/jarabe_44_240ml.Final_Color_Output.0004_840.png'),
+(13, 'Antibiótico en crema', 40000, 1, 0, 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBhUSExMWFhUXFREWFRUTEhcTFxURFRUWFxUWHxMaHiggGBolGxgVITEhKDUrLi4uFyIzRDUsNyowMCwBCgoKDg0OGxAQGi4iHyUtListLSstLjctNy0rLS8rMS0tLSsrLi0tNysrKy8tLS0vNSstLTgtMC0tNS0tLS0rK//AABEIALcBEwMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABAUDBgcBAv/EAD4QAAIBAgQDBQQHBAsAAAAAAAABAgMRBAUhMRJBUQYTInGRMoGhsRVCUnKCwdEUYbLxFiQzQ0RiksLD4fD/xAAZAQEAAwEBAAAAAAAAAAAAAAAAAQIDBAX/xAAoEQEBAAEEAAILAQAAAAAAAAAAAQIDERIxIVEEFEFCYXGBkaGx4QX/2gAMAwEAAhEDEQA/AO4gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAxyrUobyS82kYqmPwlOLbnGy1et9F5BFyk9qSCvnnWXQjfvFy21vfa3Vs+VneDnbhvK74Vwq6vZvfkrJ6hHKeayBWfTMJPw05v8Ml80Y/pes4p9zJX5O19r8mRustwV7xdV9PQ+XiK75/BDcWQKp1ar+s/U+XxS3b97G4twU+W5nTlW7u0l7XtQatwytz2T3V91qXBPzAAAAAAAAAAAAAAAAAAAAAAAAAAAR8wxH7JgKlT7EJz16RTf5GofTuPlBcVWzelvBHxbNbX30NrzqksRk9aH2qVWPrBo5hlOLlUymlKSu2tWpNapLXTqWxcH+hM+Eyxtm3l8WxLMMXV172bXVTdvhoeKpUlu/VtlRHF93O6jHnq3J/G5nWOq8lFeUU/ncts8aXO3xq1pzsZlaas1dPRpq90+RULG1n9b0SXyRljiKsl7T97ZFjq08b5renSjH6qX4UjzGUqmIo8ManA7q9pWuucbpprzXx2NZp5niXOS7uT1bg2pWcNlqou7bUnbo1qibha+YVcR/Z2jpe6atadpa3V/D4r6rS3MieF3jv04mZbluNw+JhKWJTjHeK72fHo1rKpOVt76K+2pfd7BfyKOlTx9KTd07zlvfw0+KXDzafhtskx+x4+rFcdRfVva61jNyvolfTS22t+Wsamdzu9dmC7eIguTPiWLty+JS0sLUp4lJynKz9qzUeqXtO2mjsrNaaE+TM2jO8ZPoj4li6vX4IwNnxJgZZ4iq17T9TaIaQXkjUYeOol1aXqzcC0QAAkAeNpI8U4N7r1A+gAAAAAAAAAAAAAAAAAAAAGOuk6Er7WfyOOZRJrJqXlLT9+l/cdlqRU6bXVNepxrDUK+XZYqc03OlOrTaW7cZ8N/RJlse3J6bN9G/T9xL42ufkfcJtkaFXvE73i+j5u19P/cmZINmjw5vKk05Mk0pEGE7aaeZmpSbdlr5akVvp1ZUZLiLBRxdXAylRipys1FNpJy6XbKmeGx86HgpVG30hK3rsX2Q1KmCy6MKi4JpyvF2vq218LFOno6GFt8VNiOz/AGj4KkliXxK7ppuFOFrJ2ajGT3T66PrteYZuGAhKaalJO6vs766kjHY+EcFUd9oT/hZVYnHRlg6TT3T/ACL3O52SyfZtr26encse/wCp96cuT9V+gVOlLr/qX6FUsdpujJHHJDhHFh6XqXu/iLKFLDzvq/C7S12dk9dOjT95kWDw7vq9N9dna/ya9ShWHozm3xS8XE3qn4pPWSunZ7LTZKxko0cPhJ945tW3b4UtIuO9uju+rSfIpxd2Grv7VvhaGElacJcSummpKSurdNCY8wfEl3m97ezrw78uRqUHlWOgoQrqSUYQtGcJexdp7PXVmWWX4WrLjUpO7ck04O7lb/LqtFo9N+rJuNncX5NoeMl9pmOWOa5v1Zr+XU+4g/C4tvZuL01enClzk9/lYkubY2N6m18xnbTfq9TLlDcsZG+/i19zKqU0izyN8WNX3ZCrY9tiABRcAAAAAAAAAAAAAAAAAAAoM67LYbNcTxOTjezkoreSsr35aJehfgK54TObXpq+H7C5PRlfxt67uK331UUywo9mMnpf3Sf3pSl8G7FwCd6pNDTnuxDo5Vl9D2aNNeVON/WxLjGMVoreR6CGkknQRsRgMHiZXnThJ9ZQjJ+rRJASq6/Z7Kq8GnSVno1GUoXX4WihzDsRWq6UcSqUE5cEHRc+GMteFNVI6Ll+43IEy2K5YTKbVzyXYTO1ti6T86E1/wAjPP6Fdoo7Yig/OFRfqdEBbnWPqul5OeLsn2og9KuGfm6i/wBpHzHsf2sxlFLiwjs72lOo4yfC0rxdJppNp+cUdLAmdl3aTSxnTktLsJ2phUh4MFCMJRku5qVFLwyuo+Kls1o3u+ttDYllPaKO9Km/u1v1SN4BOWrll2twjR3gM9j/AIa/3atL85I9WHzWPtYaa8nCX8MmbuCvI4xoGJrVaFRKdGqr38TpSUY+crWX/Rd9nV/XvwP5xNkPFFJ7C1Mmz0AFUgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/Z'),
+(14, 'Crema para cicatrices', 50000, 2, 0, 'https://lh3.googleusercontent.com/EIb3A6FeYF02p6QJAwITyt1IpjrzDDLDR5G8L8YeQHRDB_-rLRaNJqVsSLkGR4tr3g9oaZTl-gMIswYmRMiDQtUOnCqDoN64XhyJgMTXfLF5IsST=s650-rw'),
+(15, 'Crema hidratante', 60000, 2, 0, 'https://http2.mlstatic.com/D_NQ_NP_989388-MLU78045110447_072024-O.webp'),
+(16, 'Gel limpiador facial', 40000, 2, 0, 'https://www.garnier.es/-/media/project/loreal/brand-sites/garnier/emea/es/2023/productos/limpiadores-pure/reno/3600542488075/3600542488075_1.png?rev=02b1bf8852334a2997d29a73f345a3bb'),
+(17, 'Shampoo anti-caída', 50000, 2, 0, 'https://pharmapiel.com.co/3465-large_default/lambdapil-shampoo-anticaida-isdin.jpg'),
+(18, 'Crema antiarrugas', 80000, 2, 0, 'https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCO/119630439_01/w=800,h=800,fit=pad'),
+(19, 'Exfoliante facial', 45000, 2, 0, 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxATERIREhAWFRIUFxITGBcVFRYYFhEXFxYWGBUSFRUYHSggGBolGxgWITEhJSkrLi4uFx8zODMsNyktLisBCgoKDg0OGhAQGy0fHR4vKy0tLS0vLy0rLS0tKy0tLS0tLS0tLS0rLS0tLS0tLS0rLS0uLS0tLS0tKy0tLS0tLf/AABEIAOEA4QMBIgACEQEDEQH/xAAbAAEAAwEBAQEAAAAAAAAAAAAABAUGAwECB//EAD0QAAIBAgMEBQoEBgIDAAAAAAABAgMRBBIhMUFRYQUGcZGhEyIjMkJSgbHB8GKS0eEUFjNygqJD8VNj0v/EABkBAQADAQEAAAAAAAAAAAAAAAABAgQDBf/EACYRAQACAQMDBAIDAAAAAAAAAAABAhEDITEEEzIiUYGxM0EUYXH/2gAMAwEAAhEDEQA/AP3EAAAAAAAAAAAfM5WTfBNlDLrDL3I7975fqFLXivLQAz/8wy9xePGw/mCXuLx42Cvep7tACgXWCXuLceLrBL3F3vgDvU92gBQfzBL3F38rh9YJe4u8HeovwUH8wP3F387D+YJe4u98bA71Pdfgz66wv3Fu3vmXOCr56cZ2tmVwtXUrbh3AAXAAAAAAAAAAAAAAAAAAAAAHzUjdNcU0YrE4fLt3m3M5jKV863xlJfAOOtXMKRWO0af38TlOOU+4z3Bhy6qmj3ySEWexIWfHkkeOmjrlPqNHnwJThHUV9952jhU9jO8aKRyr4vKrILxWI5Rq1NR37DX9GQy0aa/DHxVzC1ajlJRv6zS7z9DirJLgHTp8TMy9AAagAAAAAAAAAAAAAAAAAAAAAKTGK1Wa4pPwLsp+lFaqucV4MOepwz+LVmcqaXEl4+nqQoeIefeMWVfRfTMmpSq7PLyw8VGm0les6cHnbtLZrbYTsJ01Sm1GMZOynKWkbU4QnKm5SblsvGVrXdk9CNU6ISg1CnKUXPy2VVsrjU8p5TPC6087mVVTFxw7Un0fiY2UotqSmpxlNzcZtNprM29ddXxEzDXpaFtXwjPzH1lc0es9FqLjCpJzlTjCMYxcpeUpzqQ9qy0py0dmt6W09h1nhCMs8ZzaeJleEElCFGsqTbTnrbMtVq7N2WwpOjulozVGNLA4qcaElOleSy07QnCKUnZNKM5LVvdwRb4foqE1JTw8qalGtFp1rytWqKpU9W6u5Jb9BExK+p099LzjHzGfteTqPLq03ZXaTSb5LcVlapdknES3X/Ygyd9PthjvbLp0VHNiKK/HF9zv9D9FMJ1VhmxMXwUn4WRuw09NHpyAANIAAAAAAAAAAAAAAAAAAAAAFR05pKm+1fItyp6xr0cHwkl3p/oFNTxlVY2N1oVqjZ7CU8XVcE/IvWN3aV7O0mo7Nui/MQ8bOcc1qTlpFrdfVJ7tLLX4Bj1K/tKhw7Wdc33+xXxxNS79FJ2vsa1SaV+7X4WJNSUk5PJe2W1vbvt3XVgpDo2catTTbt0++45SxNS9vJPale62Xaza7dz7JcU0RsRiJ6xVJv1recktMzS5Xsu8Ey+q07fucKuq2dljlXrzWipN+tfXgpNdt7R/McqlaWvmX1aWrWije/xem8lztOZabqXS9JOXCNvFGwM31Mp+ZN2936/saQh6GhGKQAAOwAAAAAAAAAAAAAAAAAAAAAFb1hg3QlZXacWu9L6lkRelFejPkr92v0CtuJZ7BNtWcbW5pnTEUYvW/gfODerQrYmnmcPKRzr2cyvszWt/br2alcs0b1RJStsVz4lWluj4o+XjKTy2qwef1bSXnf28T5/iIWvnjazle6tlVry7NVrzGZcp/wAevO9lP/ZHCrTn7tviiR/HU4xUs105ZFlTk3KzeW0b62TONTG05LNGpFxdtU17UVNd8Wn2MZlFqxjhG09p8+Jyq1YX0nq92VnKpi6btapF5r2tJO9rXt3rvRxgrzROXOI3xhvOqUfRS0t51u1KKd/EvCs6uwtQXOU/CTj9CzJenSMViAABYAAAAAAAAAAAAAAAAAAAAADlio3hNcYyXgdQwMjQl5yfGxyxPRcc86kqloyqU6tre3GmqUVmvs2O1rtux9Ws1y07tCdKnGcUpK6vF71ZxalF3XBpP4FIY6MzHoeCeHtXzOjGMEtqmlsck5PWyuuDSataxEfQtGP/ADNKOaC2Wj59OplXFKdKTt+KS0SNRU6PpxaajZr8Uue3XXa9pBqYKGyz2yl60lZyzZmrPS+aWziTlFtkGWDpO8p1YtusqktFlbVNUlTtd20cd71fMjV6NJSqONWKjKV3FJebKNJUrJ30io5Xa23fqWv8HTWqhZ6bG1skpLfuaXy2ECvgaSvaO3M3rLXNbNv2OyuuQy52sqMP0YoZHGpdQzrZrLNkum09bZLa30stxO6Pjeovh8zycFFWWzV7W9ru9vM6dFbXLhd9ybJnhWm9n6H0IvQUucc35m5fUnEfo+GWlTjwhBd0USCXpRwAAJAAAAAAAAAAAAAAAAAAAAAAAAY3GVrVJxyvzZS10ttbVtSfhZXWy3b+xC6WjbEVNL3a+F0mTcCtCMMkeUw7VqWm1eJVYhtey32W+rLmb0K3Ecf+xgur5192SS7cv6kWo82+27X9iRXfMgt3bXD7+JOGS93xWoK1/KQ/3/8AkYODSmkszaa83npvtxPmfDVx1t+pN6Egm4LXWcFb/OIwvp23foSR6AHpgAAAAAAAAAAAAAAAAAAAAAAAAAAy3T69PLsg/Br47Edej3eI6x/1Vzin/s0fHRstLEMk/kTtxAxe8sYx0IWOiE3jZS4lEKrB7U7W1+lrk+s3rt+2QK8raN7r/MswX5R5T5bvu/iXXQUbzpc5x8E39Cku7LetbfroaPq9BeVo9s322hb6iXbQ3s2IAIemAAAAAAAAAAAAAAAAAAAAAAAAAADPdZYrPF78kl3SRDwVaKkovRvYuNrXenaiy6x7afPOvBMpqFG9SE72ccy1V73y32Na+b4hk1PyLiji6btaaebZbW+id9N1pRfxRGxmJptaTWtrfiUnaLXFN7GtDzCdGRi9ZNxXlGls1qZXPVcZJv8Aye6xxx3RmlO87ulFRg8u5SpyeZX1b8nDZbfoQvbhW4mcdFmV7uK2XcktV22TdlwZW168bJ5lld9VwVrvsJeLwSeuZ3Us63KLclJ79U7JaldUwGklGTtKDi7bNbJzS42RdgtEZeqzbSafqq1tVez4aaNP4mq6ur01NcIVH4xRlqFC1SUk9HK9td0YxsuXmmt6tr01+FL5zIl26ePU04AIeiAAAAAAAAAAAAAAAAAAAAAAAAAACm6xR/pPhKS71YoMLjY3V1L8suXKxousLajTa99d1mZxU8rzXm/OTsrPfss93EMmt5rjDYyDaXna/glxtfZocsfj4Zb+cr8YS3JN7uaOOGvsarbL3bjzdtvJd6PMS3a3p9Gk82W3zC8+KsxGIi47/wAr48LcyuliVwl+Vrb/ANEnFNv/AMvvL1db207dXoV1abe6qkucVx5/diWG0bu1GvHMlZ7/AGZabuBr+rK9LUfCnSXfdmTwsVKzTkrc1fd4Gx6tevW5KkvBho6eN1+ACG4AAAAAAAAAAAAAAAAAAAAAAAAAAFV1iXoo23Th9TOSqzUnaDeunFq1732LXS3Y9hpOsa9A+UovxKGd76WvffsDLreSRQxU7N+Sd00rb5LS7Ttbjbs3HuJx0pKzpTje2rWm2z+G/XceU5VNNI97/Q9xs6jirxjbf5z013aEJx6ZUGNxUlspN2bW/vWm/wCnYQZ129cj9m6fN7uz6FliJTtrGP5nz5dhXNT0so8d5bLHaN/06YSpJStktfS6vz5dnebPqzHzsQ/xQXdEynR97623LTZ29u01vVf/AJ3/AO1ruSIadDleAANgAAAAAAAAAAAAAAAAAAAAAAAAAAIPTWHlOjOMbZtGr7Lp7zM1cJiYvWmr6bJI2GI9VkatG4c76cXZ6n5XS9KXgz7xPlGreTl3F3Gme1YqxCnZ/tkK+HqW/psh1sNU0tTfgtDWVoEdUBlz/jV91J0V0fXu35N7brWNvmavq3h5QpzctspylZbtitf4HuCjYldG+o/7pfMl2ppRXhLAAdQAAAAAAAAAAAAAAAAAAAAAAAAAAc8R6rI9RkjEeqyJUS4ED6crI4uLZ9NLn4Hi+PgBzdE51YWJa+9hBx9TYlqB3wsiX0Z6j/ul8yrwstmhZdE/0/8AKXzAmgAkAAAAAAAAAAAAAAAAAAAAAAAAAAB5JXViDPCT3STXO6ZPAFa6Fbgn8T5dOt7n+yLQAUtShiH7C/Mji+jsQ90V2y/RGgAFLR6Kq76kUuV38y2oUlGKiti+7nQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//Z'),
+(20, 'Aceite esencial de lavanda', 55000, 2, 0, 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxEREhUTExIWEhIWGBgXEhMVFxUaGBUVFhkYFhcSFRUYHigiGBslGxgWITEhJSkrLi4uGB8zODMtNygtLisBCgoKDg0OGhAQGi4lHR4vNy0vLTYtNS0tLS0vLS4tLS0rLS0wNS0rLS0tLS0vLS0tLS0tLS8tLS0tLS0tLTUtLf/AABEIAOEA4QMBIgACEQEDEQH/xAAcAAEAAgIDAQAAAAAAAAAAAAAABQYCBAEDBwj/xABHEAABAwEEBAkJBgQFBQEAAAABAAIRAwQSITEFQVFhBhMiUnFygZGxBxYyM0KSodHSFCNiweHwCENToiWCk7LTFzRzg6MV/8QAGQEBAQADAQAAAAAAAAAAAAAAAAECAwQF/8QAKxEBAAICAAIJBAMBAAAAAAAAAAECAxExUQQSExQhM0Fh0VJxofAVgZEF/9oADAMBAAIRAxEAPwD3FERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEWnpfSlGy0jWrv4um2JdDjngMGgkqn2ryuaKYcKlSprltMj/fCC+IvNLT5atHsx4i1OaRIcG0YjtqgrU/69aM/oWv3KP/ACoPVkXlrfLtos/yrUP/AF0v+Rbti8sujavostHbTZ9aD0VFSj5UNHAgPNVk5Eskf2klT+guElktt77PVFS5F7kvaROWDwCglkREBERAREQEREBERAREQEREBERAREQEREBERBRPLWY0VV6zPFfMzD6PQF9LeW8/4VU67PzXzRT9noCCUtnqW9Rvgq8FYrUPuW9QeCrqLLNvzU/wU1qAHzU/wUzKsIkeERxZ2/kvR/4e3S+19FP815vwj9j96wvRf4eDy7X0U/EpI9rREUBERAREQEREBERAREQEREBERAREQEREBERB595cz/hT/wDyM/NfNdP2egL6G8v2kqTNHiiXgValRrms1lrQ6XbhJC+dG1wI3QgnLR6pvVHgq2peppRhYGwZDQO5RBKKzap7gpmVXw5SehNINok3px2Iie4R+x+9YXoX8PB+9tfVZ4ryvS+mqdS7dnDPDoXo/wDDzpGkLTaKZcGvqMHFtObrpkgb4xjp2KyPe0RFAREQEREBERAREQEREBERAREQEREBERAREQfLPljtD36WrNc4uDXB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');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `productofactura`
+-- Estructura de tabla para la tabla `productofactura`
 --
 
 CREATE TABLE `productofactura` (
@@ -622,25 +359,20 @@ CREATE TABLE `productofactura` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `productofactura`
+-- Volcado de datos para la tabla `productofactura`
 --
 
 INSERT INTO `productofactura` (`idFactura`, `idProducto`) VALUES
-(1, 2),
-(2, 5),
-(3, 8),
-(4, 12),
-(5, 15),
-(6, 18),
-(7, 3),
-(8, 10),
-(9, 14),
-(10, 17);
+(1, 1),
+(2, 12),
+(3, 14),
+(4, 1),
+(5, 18);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `productoproveedor`
+-- Estructura de tabla para la tabla `productoproveedor`
 --
 
 CREATE TABLE `productoproveedor` (
@@ -649,26 +381,10 @@ CREATE TABLE `productoproveedor` (
   `costo` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `productoproveedor`
---
-
-INSERT INTO `productoproveedor` (`idProducto`, `idProveedor`, `costo`) VALUES
-(2, 3, 0),
-(5, 4, 0),
-(7, 6, 0),
-(8, 7, 0),
-(12, 8, 0),
-(20, 9, 0),
-(22, 10, 0),
-(25, 3, 0),
-(30, 4, 0),
-(35, 6, 0);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `proveedor`
+-- Estructura de tabla para la tabla `proveedor`
 --
 
 CREATE TABLE `proveedor` (
@@ -678,35 +394,28 @@ CREATE TABLE `proveedor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `proveedor`
+-- Volcado de datos para la tabla `proveedor`
 --
 
 INSERT INTO `proveedor` (`idProveedor`, `nombre`, `email`) VALUES
 (1, 'Laboratorios ABC', 'contacto@laboratoriosabc.com'),
-(2, 'Farmacéutica XYZ', 'info@farmaceuticaxyz.com'),
-(3, 'Farmacéutica Salud y Bienestar', 'contacto@farmasalud.com'),
-(4, 'Cosméticos Bella', 'ventas@cosmeticabella.com'),
-(5, 'Medicación Natural', 'info@medicanatural.com'),
-(6, 'Higiene y Cuidado', 'atencion@higieneycuidado.com'),
-(7, 'Dermocosméticos Avanzados', 'contacto@dermocosmeticos.com'),
-(8, 'Cuidado Personal Total', 'soporte@cuidadopersonal.com'),
-(9, 'Medicamentos y Salud', 'servicio@medicamentosysalud.com'),
-(10, 'Bienestar Cosmético', 'contacto@bienestarcosmetico.com');
+(2, 'Farmacéutica XYZ', 'info@farmaceuticaxyz.com');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `repartidor`
+-- Estructura de tabla para la tabla `repartidor`
 --
 
 CREATE TABLE `repartidor` (
-  `idEmpleado` int(11) NOT NULL
+  `idEmpleado` int(11) NOT NULL,
+  `licenciaConduccion` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ruta`
+-- Estructura de tabla para la tabla `ruta`
 --
 
 CREATE TABLE `ruta` (
@@ -716,26 +425,10 @@ CREATE TABLE `ruta` (
   `idFactura` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `ruta`
---
-
-INSERT INTO `ruta` (`idRuta`, `horaSalida`, `horaLlegada`, `idFactura`) VALUES
-(1, '08:00:00', '10:00:00', 1),
-(2, '09:00:00', '11:00:00', 2),
-(3, '10:00:00', '12:00:00', 3),
-(4, '11:00:00', '13:00:00', 4),
-(5, '12:00:00', '14:00:00', 5),
-(6, '13:00:00', '15:00:00', 6),
-(7, '14:00:00', '16:00:00', 7),
-(8, '15:00:00', '17:00:00', 8),
-(9, '16:00:00', '18:00:00', 9),
-(10, '17:00:00', '19:00:00', 10);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subsidio`
+-- Estructura de tabla para la tabla `subsidio`
 --
 
 CREATE TABLE `subsidio` (
@@ -747,26 +440,10 @@ CREATE TABLE `subsidio` (
   `tipoSubsidio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `subsidio`
---
-
-INSERT INTO `subsidio` (`idSubsidio`, `monto`, `fecha`, `cedula`, `idFactura`, `tipoSubsidio`) VALUES
-(1, 50000, '2024-01-15', '0987654321', 1, 1),
-(2, 75000, '2024-02-10', '1004779035', 2, 2),
-(3, 60000, '2024-03-05', '1234567890', 3, 3),
-(4, 80000, '2024-04-12', '1478523690', 4, 1),
-(5, 55000, '2024-05-20', '2345678901', 5, 2),
-(6, 70000, '2024-06-18', '3456789012', 6, 3),
-(7, 65000, '2024-07-25', '4567890123', 7, 1),
-(8, 90000, '2024-08-30', '5678901234', 8, 2),
-(9, 62000, '2024-09-15', '6789012345', 9, 3),
-(10, 58000, '2024-10-22', '7890123456', 10, 1);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sucursal`
+-- Estructura de tabla para la tabla `sucursal`
 --
 
 CREATE TABLE `sucursal` (
@@ -776,25 +453,16 @@ CREATE TABLE `sucursal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `sucursal`
+-- Volcado de datos para la tabla `sucursal`
 --
 
 INSERT INTO `sucursal` (`idSucursal`, `nombre`, `direccion`) VALUES
-(1, 'Sucursal Central', 'Cl. 16 # 15 -22, Armenia, Quindío'),
-(2, 'Sucursal Centro', 'Calle 1, Armenia'),
-(3, 'Sucursal Norte', 'Avenida 5, Armenia'),
-(4, 'Sucursal Sur', 'Carrera 10, Armenia'),
-(5, 'Sucursal Este', 'Calle 50, Armenia'),
-(6, 'Sucursal Oeste', 'Avenida 80, Armenia'),
-(7, 'Sucursal Norte 2', 'Calle 200, Armenia'),
-(8, 'Sucursal Sur 2', 'Carrera 300, Armenia'),
-(9, 'Sucursal Centro 2', 'Avenida 400, Armenia'),
-(10, 'Sucursal Internacional', 'Calle 500, Armenia');
+(1, 'Sucursal Central', 'Cl. 16 # 15 -22, Armenia, Quindío');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `telefono`
+-- Estructura de tabla para la tabla `telefono`
 --
 
 CREATE TABLE `telefono` (
@@ -808,7 +476,7 @@ CREATE TABLE `telefono` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipocertificado`
+-- Estructura de tabla para la tabla `tipocertificado`
 --
 
 CREATE TABLE `tipocertificado` (
@@ -816,26 +484,10 @@ CREATE TABLE `tipocertificado` (
   `nombre` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tipocertificado`
---
-
-INSERT INTO `tipocertificado` (`idTipoCertificado`, `nombre`) VALUES
-(1, 'Certificado de Gerente de Droguería'),
-(2, 'Certificado en Gestión Farmacéutica'),
-(3, 'Certificado en Dirección de Droguerías'),
-(4, 'Certificado en Gestión de Inventarios Farmacéuticos'),
-(5, 'Certificado en Administración de Droguerías'),
-(6, 'Certificado de Liderazgo en Salud'),
-(7, 'Certificado en Gestión Comercial para Droguerías'),
-(8, 'Certificado en Normativa y Regulación Farmacéutica'),
-(9, 'Certificado en Marketing para Droguerías'),
-(10, 'Certificado en Estrategias de Ventas en Droguerías');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tiporesponsabilidad`
+-- Estructura de tabla para la tabla `tiporesponsabilidad`
 --
 
 CREATE TABLE `tiporesponsabilidad` (
@@ -844,21 +496,10 @@ CREATE TABLE `tiporesponsabilidad` (
   `descripcion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tiporesponsabilidad`
---
-
-INSERT INTO `tiporesponsabilidad` (`idTipoResponsabilidad`, `nombre`, `descripcion`) VALUES
-(1, 'Gestión de Inventarios', 'Responsabilidad de controlar y mantener el inventario actualizado, incluyendo el seguimiento de productos y existencias.'),
-(2, 'Control de Stock', 'Responsabilidad de asegurar que haya suficiente stock de productos y realizar los pedidos necesarios cuando los niveles de inventario sean bajos.'),
-(3, 'Auditoría de Inventarios', 'Responsabilidad de realizar auditorías periódicas para verificar la exactitud del inventario y detectar discrepancias.'),
-(4, 'Manejo de Productos Vencidos', 'Responsabilidad de gestionar y remover productos vencidos del inventario, garantizando que no se vendan productos fuera de fecha.'),
-(5, 'Actualización de Precios', 'Responsabilidad de actualizar los precios de los productos en el sistema de inventarios según las indicaciones del departamento comercial.');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tiposubsidio`
+-- Estructura de tabla para la tabla `tiposubsidio`
 --
 
 CREATE TABLE `tiposubsidio` (
@@ -867,19 +508,10 @@ CREATE TABLE `tiposubsidio` (
   `descripcion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tiposubsidio`
---
-
-INSERT INTO `tiposubsidio` (`idTipoSubsidio`, `nombre`, `descripcion`) VALUES
-(1, 'Cuota Monetaria', 'Es una prestación social en dinero que está dirigida a los trabajadores afiliados a Comfenalco Quindío'),
-(2, 'Subsidio Especial', 'Sin limitación en razón de su edad, se cancela doble cuota de subsidio familiar en dinero, a los hijos, padres y hermanos huérfanos de ambos padres'),
-(3, 'Subsidio de Servicios', 'Es el derecho que tú y tus beneficiaros tienen para utilizar los servicios sociales de la Caja con tarifas preferenciales');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipotelefono`
+-- Estructura de tabla para la tabla `tipotelefono`
 --
 
 CREATE TABLE `tipotelefono` (
@@ -887,20 +519,10 @@ CREATE TABLE `tipotelefono` (
   `nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tipotelefono`
---
-
-INSERT INTO `tipotelefono` (`idTipoTelefono`, `nombre`) VALUES
-(1, 'Celular'),
-(2, 'Fijo'),
-(3, 'Trabajo'),
-(4, 'Oficina');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `venta`
+-- Estructura de tabla para la tabla `venta`
 --
 
 CREATE TABLE `venta` (
@@ -912,136 +534,121 @@ CREATE TABLE `venta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `venta`
+-- Volcado de datos para la tabla `venta`
 --
 
 INSERT INTO `venta` (`idVenta`, `descuento`, `metodoPago`, `idFactura`, `cedula`) VALUES
-(1, 10, 1, 1, '0987654321'),
-(2, 5, 2, 2, '1004779035'),
-(3, 15, 3, 3, '1234567890'),
-(4, 8, 1, 4, '1478523690'),
-(5, 12, 2, 5, '2345678901'),
-(6, 20, 3, 6, '3456789012'),
-(7, 10, 1, 7, '4567890123'),
-(8, 7, 2, 8, '5678901234'),
-(9, 13, 3, 9, '6789012345'),
-(10, 18, 1, 10, '7890123456'),
-(11, 9, 2, 1, '0987654321'),
-(12, 11, 3, 2, '1004779035'),
-(13, 5, 1, 3, '1234567890'),
-(14, 6, 2, 4, '1478523690'),
-(15, 14, 3, 5, '2345678901'),
-(16, 16, 1, 6, '3456789012'),
-(17, 17, 2, 7, '4567890123'),
-(18, 19, 3, 8, '5678901234'),
-(19, 8, 1, 9, '6789012345'),
-(20, 4, 2, 10, '7890123456');
+(3, 0, 1, 1, '1234567890'),
+(4, 0, 1, 2, '1234567890'),
+(5, 0, 1, 3, '1234567890'),
+(6, 0, 1, 4, '1234567890'),
+(7, 0, 2, 5, '1234567890');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `cajero`
+-- Indices de la tabla `cajero`
 --
 ALTER TABLE `cajero`
   ADD PRIMARY KEY (`idEmpleado`,`turno`);
 
 --
--- Indexes for table `categoriaproducto`
+-- Indices de la tabla `categoriaproducto`
 --
 ALTER TABLE `categoriaproducto`
   ADD PRIMARY KEY (`idCategoria`);
 
 --
--- Indexes for table `certificado`
+-- Indices de la tabla `certificado`
 --
 ALTER TABLE `certificado`
   ADD PRIMARY KEY (`tipoCertificado`),
   ADD KEY `idEmpleado` (`idEmpleado`);
 
 --
--- Indexes for table `cliente`
+-- Indices de la tabla `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`cedula`);
 
 --
--- Indexes for table `empleado`
+-- Indices de la tabla `empleado`
 --
 ALTER TABLE `empleado`
   ADD PRIMARY KEY (`idEmpleado`),
   ADD KEY `sucursal` (`sucursal`);
 
 --
--- Indexes for table `empleadoventa`
+-- Indices de la tabla `empleadoventa`
 --
 ALTER TABLE `empleadoventa`
   ADD PRIMARY KEY (`idEmpleado`,`idVenta`),
   ADD KEY `idVenta` (`idVenta`);
 
 --
--- Indexes for table `factura`
+-- Indices de la tabla `factura`
 --
 ALTER TABLE `factura`
   ADD PRIMARY KEY (`idFactura`),
   ADD KEY `clienteCedula` (`clienteCedula`);
 
 --
--- Indexes for table `facturaventa`
+-- Indices de la tabla `facturaventa`
 --
 ALTER TABLE `facturaventa`
   ADD PRIMARY KEY (`idFactura`,`idVenta`),
   ADD KEY `idVenta` (`idVenta`);
 
 --
--- Indexes for table `farmaceutico`
+-- Indices de la tabla `farmaceutico`
 --
 ALTER TABLE `farmaceutico`
   ADD PRIMARY KEY (`idEmpleado`);
 
 --
--- Indexes for table `gerente`
+-- Indices de la tabla `gerente`
 --
 ALTER TABLE `gerente`
-  ADD PRIMARY KEY (`idEmpleado`);
+  ADD PRIMARY KEY (`idEmpleado`),
+  ADD KEY `certificado` (`certificado`);
 
 --
--- Indexes for table `inventario`
+-- Indices de la tabla `inventario`
 --
 ALTER TABLE `inventario`
   ADD PRIMARY KEY (`idInventario`),
   ADD KEY `idProducto` (`idProducto`);
 
 --
--- Indexes for table `licenciaconduccion`
+-- Indices de la tabla `licenciaconduccion`
 --
 ALTER TABLE `licenciaconduccion`
   ADD PRIMARY KEY (`nombre`),
   ADD KEY `idEmpleado` (`idEmpleado`);
 
 --
--- Indexes for table `licenciafarmaceutico`
+-- Indices de la tabla `licenciafarmaceutico`
 --
 ALTER TABLE `licenciafarmaceutico`
   ADD PRIMARY KEY (`idLicenciaF`),
-  ADD KEY `idEmpleado` (`idEmpleado`),
-  ADD KEY `idEmpleado_2` (`idEmpleado`);
+  ADD KEY `idEmpleado` (`idEmpleado`);
 
 --
--- Indexes for table `metodopago`
+-- Indices de la tabla `metodopago`
 --
 ALTER TABLE `metodopago`
   ADD PRIMARY KEY (`idMetodoPago`);
 
 --
--- Indexes for table `pedido`
+-- Indices de la tabla `pedido`
 --
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`idPedido`);
 
 --
--- Indexes for table `pedidoproductoproveedor`
+-- Indices de la tabla `pedidoproductoproveedor`
 --
 ALTER TABLE `pedidoproductoproveedor`
   ADD PRIMARY KEY (`idPedido`,`idProducto`,`idProveedor`),
@@ -1049,54 +656,55 @@ ALTER TABLE `pedidoproductoproveedor`
   ADD KEY `idProveedor` (`idProveedor`);
 
 --
--- Indexes for table `personalinventario`
+-- Indices de la tabla `personalinventario`
 --
 ALTER TABLE `personalinventario`
   ADD PRIMARY KEY (`idEmpleado`),
   ADD KEY `idTipoResponsabilidad` (`idTipoResponsabilidad`);
 
 --
--- Indexes for table `producto`
+-- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`idProducto`),
   ADD KEY `categoriaProducto` (`categoriaProducto`);
 
 --
--- Indexes for table `productofactura`
+-- Indices de la tabla `productofactura`
 --
 ALTER TABLE `productofactura`
   ADD PRIMARY KEY (`idFactura`,`idProducto`),
   ADD KEY `idProducto` (`idProducto`);
 
 --
--- Indexes for table `productoproveedor`
+-- Indices de la tabla `productoproveedor`
 --
 ALTER TABLE `productoproveedor`
   ADD PRIMARY KEY (`idProducto`,`idProveedor`),
   ADD KEY `idProveedor` (`idProveedor`);
 
 --
--- Indexes for table `proveedor`
+-- Indices de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
   ADD PRIMARY KEY (`idProveedor`);
 
 --
--- Indexes for table `repartidor`
+-- Indices de la tabla `repartidor`
 --
 ALTER TABLE `repartidor`
-  ADD PRIMARY KEY (`idEmpleado`);
+  ADD PRIMARY KEY (`idEmpleado`),
+  ADD KEY `licenciaConduccion` (`licenciaConduccion`);
 
 --
--- Indexes for table `ruta`
+-- Indices de la tabla `ruta`
 --
 ALTER TABLE `ruta`
   ADD PRIMARY KEY (`idRuta`),
   ADD KEY `idFactura` (`idFactura`);
 
 --
--- Indexes for table `subsidio`
+-- Indices de la tabla `subsidio`
 --
 ALTER TABLE `subsidio`
   ADD PRIMARY KEY (`idSubsidio`),
@@ -1105,44 +713,44 @@ ALTER TABLE `subsidio`
   ADD KEY `tipoSubsidio` (`tipoSubsidio`);
 
 --
--- Indexes for table `sucursal`
+-- Indices de la tabla `sucursal`
 --
 ALTER TABLE `sucursal`
   ADD PRIMARY KEY (`idSucursal`);
 
 --
--- Indexes for table `telefono`
+-- Indices de la tabla `telefono`
 --
 ALTER TABLE `telefono`
   ADD PRIMARY KEY (`idTelefono`),
   ADD KEY `tipoTelefono` (`tipoTelefono`);
 
 --
--- Indexes for table `tipocertificado`
+-- Indices de la tabla `tipocertificado`
 --
 ALTER TABLE `tipocertificado`
   ADD PRIMARY KEY (`idTipoCertificado`);
 
 --
--- Indexes for table `tiporesponsabilidad`
+-- Indices de la tabla `tiporesponsabilidad`
 --
 ALTER TABLE `tiporesponsabilidad`
   ADD PRIMARY KEY (`idTipoResponsabilidad`);
 
 --
--- Indexes for table `tiposubsidio`
+-- Indices de la tabla `tiposubsidio`
 --
 ALTER TABLE `tiposubsidio`
   ADD PRIMARY KEY (`idTipoSubsidio`);
 
 --
--- Indexes for table `tipotelefono`
+-- Indices de la tabla `tipotelefono`
 --
 ALTER TABLE `tipotelefono`
   ADD PRIMARY KEY (`idTipoTelefono`);
 
 --
--- Indexes for table `venta`
+-- Indices de la tabla `venta`
 --
 ALTER TABLE `venta`
   ADD PRIMARY KEY (`idVenta`),
@@ -1151,181 +759,187 @@ ALTER TABLE `venta`
   ADD KEY `cedula` (`cedula`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `categoriaproducto`
+-- AUTO_INCREMENT de la tabla `categoriaproducto`
 --
 ALTER TABLE `categoriaproducto`
   MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `empleado`
+-- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `idEmpleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `idEmpleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `factura`
+-- AUTO_INCREMENT de la tabla `factura`
 --
 ALTER TABLE `factura`
-  MODIFY `idFactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idFactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `metodopago`
+-- AUTO_INCREMENT de la tabla `inventario`
+--
+ALTER TABLE `inventario`
+  MODIFY `idInventario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT de la tabla `metodopago`
 --
 ALTER TABLE `metodopago`
   MODIFY `idMetodoPago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `pedido`
+-- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `producto`
+-- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `proveedor`
+-- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `idProveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idProveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `ruta`
+-- AUTO_INCREMENT de la tabla `ruta`
 --
 ALTER TABLE `ruta`
-  MODIFY `idRuta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idRuta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `subsidio`
+-- AUTO_INCREMENT de la tabla `subsidio`
 --
 ALTER TABLE `subsidio`
-  MODIFY `idSubsidio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idSubsidio` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `sucursal`
+-- AUTO_INCREMENT de la tabla `sucursal`
 --
 ALTER TABLE `sucursal`
-  MODIFY `idSucursal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idSucursal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `telefono`
+-- AUTO_INCREMENT de la tabla `telefono`
 --
 ALTER TABLE `telefono`
   MODIFY `idTelefono` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tipocertificado`
+-- AUTO_INCREMENT de la tabla `tipocertificado`
 --
 ALTER TABLE `tipocertificado`
-  MODIFY `idTipoCertificado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idTipoCertificado` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tiporesponsabilidad`
+-- AUTO_INCREMENT de la tabla `tiporesponsabilidad`
 --
 ALTER TABLE `tiporesponsabilidad`
-  MODIFY `idTipoResponsabilidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idTipoResponsabilidad` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tiposubsidio`
+-- AUTO_INCREMENT de la tabla `tiposubsidio`
 --
 ALTER TABLE `tiposubsidio`
-  MODIFY `idTipoSubsidio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idTipoSubsidio` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tipotelefono`
+-- AUTO_INCREMENT de la tabla `tipotelefono`
 --
 ALTER TABLE `tipotelefono`
-  MODIFY `idTipoTelefono` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idTipoTelefono` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `venta`
+-- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `idVenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idVenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `cajero`
+-- Filtros para la tabla `cajero`
 --
 ALTER TABLE `cajero`
   ADD CONSTRAINT `cajero_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`);
 
 --
--- Constraints for table `certificado`
+-- Filtros para la tabla `certificado`
 --
 ALTER TABLE `certificado`
   ADD CONSTRAINT `certificado_ibfk_1` FOREIGN KEY (`tipoCertificado`) REFERENCES `tipocertificado` (`idTipoCertificado`),
   ADD CONSTRAINT `certificado_ibfk_2` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`);
 
 --
--- Constraints for table `empleado`
+-- Filtros para la tabla `empleado`
 --
 ALTER TABLE `empleado`
   ADD CONSTRAINT `empleado_ibfk_1` FOREIGN KEY (`sucursal`) REFERENCES `sucursal` (`idSucursal`);
 
 --
--- Constraints for table `empleadoventa`
+-- Filtros para la tabla `empleadoventa`
 --
 ALTER TABLE `empleadoventa`
   ADD CONSTRAINT `empleadoventa_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`),
   ADD CONSTRAINT `empleadoventa_ibfk_2` FOREIGN KEY (`idVenta`) REFERENCES `venta` (`idVenta`);
 
 --
--- Constraints for table `factura`
+-- Filtros para la tabla `factura`
 --
 ALTER TABLE `factura`
   ADD CONSTRAINT `factura_ibfk_1` FOREIGN KEY (`clienteCedula`) REFERENCES `cliente` (`cedula`);
 
 --
--- Constraints for table `facturaventa`
+-- Filtros para la tabla `facturaventa`
 --
 ALTER TABLE `facturaventa`
   ADD CONSTRAINT `facturaventa_ibfk_1` FOREIGN KEY (`idFactura`) REFERENCES `factura` (`idFactura`),
   ADD CONSTRAINT `facturaventa_ibfk_2` FOREIGN KEY (`idVenta`) REFERENCES `venta` (`idVenta`);
 
 --
--- Constraints for table `farmaceutico`
+-- Filtros para la tabla `farmaceutico`
 --
 ALTER TABLE `farmaceutico`
   ADD CONSTRAINT `farmaceutico_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`);
 
 --
--- Constraints for table `gerente`
+-- Filtros para la tabla `gerente`
 --
 ALTER TABLE `gerente`
-  ADD CONSTRAINT `gerente_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`);
+  ADD CONSTRAINT `gerente_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`),
+  ADD CONSTRAINT `gerente_ibfk_2` FOREIGN KEY (`certificado`) REFERENCES `certificado` (`tipoCertificado`);
 
 --
--- Constraints for table `inventario`
+-- Filtros para la tabla `inventario`
 --
 ALTER TABLE `inventario`
   ADD CONSTRAINT `inventario_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`);
 
-
 --
--- Constraints for table `licenciaconduccion`
+-- Filtros para la tabla `licenciaconduccion`
 --
 ALTER TABLE `licenciaconduccion`
   ADD CONSTRAINT `licenciaconduccion_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`);
 
 --
--- Constraints for table `licenciafarmaceutico`
+-- Filtros para la tabla `licenciafarmaceutico`
 --
 ALTER TABLE `licenciafarmaceutico`
   ADD CONSTRAINT `licenciafarmaceutico_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`);
 
 --
--- Constraints for table `pedidoproductoproveedor`
+-- Filtros para la tabla `pedidoproductoproveedor`
 --
 ALTER TABLE `pedidoproductoproveedor`
   ADD CONSTRAINT `pedidoproductoproveedor_ibfk_1` FOREIGN KEY (`idPedido`) REFERENCES `pedido` (`idPedido`),
@@ -1333,46 +947,47 @@ ALTER TABLE `pedidoproductoproveedor`
   ADD CONSTRAINT `pedidoproductoproveedor_ibfk_3` FOREIGN KEY (`idProveedor`) REFERENCES `proveedor` (`idProveedor`);
 
 --
--- Constraints for table `personalinventario`
+-- Filtros para la tabla `personalinventario`
 --
 ALTER TABLE `personalinventario`
   ADD CONSTRAINT `personalinventario_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`),
   ADD CONSTRAINT `personalinventario_ibfk_2` FOREIGN KEY (`idTipoResponsabilidad`) REFERENCES `tiporesponsabilidad` (`idTipoResponsabilidad`);
 
 --
--- Constraints for table `producto`
+-- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
   ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`categoriaProducto`) REFERENCES `categoriaproducto` (`idCategoria`);
 
 --
--- Constraints for table `productofactura`
+-- Filtros para la tabla `productofactura`
 --
 ALTER TABLE `productofactura`
   ADD CONSTRAINT `productofactura_ibfk_1` FOREIGN KEY (`idFactura`) REFERENCES `factura` (`idFactura`),
   ADD CONSTRAINT `productofactura_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`);
 
 --
--- Constraints for table `productoproveedor`
+-- Filtros para la tabla `productoproveedor`
 --
 ALTER TABLE `productoproveedor`
   ADD CONSTRAINT `productoproveedor_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`),
   ADD CONSTRAINT `productoproveedor_ibfk_2` FOREIGN KEY (`idProveedor`) REFERENCES `proveedor` (`idProveedor`);
 
 --
--- Constraints for table `repartidor`
+-- Filtros para la tabla `repartidor`
 --
 ALTER TABLE `repartidor`
-  ADD CONSTRAINT `repartidor_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`);
+  ADD CONSTRAINT `repartidor_ibfk_1` FOREIGN KEY (`idEmpleado`) REFERENCES `empleado` (`idEmpleado`),
+  ADD CONSTRAINT `repartidor_ibfk_2` FOREIGN KEY (`licenciaConduccion`) REFERENCES `licenciaconduccion` (`nombre`);
 
 --
--- Constraints for table `ruta`
+-- Filtros para la tabla `ruta`
 --
 ALTER TABLE `ruta`
   ADD CONSTRAINT `ruta_ibfk_1` FOREIGN KEY (`idFactura`) REFERENCES `factura` (`idFactura`);
 
 --
--- Constraints for table `subsidio`
+-- Filtros para la tabla `subsidio`
 --
 ALTER TABLE `subsidio`
   ADD CONSTRAINT `subsidio_ibfk_1` FOREIGN KEY (`cedula`) REFERENCES `cliente` (`cedula`),
@@ -1380,13 +995,13 @@ ALTER TABLE `subsidio`
   ADD CONSTRAINT `subsidio_ibfk_3` FOREIGN KEY (`tipoSubsidio`) REFERENCES `tiposubsidio` (`idTipoSubsidio`);
 
 --
--- Constraints for table `telefono`
+-- Filtros para la tabla `telefono`
 --
 ALTER TABLE `telefono`
   ADD CONSTRAINT `telefono_ibfk_1` FOREIGN KEY (`tipoTelefono`) REFERENCES `tipotelefono` (`idTipoTelefono`);
 
 --
--- Constraints for table `venta`
+-- Filtros para la tabla `venta`
 --
 ALTER TABLE `venta`
   ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`metodoPago`) REFERENCES `metodopago` (`idMetodoPago`),
