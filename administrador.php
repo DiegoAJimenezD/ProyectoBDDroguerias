@@ -13,7 +13,7 @@
 
     <main class="grid-container">
         <section id="empleados" class="grid-item">
-            <img src="images/empleados.png" alt="Empleados">
+            <img src="images\empleados.png" alt="Empleados">
             <h2>Empleados</h2>
             <button onclick="window.location.href='empleado.php';">Administrar Empleados</button>
         </section>

@@ -63,9 +63,12 @@
     </form>
 
     <!-- Botón para recargar los datos -->
-<!-- Botón para recargar los datos con icono -->
-<button onclick="recargarDatos()">
-    <i class="fas fa-sync-alt"></i> Recargar Datos
+    <button class='Estadisticas' onclick="window.location.href='productosCategoriaEstadistica.php'">
+    <i class='fas fa-star'></i> Estatisticas Ventas
+    <button onclick="window.location.reload()">Recargar Datos</button>
+    <button class='crear' onclick="window.location.href='crearProductos.php'">
+    <i class='fas fa-star'></i> Crear
+
 </button>
 
     <button class='crear' onclick="window.location.href='crearProductos.php'">

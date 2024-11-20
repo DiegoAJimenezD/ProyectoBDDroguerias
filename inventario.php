@@ -79,7 +79,6 @@ $conn->close();
             </ul>
         </nav>
     </header>
-
     <!-- Formulario de filtros -->
     <form method="GET" action="">
         <div class="contenedor-filtros">
@@ -119,8 +118,10 @@ $conn->close();
         }
     </script>
 
-<button onclick="window.location.href='estadisticas.php';">
-    <i class="fas fa-chart-line"></i> Ver Gráfica de Stock
+    <button onclick="window.location.href='estadisticasStock.php';">Ver Gráfica de Stock</button>
+    <button onclick="recargarDatos()">Recargar Datos</button>
+    <button class='crear' onclick="window.location.href='crearInventario.php'">
+    <i class='fas fa-star'></i> Crear
 </button>
     <button onclick="recargarDatos()">
     <i class="fas fa-sync-alt"></i> Recargar Datos
