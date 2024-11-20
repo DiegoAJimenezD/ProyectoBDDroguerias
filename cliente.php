@@ -168,6 +168,7 @@ $conn->close();
 
         <!-- Botones debajo de los filtros -->
         <div class="botones">
+            <button onclick="window.location.href='clientepdf.php';">Generar reporte</button>
             <button type="submit">Filtrar</button>
             <button type="reset" onclick="resetForm()">Limpiar</button> <!-- Botón limpiar -->
         </div>
