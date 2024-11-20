@@ -40,13 +40,16 @@
             // Verificar si hay resultados
             if ($result->num_rows > 0) {
                 // Mostrar los productos
-                while($row = $result->fetch_assoc()) {
+               // Mostrar los productos obtenidos de la consulta
+                while ($row = $result->fetch_assoc()) {
                     echo '<div class="card product">';
                     echo '<img src="' . $row['imagen'] . '" alt="Producto ' . $row['nombre'] . '">';
                     echo '<h5>' . $row['nombre'] . '</h5>';
                     echo '<p>$' . number_format($row['precio'], 0, ',', '.') . '</p>';
                     echo '<p><strong>Stock disponible: ' . $row['cantidadStock'] . '</strong></p>';
-                    echo '<button>Comprar</button>';
+                    
+                    // Agregar el botón con la función para redirigir a la página de compra
+                    echo '<button onclick="redirigirCompra(' . $row['idProducto'] . ')">Comprar</button>';
                     echo '</div>';
                 }
             } else {
@@ -63,5 +66,13 @@
     include 'componentes\footer.php';
     ?>
 
+
+<script>
+    // Función para redirigir a la página de compra
+    function redirigirCompra(idProducto) {
+        // Redirige a la página de compra pasando el id del producto en la URL
+        window.location.href = `compra.php?idProducto=${idProducto}`;
+    }
+</script>
 </body>
 </html>

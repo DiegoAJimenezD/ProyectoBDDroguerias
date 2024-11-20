@@ -1,8 +1,5 @@
-
-
 <?php
 require 'vendor/autoload.php';  // Esto carga automáticamente todas las dependencias de Composer
-
 
 session_start();
 include('conexion.php');
@@ -41,6 +38,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styleFactura.css">
     <title>Factura de Compra</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  <!-- Incluir SweetAlert2 -->
 </head>
 <body>
     <div class="factura-container">
@@ -68,9 +66,28 @@ $conn->close();
         </div>
         <footer class="factura-footer">
             <button onclick="location.href='productos.php';">Volver a la Tienda</button>
-            <button onclick="location.href='generar_pdf.php?idFactura=<?= $idFactura ?>';">Descargar PDF</button>
-
+            
+            <!-- Botón de descarga modificado con SweetAlert2 -->
+            <button onclick="descargarPDF()">Descargar PDF</button>
         </footer>
     </div>
+
+    <script>
+        // Función para mostrar la alerta y redirigir a la descarga del PDF
+        function descargarPDF() {
+            // Mostrar la alerta de descarga exitosa
+            Swal.fire({
+                title: '¡Descarga Exitosa!',
+                text: 'La factura se ha descargado como PDF.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirigir al PHP que genera el PDF
+                    window.location.href = 'generar_pdf.php?idFactura=<?= $idFactura ?>';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
