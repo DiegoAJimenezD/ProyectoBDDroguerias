@@ -14,7 +14,7 @@ if (isset($_GET['idProducto'])) {
     if ($stmt->execute()) {
         echo "Producto marcado como eliminado correctamente.";
         // Redirigir a la página de productos después de la eliminación exitosa
-        header("Location: productos.php");
+        header("Location: producto.php");
         exit; // Detener la ejecución después de la redirección
     } else {
         echo "Error al marcar el producto como eliminado: " . $stmt->error;

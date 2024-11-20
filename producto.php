@@ -11,20 +11,18 @@
         <h1>Productos</h1>
         <nav>
             <ul>
-                <li><a href="cliente.php">Clientes</a></li>
-                <li><a href="empleado.php">Empleados</a></li>
-                <li><a href="sucursal.php">Sucursales</a></li>
+            <li><a href="empleado.php">Empleados</a></li>
                 <li><a href="producto.php">Productos</a></li>
-                <li><a href="inventario.php">Inventario</a></li>
                 <li><a href="proveedor.php">Proveedores</a></li>
-                <li><a href="pedido.php">Pedidos</a></li>
-                <li><a href="venta.php">Ventas</a></li>
-                <li><a href="administrador.php">Panel</a></li>
+                <li><a href="inventario.php">Inventario</a></li>
+                <li><a href="administrador.php">Panel</a></li>  
             </ul>
         </nav>
     </header>
 
-    <form method="GET" action="" class="formularioFiltros" id="filterForm">
+    <form method="GET" action="">
+    <div class="contenedor-filtros">
+    <div class="formulario-filtros">
     <div class="filtro">
         <label for="categoria">Categoría:</label>
         <select name="categoria" id="categoria">
@@ -54,19 +52,23 @@
     </div>
 
     <div class="filtro">
-        <label for="precio">Precio máximo:</label>
-        <input type="number" name="precio" id="precio" min="0" step="0.01" placeholder="Precio máximo" value="<?= isset($_GET['precio']) ? htmlspecialchars($_GET['precio']) : '' ?>">
+        <label for="precio">Precio:</label>
+        <input type="number" name="precio" id="precio" min="0" step="0.01" placeholder="Precio" value="<?= isset($_GET['precio']) ? htmlspecialchars($_GET['precio']) : '' ?>">
     </div>
 
     <div class="filtro-boton">
         <button type="submit">Filtrar</button>
-        <button type="button" onclick="resetFilters()">Limpiar</button>
+        <button type="button" onclick="resetForm()">Limpiar</button>
     </div>
+        </div>
+        </div>
 </form>
 
-    <button onclick="window.location.href='productosCategoriaEstadistica.php';">Ver Gráfica de Stock</button>
     <!-- Botón para recargar los datos -->
     <button onclick="window.location.reload()">Recargar Datos</button>
+    <button class='crear' onclick="window.location.href='crearProductos.php'">
+    <i class='fas fa-star'></i> Crear
+</button>
 
     <!-- Tabla de Productos -->
     <table border="1">
@@ -100,7 +102,7 @@
                 $nombre = $conn->real_escape_string($_GET['nombre']);
                 $conditions[] = "p.nombre LIKE '%$nombre%'";  // Filtrar por nombre
             }
-            
+
             if (isset($_GET['idProducto']) && $_GET['idProducto'] !== '') {
                 $idProducto = (int) $_GET['idProducto'];
                 $conditions[] = "p.idProducto = $idProducto";  // Filtrar por ID Producto
@@ -108,13 +110,14 @@
 
             if (isset($_GET['precio']) && $_GET['precio'] !== '') {
                 $precio = (float) $_GET['precio'];
-                $conditions[] = "p.precio <= $precio";  // Filtrar por precio máximo
+                $conditions[] = "p.precio = $precio";  // Filtrar por precio exacto
             }
 
             // Si hay filtros, agregarlos a la consulta
             if (!empty($conditions)) {
                 $sql .= " AND " . implode(' AND ', $conditions);
             }
+
 
             // Ejecutar la consulta
             $resultado = $conn->query($sql);
@@ -143,6 +146,11 @@
     </table>
 
     <script>
+
+function resetForm() {
+            document.querySelector("form").reset();
+            window.location.href = window.location.pathname;
+        }
         function editarProducto(idProducto) {
             window.location.href = "editarProducto.php?idProducto=" + idProducto;
         }

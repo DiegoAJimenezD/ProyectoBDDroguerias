@@ -111,14 +111,6 @@ button:focus {
     box-shadow: 0 0 5px rgba(0, 191, 174, 0.5);
 }
 
-/* Alineación de los botones en la columna de acciones */
-.acciones {
-    display: inline-block; /* Hace que los botones se alineen en línea */
-}
-
-.acciones button {
-    margin-right: 10px; /* Espacio entre los botones */
-}
 
 
 /* Estilo para el contenedor de los filtros */
@@ -135,7 +127,6 @@ button:focus {
     margin: 30px auto; /* Centra el contenedor horizontalmente */
 }
 
-
 /* Estilo para la fila de filtros */
 .formulario-filtros {
     display: flex;
@@ -150,7 +141,44 @@ button:focus {
 .filtro {
     display: flex;
     flex-direction: column;
-    width: 150px; /* Ancho de cada filtro */
+    width: 220px; /* Ancho de cada filtro (más largo) */
+    min-width: 220px; /* Mínimo de 220px para mantener los filtros uniformes */
+}
+
+/* Estilo para los inputs de filtro */
+.filtro input {
+    width: 100%; /* Asegura que los inputs ocupen el 100% del ancho del contenedor */
+}
+
+/* Estilo para los inputs de filtro */
+.filtro select {
+    padding: 8px 12px; /* Espaciado interno similar al de los inputs */
+    font-size: 14px; /* Tamaño de la fuente */
+    border: 1px solid #ccc; /* Borde gris claro */
+    border-radius: 5px; /* Bordes redondeados */
+    width: 100%; /* Los campos de selección ocupan el 100% del ancho disponible */
+    box-sizing: border-box; /* Para asegurarse de que el padding no afecte el tamaño total del select */
+    transition: border-color 0.3s ease; /* Animación suave para el cambio de borde */
+}
+
+/* Efecto cuando el select está enfocado */
+.filtro select:focus {
+    border-color: #4CAF50; /* Borde verde cuando el campo está enfocado */
+    outline: none; /* Elimina el contorno predeterminado al enfocar */
+}
+
+/* Estilo para el contenedor de los filtros */
+.contenedor-filtros {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #ddd; /* Borde gris claro */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Espacio interno */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    background-color: #fff; /* Fondo blanco */
+    margin: 30px auto; /* Centra el contenedor horizontalmente */
 }
 
 /* Estilo para los botones */
