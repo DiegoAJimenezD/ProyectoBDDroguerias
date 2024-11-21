@@ -1,24 +1,44 @@
 <?php
-// Incluir la conexión a la base de datos
-include('conexion.php');
+// Conexión a la base de datos
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "drogueriasconfe";
 
-// Consulta SQL
-$sql = "
-SELECT 
-    proveedor.nombre AS NombreProveedor,
-    producto.nombre AS NombreProducto,
-    SUM(inventario.cantidadStock) AS CantidadTotalStock,
-    SUM(productoproveedor.costo * inventario.cantidadStock) AS MontoTotalSuministrado
-FROM productoproveedor
-INNER JOIN proveedor ON productoproveedor.idProveedor = proveedor.idProveedor
-INNER JOIN producto ON productoproveedor.idProducto = producto.idProducto
-INNER JOIN inventario ON productoproveedor.idProducto = inventario.idProducto
-GROUP BY proveedor.idProveedor, producto.idProducto
-ORDER BY MontoTotalSuministrado DESC
-LIMIT 25;
-";
+// Crear la conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar la conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+// Consulta SQL para obtener los pedidos pendientes por proveedor
+$sql = 
+    "SELECT 
+        prov.nombre AS proveedor,
+        COUNT(ppp.idPedido) AS pedidos_pendientes
+    FROM 
+        pedidoproductoproveedor ppp
+    JOIN 
+        proveedor prov ON ppp.idProveedor = prov.idProveedor
+    WHERE 
+        ppp.estado = 'PENDIENTE'
+    GROUP BY 
+        prov.nombre";
 
 $result = $conn->query($sql);
+
+// Verificar si la consulta devuelve resultados
+$pedidos = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $pedidos[] = $row;
+    }
+}
+
+// Cerrar la conexión
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -26,18 +46,20 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte de Proveedores</title>
+    <title>Pedidos Pendientes por Proveedor</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
+        /* Estilos generales */
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f7fa;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
         }
 
-        h1 {
-            text-align: center;
+        h2 {
             color: #333;
+            text-align: center;
         }
 
         /* Botones */
@@ -111,7 +133,7 @@ $result = $conn->query($sql);
 </head>
 <body>
     <div class="container">
-        <h1>Reporte de Proveedores y Productos</h1>
+        <h2>Pedidos Pendientes por Proveedor</h2>
 
         <!-- Botón para regresar -->
         <button onclick="window.location.href='reportes.php';">Volver al Menú</button>
@@ -119,31 +141,29 @@ $result = $conn->query($sql);
         <!-- Botón para generar el PDF -->
         <button id="downloadBtn">Descargar como PDF</button>
 
-        <!-- Tabla de datos -->
-        <?php if ($result->num_rows > 0): ?>
-            <table id="proveedoresTable">
-                <thead>
-                    <tr>
-                        <th>Nombre del Proveedor</th>
-                        <th>Nombre del Producto</th>
-                        <th>Cantidad de Productos Suministrados</th>
-                        <th>Monto Total Suministrado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($row = $result->fetch_assoc()): ?>
+        <!-- Tabla de pedidos pendientes -->
+        <table id="pedidosTable">
+            <thead>
+                <tr>
+                    <th>Proveedor</th>
+                    <th>Pedidos Pendientes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($pedidos)) { ?>
+                    <?php foreach ($pedidos as $pedido) { ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($row["NombreProveedor"]); ?></td>
-                            <td><?php echo htmlspecialchars($row["NombreProducto"]); ?></td>
-                            <td><?php echo $row["CantidadTotalStock"]; ?></td>
-                            <td>$<?php echo number_format($row["MontoTotalSuministrado"], 2); ?></td>
+                            <td><?php echo $pedido['proveedor']; ?></td>
+                            <td><?php echo $pedido['pedidos_pendientes']; ?></td>
                         </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
-        <?php else: ?>
-            <p>No hay datos disponibles.</p>
-        <?php endif; ?>
+                    <?php } ?>
+                <?php } else { ?>
+                    <tr>
+                        <td colspan="2">No hay pedidos pendientes.</td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
     </div>
 
     <script>
@@ -154,10 +174,10 @@ $result = $conn->query($sql);
 
             // Título del PDF
             pdf.setFontSize(16);
-            pdf.text("Reporte de Proveedores y Productos", 20, 20);
+            pdf.text("Pedidos Pendientes por Proveedor", 20, 20);
 
-            // Obtener la tabla de datos
-            const table = document.getElementById('proveedoresTable');
+            // Obtener la tabla de pedidos
+            const table = document.getElementById('pedidosTable');
             const rows = table.getElementsByTagName('tr');
             let yOffset = 30;  // Posición inicial en el PDF
 
@@ -165,9 +185,7 @@ $result = $conn->query($sql);
             pdf.setFontSize(12);
             let header = rows[0].getElementsByTagName('th');
             pdf.text(header[0].innerText, 20, yOffset);
-            pdf.text(header[1].innerText, 60, yOffset);
-            pdf.text(header[2].innerText, 140, yOffset);
-            pdf.text(header[3].innerText, 180, yOffset);
+            pdf.text(header[1].innerText, 120, yOffset);
             yOffset += 10;
 
             // Dibujar los datos de la tabla
@@ -175,21 +193,14 @@ $result = $conn->query($sql);
                 const cells = rows[i].getElementsByTagName('td');
                 if (cells.length > 0) {
                     pdf.text(cells[0].innerText, 20, yOffset);
-                    pdf.text(cells[1].innerText, 60, yOffset);
-                    pdf.text(cells[2].innerText, 140, yOffset);
-                    pdf.text(cells[3].innerText, 180, yOffset);
+                    pdf.text(cells[1].innerText, 120, yOffset);
                     yOffset += 10;
                 }
             }
 
             // Guardar el PDF
-            pdf.save('reporte_proveedores.pdf');
+            pdf.save('pedidos_pendientes.pdf');
         });
     </script>
-
 </body>
 </html>
-
-<?php
-$conn->close();
-?>

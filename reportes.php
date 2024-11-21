@@ -74,6 +74,15 @@
             </button>
             </td>
         </tr>
+
+         <tr>
+            <td>Reporte Pedido Pendiente Proveedor</td>
+            <td>
+               <button onclick="window.location.href='pedidosPendientesProveedor.php';">
+            <i class="fas fa-file-alt"></i> Generar Reporte
+            </button>
+            </td>
+        </tr>
         <tr>
             <td>Reporte Poco Stock</td>
             <td>
@@ -121,20 +130,20 @@
                      </button>
                 </td>
         <tr>
-            <td>Reporte Poco Stock</td>
+            <td>Reporte productosPendientes</td>
             <td>
-            <button onclick="window.location.href='inventarioLowStock.php';">
+            <button onclick="window.location.href='productosCategoriaEstadistica.php';">
             <i class="fas fa-file-alt"></i> Generar Reporte
             </button>
             </td>
         </tr>
         <tr>
-            <td>Reporte de Inventario</td>
+            <td>Reporte Resumen de Facturas pagadas</td>
             <td>
-                <button onclick="generarReporte('inventario')">
-                    <i class="fas fa-file-alt"></i> Generar Reporte
-                </button>
-            </td>
+                    <button onclick="window.location.href='resumenFacturasPagadas.php'">
+                        <i class="fas fa-file-alt"></i> Generar Reporte
+                     </button>
+                </td>
         </tr>
        
         <td>Reporte de Proveedores</td>
@@ -189,6 +198,7 @@
                     <i class="fas fa-file-alt"></i> Generar Reporte
                 </button>
             </td>
+
         </tr>
     </tbody>
 </table>
