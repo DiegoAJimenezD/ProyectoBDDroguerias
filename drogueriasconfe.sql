@@ -816,6 +816,11 @@ ALTER TABLE `cajero`
 ALTER TABLE `categoriaproducto`
   ADD PRIMARY KEY (`idCategoria`);
 
+
+
+ALTER TABLE 'productofactura'
+ADD COLUMN cantidad INT NOT NULL DEFAULT 1;  -- Agrega la columna cantidad
+
 --
 -- Indices de la tabla `certificado`
 --
