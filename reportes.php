@@ -121,14 +121,13 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>Estado Factura</td>
-            <td>
-               <button onclick="window.location.href='inventarioLowStock.php';">
-            <i class="fas fa-file-alt"></i> Generar Reporte
-            </button>
-            </td>
-        </tr>
+    
+    <td>Reporte de Clientes</td>
+                <td>
+                    <button onclick="window.location.href='reporte_cliente.php'">
+                        <i class="fas fa-file-alt"></i> Generar Reporte
+                     </button>
+                </td>
         <tr>
             <td>Reporte Poco Stock</td>
             <td>
@@ -145,14 +144,13 @@
                 </button>
             </td>
         </tr>
-        <tr>
-            <td>Reporte de Proveedores</td>
-            <td>
-                <button onclick="generarReporte('proveedores')">
-                    <i class="fas fa-file-alt"></i> Generar Reporte
-                </button>
-            </td>
-        </tr>
+       
+        <td>Reporte de Proveedores</td>
+                <td>
+                    <button onclick="window.location.href='reporte_proveedores.php'">
+                        <i class="fas fa-file-alt"></i> Generar Reporte
+                     </button>
+                </td>
     </tbody>
 </table>
 
