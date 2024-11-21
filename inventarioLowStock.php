@@ -72,7 +72,7 @@ $conn->close();
 </head>
 <body>
     <h2>Productos con Bajo Stock</h2>
-    <button onclick="window.location.href='inventario.php';">Volver a Inventario</button>
+    <button onclick="window.location.href='reportes.php';">Volver a Inventario</button>
 
     <!-- Tabla de productos con bajo stock -->
     <table id="productosTable">

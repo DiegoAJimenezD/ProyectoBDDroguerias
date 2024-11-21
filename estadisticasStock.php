@@ -40,7 +40,7 @@ $conn->close();
 </head>
 <body>
     <h2>Gráfica de Stock por Producto</h2>
-    <button onclick="window.location.href='inventario.php';">Volver a Inventario</button>
+    <button onclick="window.location.href='reportes.php';">Volver a Inventario</button>
 
     <!-- Gráfica aquí -->
     <canvas id="stockChart" width="400" height="200"></canvas>

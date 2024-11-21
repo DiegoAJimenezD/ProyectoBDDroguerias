@@ -53,7 +53,7 @@ $conn->close();
 </head>
 <body>
     <h2>Productos Más Vendidos por Categoría</h2>
-    <button onclick="window.location.href='producto.php';">Volver a Productos</button>
+    <button onclick="window.location.href='reportes.php';">Volver a Productos</button>
     <button id="downloadBtn">Descargar como PDF</button>
 
     <!-- Mostrar productos más vendidos por categoría -->

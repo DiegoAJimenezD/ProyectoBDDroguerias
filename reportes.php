@@ -67,9 +67,9 @@
     </thead>
     <tbody>
         <tr>
-            <td>Estado Factura</td>
+            <td>Reporte Estado Factura</td>
             <td>
-               <button onclick="window.location.href='inventarioLowStock.php';">
+               <button onclick="window.location.href='estadosFacturas.php';">
             <i class="fas fa-file-alt"></i> Generar Reporte
             </button>
             </td>
@@ -83,19 +83,11 @@
             </td>
         </tr>
         <tr>
-            <td>Reporte de Inventario</td>
+            <td>Reporte Stock Productos</td>
             <td>
-                <button onclick="generarReporte('inventario')">
-                    <i class="fas fa-file-alt"></i> Generar Reporte
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <td>Reporte de Proveedores</td>
-            <td>
-                <button onclick="generarReporte('proveedores')">
-                    <i class="fas fa-file-alt"></i> Generar Reporte
-                </button>
+            <button onclick="window.location.href='estadisticasStock.php';">
+            <i class="fas fa-file-alt"></i> Generar Reporte
+            </button>
             </td>
         </tr>
     </tbody>
@@ -122,9 +114,9 @@
     </thead>
     <tbody>
         <tr>
-            <td>Estado Factura</td>
+            <td>Reporte Ventas Por Categoria</td>
             <td>
-               <button onclick="window.location.href='inventarioLowStock.php';">
+               <button onclick="window.location.href='productosCategoriaEstadistica.php';">
             <i class="fas fa-file-alt"></i> Generar Reporte
             </button>
             </td>
