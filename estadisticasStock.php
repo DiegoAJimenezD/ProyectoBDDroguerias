@@ -37,15 +37,96 @@ $conn->close();
     <title>Estadísticas de Stock</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Botones */
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin: 10px;
+            display: inline-block;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Canvas de la gráfica */
+        canvas {
+            display: block;
+            margin: 20px auto;
+        }
+
+        /* Estilo del botón de PDF */
+        #downloadBtn {
+            background-color: #28a745;
+        }
+
+        #downloadBtn:hover {
+            background-color: #218838;
+        }
+
+        /* Estilo para la tabla y otros elementos */
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
 </head>
 <body>
-    <h2>Gráfica de Stock por Producto</h2>
-    <button onclick="window.location.href='reportes.php';">Volver a Inventario</button>
 
-    <!-- Gráfica aquí -->
-    <canvas id="stockChart" width="400" height="200"></canvas>
-    <br><br>
+    <h2>Gráfica de Stock por Producto</h2>
+
+    <!-- Botones -->
+    <button onclick="window.location.href='reportes.php';">Volver a Inventario</button>
     <button id="downloadBtn">Descargar como PDF</button>
+
+    <!-- Gráfica -->
+    <canvas id="stockChart" width="700" height="500"></canvas>
 
     <script>
         // Datos obtenidos desde PHP
@@ -75,7 +156,7 @@ $conn->close();
                 }]
             },
             options: {
-                indexAxis: 'y', // Cambiar a barras horizontales
+                indexAxis: 'y', // Barras horizontales
                 responsive: true,
                 scales: {
                     x: {
@@ -114,5 +195,6 @@ $conn->close();
             pdf.save('estadisticas_stock.pdf');
         });
     </script>
+
 </body>
 </html>
