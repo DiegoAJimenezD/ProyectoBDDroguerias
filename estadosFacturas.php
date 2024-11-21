@@ -42,7 +42,7 @@ $conn->close();
 </head>
 <body>
     <h2>Gráfica de Facturas por Estado</h2>
-    <button onclick="window.location.href='empleado.php';">Volver</button>
+    <button onclick="window.location.href='reportes.php';">Volver</button>
     <button id="downloadBtn">Descargar como PDF</button>
 
     <!-- Gráfica aquí -->

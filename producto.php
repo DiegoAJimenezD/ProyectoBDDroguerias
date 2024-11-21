@@ -62,10 +62,8 @@
         </div>
     </form>
 
-    <!-- Botón para recargar los datos -->
-    <button class='Estadisticas' onclick="window.location.href='productosCategoriaEstadistica.php'">
-    <i class='fas fa-star'></i> Estatisticas Ventas
-    <button onclick="window.location.reload()">Recargar Datos</button>
+    <button onclick="recargarDatos()">
+    <i class="fas fa-sync-alt"></i> Recargar Datos
     <button class='crear' onclick="window.location.href='crearProductos.php'">
     <i class='fas fa-star'></i> Crear
 
@@ -147,6 +145,10 @@
     </table>
 
     <script>
+
+        function recargarDatos() {
+            location.reload(); // Recargar la página
+        }
         function resetFilters() {
             document.getElementById("categoria").value = "";  
             document.getElementById("nombre").value = "";  
@@ -164,5 +166,7 @@
             }
         }
     </script>
+
+    
 </body>
 </html>

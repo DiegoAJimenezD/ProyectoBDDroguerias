@@ -111,11 +111,8 @@
         }
     </script>
 
-    <!-- Botón de recarga de datos -->
-
-    <button onclick="window.location.href='estadosFacturas.php';">Estado Facturass</button>
-
-
+<button onclick="recargarDatos()">
+<i class="fas fa-sync-alt"></i> Recargar Datos
     <button class='crear' onclick="window.location.href='crearEmpleado.php'">
     <i class='fas fa-star'></i> Crear
 </button>
