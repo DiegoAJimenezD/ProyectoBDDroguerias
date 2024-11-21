@@ -36,7 +36,7 @@
                     FROM producto p
                     JOIN categoriaproducto cp ON p.categoriaProducto = cp.idCategoria
                     JOIN inventario i ON p.idProducto = i.idProducto
-                    WHERE cp.nombre = 'Cuidado Personal'";  // Filtramos por la categoría 'Cuidado Personal'
+                    WHERE cp.nombre = 'Higiene Personal'";  // Filtramos por la categoría 'Cuidado Personal'
 
             $result = $conn->query($sql);
 

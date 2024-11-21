@@ -183,17 +183,9 @@
                 </td>
         </tr>
         <tr>
-            <td>Reporte de Inventario</td>
+            <td>Reporte de clientes con subsidios y sus compras</td>
             <td>
-                <button onclick="generarReporte('inventario')">
-                    <i class="fas fa-file-alt"></i> Generar Reporte
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <td>Reporte de Proveedores</td>
-            <td>
-                <button onclick="generarReporte('proveedores')">
+                <button onclick="window.location.href='subsidio_reporte_avanzada.php'">
                     <i class="fas fa-file-alt"></i> Generar Reporte
                 </button>
             </td>
