@@ -210,39 +210,39 @@ INSERT INTO `factura` (`idFactura`, `impuesto`, `precio`, `fechaCompra`, `estado
 --
 -- Estructura de tabla para la tabla `facturaventa`
 --
-
 CREATE TABLE `facturaventa` (
   `idFactura` int(11) NOT NULL,
-  `idVenta` int(11) NOT NULL
+  `idVenta` int(11) NOT NULL,
+  `cantidad` int(20) NOT NULL,
+  `idProducto` int(11) NOT NULL  -- Corregido para usar comillas invertidas y agregar espacio después de tipo de dato
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `facturaventa` (`idFactura`, `idVenta`) VALUES
-(1, 3),
-(2, 4),
-(3, 5),
-(4, 6),
-(5, 7),
-(6, 8),
-(7, 9),
-(8, 10),
-(9, 11),
-(10, 12),
-(11, 13),
-(12, 14),
-(13, 15),
-(14, 16),
-(15, 17),
-(16, 18),
-(17, 19),
-(18, 20),
-(19, 21),
-(20, 22),
-(21, 23),
-(22, 24),
-(23, 25),
-(24, 26),
-(25, 27);
-
+INSERT INTO `facturaventa` (`idFactura`, `idVenta`, `cantidad`, `idProducto`) VALUES
+(1, 3, 5, 1),
+(2, 4, 10, 2),
+(3, 5, 15, 3),
+(4, 6, 20, 4),
+(5, 7, 25, 5),
+(6, 8, 30, 6),
+(7, 9, 35, 7),
+(8, 10, 40, 8),
+(9, 11, 45, 9),
+(10, 12, 50, 10),
+(11, 13, 55, 11),
+(12, 14, 60, 12),
+(13, 15, 65, 13),
+(14, 16, 70, 14),
+(15, 17, 75, 15),
+(16, 18, 80, 16),
+(17, 19, 85, 17),
+(18, 20, 90, 18),
+(19, 21, 95, 19),
+(20, 22, 100, 20),
+(21, 23, 105, 21),
+(22, 24, 110, 22),
+(23, 25, 115, 23),
+(24, 26, 120, 24),
+(25, 27, 125, 25);
 
 -- --------------------------------------------------------
 
@@ -394,18 +394,19 @@ CREATE TABLE `pedidoproductoproveedor` (
   `idPedido` int(11) NOT NULL,
   `idProducto` int(11) NOT NULL,
   `idProveedor` int(11) NOT NULL,
+  `estado` enum('PENDIENTE', 'COMPLETADO') NOT NULL DEFAULT 'PENDIENTE',
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `pedidoproductoproveedor` (`idPedido`, `idProducto`, `idProveedor`, `cantidad`) VALUES
-(1, 1, 1, 10),  -- Pedido 1, Producto 1 (Paracetamol), Proveedor 1, Cantidad 10
-(1, 2, 2, 5),   -- Pedido 1, Producto 2 (Crema Hidratante), Proveedor 2, Cantidad 5
-(2, 9, 3, 20),  -- Pedido 2, Producto 9 (Shampoo), Proveedor 3, Cantidad 20
-(3, 21, 4, 50), -- Pedido 3, Producto 21 (Jabón Dove), Proveedor 4, Cantidad 50
-(4, 1, 5, 30),  -- Pedido 4, Producto 1 (Paracetamol), Proveedor 5, Cantidad 30
-(5, 2, 6, 12),  -- Pedido 5, Producto 2 (Crema Hidratante), Proveedor 6, Cantidad 12
-(6, 9, 7, 15),  -- Pedido 6, Producto 9 (Shampoo), Proveedor 7, Cantidad 15
-(2, 21, 8, 10); -- Pedido 2, Producto 21 (Jabón Dove), Proveedor 8, Cantidad 10
+INSERT INTO `pedidoproductoproveedor` (`idPedido`, `idProducto`, `idProveedor`, `estado`, `cantidad`) VALUES
+(1, 1, 1, 'PENDIENTE', 10),  -- Pedido 1, Producto 1 (Paracetamol), Proveedor 1, Cantidad 10
+(1, 2, 2, 'PENDIENTE', 5),   -- Pedido 1, Producto 2 (Crema Hidratante), Proveedor 2, Cantidad 5
+(2, 9, 3, 'COMPLETADO', 20), -- Pedido 2, Producto 9 (Shampoo), Proveedor 3, Cantidad 20
+(3, 21, 4, 'PENDIENTE', 50), -- Pedido 3, Producto 21 (Jabón Dove), Proveedor 4, Cantidad 50
+(4, 1, 5, 'COMPLETADO', 30), -- Pedido 4, Producto 1 (Paracetamol), Proveedor 5, Cantidad 30
+(5, 2, 6, 'PENDIENTE', 12),  -- Pedido 5, Producto 2 (Crema Hidratante), Proveedor 6, Cantidad 12
+(6, 9, 7, 'COMPLETADO', 15), -- Pedido 6, Producto 9 (Shampoo), Proveedor 7, Cantidad 15
+(2, 21, 8, 'PENDIENTE', 10); -- Pedido 2, Producto 21 (Jabón Dove), Proveedor 8, Cantidad 10
 
 -- --------------------------------------------------------
 
@@ -816,10 +817,6 @@ ALTER TABLE `cajero`
 ALTER TABLE `categoriaproducto`
   ADD PRIMARY KEY (`idCategoria`);
 
-
-
-ALTER TABLE 'productofactura'
-ADD COLUMN cantidad INT NOT NULL DEFAULT 1;  -- Agrega la columna cantidad
 
 --
 -- Indices de la tabla `certificado`
