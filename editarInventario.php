@@ -49,8 +49,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->bind_param("ssi", $fecha, $cantidadStock, $idInventario);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Inventario actualizado exitosamente');</script>";
-        echo "<script>window.location.href = 'inventario.php';</script>";
+        // Mostrar mensaje de éxito
+        echo '<div id="successMessage" class="toast success">Inventario actualizado exitosamente.</div>';
+        // Redirigir después de un breve retardo para que se vea la alerta
+        echo '<script>
+                setTimeout(function() {
+                    window.location.href = "inventario.php";
+                }, 3000); // Redirigir después de 3 segundos
+              </script>';
     } else {
         $error = "Error al actualizar el inventario: " . $stmt->error;
     }
@@ -69,6 +75,39 @@ $conn->close();
     <link rel="stylesheet" href="css/stylesEditarC.css">
     <!-- Agregar iconos de Font Awesome -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        /* Estilo para el panel de alerta (toast) */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            border-radius: 5px;
+            font-size: 16px;
+            z-index: 9999;
+            opacity: 0;
+            transform: translateY(-50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        /* Estilo para la alerta de éxito */
+        .toast.success {
+            background-color: #4CAF50; /* Verde para éxito */
+        }
+
+        /* Estilo para la alerta de error */
+        .toast.error {
+            background-color: #f44336; /* Rojo para error */
+        }
+
+        /* Mostrar el toast */
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -104,5 +143,20 @@ $conn->close();
             </form>
         <?php endif; ?>
     </main>
+
+    <script>
+        // Mostrar el mensaje de éxito con un pequeño retardo para que se vea
+        window.onload = function() {
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (successMessage) {
+                successMessage.classList.add('show');
+            } else if (errorMessage) {
+                errorMessage.classList.add('show');
+            }
+        };
+    </script>
+
 </body>
 </html>
