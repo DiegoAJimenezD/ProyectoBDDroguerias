@@ -31,6 +31,7 @@ if ($result->num_rows > 0) {
 // Cerrar la conexión
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -39,11 +40,101 @@ $conn->close();
     <title>Estadísticas de Facturas por Estado</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin: 10px;
+            display: inline-block;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #downloadBtn {
+            background-color: #28a745;
+        }
+
+        #downloadBtn:hover {
+            background-color: #218838;
+        }
+
+        /* Canvas (Gráfica) */
+        canvas {
+            display: block;
+            margin: 20px auto;
+        }
+
+        /* Responsive table */
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Loader */
+        #loader {
+            display: none;
+            margin: 20px auto;
+            text-align: center;
+            font-size: 18px;
+            color: #007BFF;
+        }
+
+    </style>
 </head>
 <body>
+
     <h2>Gráfica de Facturas por Estado</h2>
+
     <button onclick="window.location.href='reportes.php';">Volver</button>
     <button id="downloadBtn">Descargar como PDF</button>
+
+    <div id="loader">Cargando...</div>
 
     <!-- Gráfica aquí -->
     <canvas id="facturasChart" width="400" height="200"></canvas>

@@ -27,7 +27,6 @@ $sql =
     GROUP BY 
         prov.nombre";
 
-
 $result = $conn->query($sql);
 
 // Verificar si la consulta devuelve resultados
@@ -48,58 +47,124 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedidos Pendientes por Proveedor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        /* Botones */
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilo del botón para PDF */
+        #downloadBtn {
+            background-color: #28a745;
+        }
+
+        #downloadBtn:hover {
+            background-color: #218838;
+        }
+
+        /* Tabla */
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         table, th, td {
             border: 1px solid #ddd;
         }
+
         th, td {
-            padding: 8px 12px;
+            padding: 12px;
             text-align: left;
+            font-size: 14px;
         }
+
         th {
-            background-color: #f4f4f4;
+            background-color: #007bff;
+            color: white;
         }
+
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Estilo para la tabla y otros elementos */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-    <h2>Pedidos Pendientes por Proveedor</h2>
-    <button onclick="window.location.href='reportes.php';">Volver al Menú</button>
+    <div class="container">
+        <h2>Pedidos Pendientes por Proveedor</h2>
 
-    <!-- Tabla de pedidos pendientes -->
-    <table id="pedidosTable">
-        <thead>
-            <tr>
-                <th>Proveedor</th>
-                <th>Pedidos Pendientes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (!empty($pedidos)) { ?>
-                <?php foreach ($pedidos as $pedido) { ?>
+        <!-- Botón para regresar -->
+        <button onclick="window.location.href='reportes.php';">Volver al Menú</button>
+
+        <!-- Botón para generar el PDF -->
+        <button id="downloadBtn">Descargar como PDF</button>
+
+        <!-- Tabla de pedidos pendientes -->
+        <table id="pedidosTable">
+            <thead>
+                <tr>
+                    <th>Proveedor</th>
+                    <th>Pedidos Pendientes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($pedidos)) { ?>
+                    <?php foreach ($pedidos as $pedido) { ?>
+                        <tr>
+                            <td><?php echo $pedido['proveedor']; ?></td>
+                            <td><?php echo $pedido['pedidos_pendientes']; ?></td>
+                        </tr>
+                    <?php } ?>
+                <?php } else { ?>
                     <tr>
-                        <td><?php echo $pedido['proveedor']; ?></td>
-                        <td><?php echo $pedido['pedidos_pendientes']; ?></td>
+                        <td colspan="2">No hay pedidos pendientes.</td>
                     </tr>
                 <?php } ?>
-            <?php } else { ?>
-                <tr>
-                    <td colspan="2">No hay pedidos pendientes.</td>
-                </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-
-    <!-- Botón para generar PDF -->
-    <button id="downloadBtn">Descargar como PDF</button>
+            </tbody>
+        </table>
+    </div>
 
     <script>
         // Función para generar el PDF
@@ -111,12 +176,12 @@ $conn->close();
             pdf.setFontSize(16);
             pdf.text("Pedidos Pendientes por Proveedor", 20, 20);
 
-            // Obtener la tabla
+            // Obtener la tabla de pedidos
             const table = document.getElementById('pedidosTable');
             const rows = table.getElementsByTagName('tr');
             let yOffset = 30;  // Posición inicial en el PDF
 
-            // Dibujar encabezados de la tabla
+            // Dibujar los encabezados de la tabla
             pdf.setFontSize(12);
             let header = rows[0].getElementsByTagName('th');
             pdf.text(header[0].innerText, 20, yOffset);
