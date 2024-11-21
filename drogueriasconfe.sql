@@ -95,22 +95,18 @@ CREATE TABLE `cliente` (
   `contrasena` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `cliente`
---
-
-INSERT INTO `cliente` (`cedula`, `primernombre`, `segundonombre`, `primerApellido`, `segundoApellido`, `fechaNacimiento`, `direccion`, `email`, `contrasena`)
-VALUES
-('1234567890', 'Carlos', 'Andrés', 'Pérez', 'Sánchez', '1985-07-15', 'Calle Ficticia 123, Ciudad X', 'carlos.perez@example.com', 'password123'),
-('2345678901', 'María', 'Fernanda', 'Gómez', 'Lopez', '1990-03-25', 'Avenida Central 456, Ciudad Y', 'maria.gomez@example.com', 'password456'),
-('3456789012', 'Luis', 'Eduardo', 'Rodríguez', 'Martínez', '1992-06-10', 'Carrera 5, Edificio Z, Ciudad Z', 'luis.rodriguez@example.com', 'password789'),
-('4567890123', 'Ana', 'Beatriz', 'Torres', 'Ramírez', '1988-02-22', 'Calle Verde 789, Ciudad A', 'ana.torres@example.com', 'password101'),
-('5678901234', 'José', 'Antonio', 'Martínez', 'Hernández', '1995-09-30', 'Calle Sol 101, Ciudad B', 'jose.martinez@example.com', 'password202'),
-('6789012345', 'Patricia', 'Elena', 'González', 'Muñoz', '1980-11-18', 'Avenida Libertad 201, Ciudad C', 'patricia.gonzalez@example.com', 'password303'),
-('7890123456', 'Juan', 'Carlos', 'López', 'Paredes', '1993-12-05', 'Calle Norte 323, Ciudad D', 'juan.lopez@example.com', 'password404'),
-('8901234567', 'Raquel', 'Inés', 'Martínez', 'Vásquez', '1987-08-14', 'Calle Río 454, Ciudad E', 'raquel.martinez@example.com', 'password505'),
-('9012345678', 'Eduardo', 'Luis', 'Jiménez', 'Torres', '1998-05-21', 'Calle del Mar 565, Ciudad F', 'eduardo.jimenez@example.com', 'password606'),
-('0123456789', 'Sofía', 'Paola', 'Fernández', 'Díaz', '1997-01-30', 'Calle Árbol 676, Ciudad G', 'sofia.fernandez@example.com', 'password707');
+INSERT INTO `cliente` (`cedula`, `primernombre`, `segundonombre`, `primerApellido`, `segundoApellido`, `fechaNacimiento`, `direccion`, `email`, `contrasena`) VALUES
+('1149349066', 'Joseph', 'Patricia', 'Perez', 'French', '1962-12-22', '06753 Veronica Light, Fullershire, AR 46812', 'cchandler@hotmail.com', '1#7wAxgw'),
+('1278170904', 'Steven', 'Victor', 'Wiggins', 'Williams', '1968-03-30', '857 Johnson View, Samanthafort, UT 22360', 'johnmcdaniel@black-paul.net', 'W_E3CJwM'),
+('1266214945', 'Mario', 'Laura', 'Walker', 'Mann', '1963-06-10', 'Unit 6681 Box 5930, DPO AP 56475', 'pearsonchristine@marshall-morales.info', 't)R88J9o'),
+('1578902969', 'Claire', 'Jackson', 'Myers', 'Conner', '1959-05-17', '777 Fox Greens Apt. 399, Nicholsbury, CT 56689', 'wayneprice@yahoo.com', 'I@1zQJHj'),
+('1524623588', 'David', 'Keith', 'Greer', 'Brown', '1989-10-25', '8001 Sean Loop Apt. 003, West Joshua, ID 99386', 'amandaflynn@hotmail.com', 'P@U7BTJd'),
+('1741004700', 'Matthew', 'Kristina', 'Pennington', 'Wagner', '1978-11-01', '5337 Willis Mills, Brandonmouth, UT 65068', 'tanya37@stone-hunt.net', '9$4KsMXm'),
+('1219233745', 'William', 'John', 'Davis', 'Nelson', '2003-11-29', '744 Harris Way Apt. 029, East Pamelatown, MA 36215', 'lewisjacob@chen.com', 'Hn$1ZoEe'),
+('1167312979', 'Amy', 'Suzanne', 'Adams', 'Goodman', '1995-03-31', '7038 Kathryn Island, Gonzalezmouth, NV 91778', 'wliu@bates-boyd.com', 'Y4)6GBxS'),
+('1904600077', 'Erica', 'Richard', 'Woodward', 'Paul', '1964-06-26', '36257 Moore Forges Suite 575, North Michael, UT 97043', 'timothy60@white.info', '9LS+1IdZ'),
+('1973970388', 'Denise', 'Amanda', 'Burke', 'Benson', '2006-04-15', '5696 Mary Wells, Angelatown, KY 05658', 'ymeadows@yahoo.com', '*^7%zKu)'),
+('1517365958', 'Joseph', 'Jennifer', 'Mcmillan', 'Brown', '1965-07-30', '96719 Holland Village, East Wandamouth, MN 24646', 'michael80@hotmail.com', ')XS_9Y8t');
 
 -- --------------------------------------------------------
 
@@ -134,16 +130,16 @@ CREATE TABLE `empleado` (
 
 INSERT INTO `empleado` (`idEmpleado`, `nombre`, `horario`, `sucursal`, `eliminado`, `email`, `contrasena`)
 VALUES
-(1, 'Juan Pérez', '08:00:00', 1, 0, 'juan.perez@example.com', 'password123'), -- Sucursal Centro
-(2, 'María Gómez', '09:00:00', 1, 0, 'maria.gomez@example.com', 'password456'), -- Sucursal Centro
-(3, 'Carlos Rodríguez', '10:00:00', 2, 0, 'carlos.rodriguez@example.com', 'password789'), -- Sucursal Norte
-(4, 'Ana Torres', '08:30:00', 2, 0, 'ana.torres@example.com', 'password101'), -- Sucursal Norte
-(5, 'Luis Martínez', '07:45:00', 4, 0, 'luis.martinez@example.com', 'password202'), -- Sucursal Occidente
-(6, 'Patricia López', '11:00:00', 3, 0, 'patricia.lopez@example.com', 'password303'), -- Sucursal Sur
-(7, 'Jorge Díaz', '08:15:00', 6, 0, 'jorge.diaz@example.com', 'password404'), -- Sucursal Chapinero
-(8, 'Raquel Sánchez', '09:30:00', 6, 0, 'raquel.sanchez@example.com', 'password505'), -- Sucursal Chapinero
-(9, 'Eduardo Jiménez', '07:00:00', 7, 0, 'eduardo.jimenez@example.com', 'password606'), -- Sucursal Teusaquillo
-(10, 'Sofía Fernández', '10:30:00', 10, 0, 'sofia.fernandez@example.com', 'password707'); -- Sucursal Kennedy
+(1, 'Lucas García', '08:00:00', 1, 0, 'lucas.garcia@example.com', 'f7gHk8Pz'), -- Sucursal Centro
+(2, 'Camila Rodríguez', '09:00:00', 1, 0, 'camila.rodriguez@example.com', 'P9yD7wXs'), -- Sucursal Centro
+(3, 'Oscar Martínez', '10:00:00', 2, 0, 'oscar.martinez@example.com', 'x8T9sL1z'), -- Sucursal Norte
+(4, 'Elena García', '08:30:00', 2, 0, 'elena.garcia@example.com', 'rH5oP2mA'), -- Sucursal Norte
+(5, 'Felipe Morales', '07:45:00', 4, 0, 'felipe.morales@example.com', 'Tz9qA4lK'), -- Sucursal Occidente
+(6, 'Verónica Ruiz', '11:00:00', 3, 0, 'veronica.ruiz@example.com', 'N3gS2kZq'), -- Sucursal Sur
+(7, 'Pablo Jiménez', '08:15:00', 6, 0, 'pablo.jimenez@example.com', 'bL5zN8yQ'), -- Sucursal Chapinero
+(8, 'Marta Pérez', '09:30:00', 6, 0, 'marta.perez@example.com', 'D4mHk7xR'), -- Sucursal Chapinero
+(9, 'Ricardo Morales', '07:00:00', 7, 0, 'ricardo.morales@example.com', 'V6eM1wJx'), -- Sucursal Teusaquillo
+(10, 'Isabel Torres', '10:30:00', 10, 0, 'isabel.torres@example.com', 'A3tB9gWu'); -- Sucursal Kennedy
 
 -- --------------------------------------------------------
 
@@ -179,31 +175,31 @@ CREATE TABLE `factura` (
 --
 
 INSERT INTO `factura` (`idFactura`, `impuesto`, `precio`, `fechaCompra`, `estado`, `fechaVencimiento`, `domicilio`, `clienteCedula`) VALUES
-(1, NULL, NULL, NULL, 'PENDIENTE', NULL, NULL, NULL),
-(2, NULL, NULL, NULL, 'PENDIENTE', NULL, NULL, NULL),
-(3, 9500.00, 59500.00, '2024-11-19', 'PENDIENTE', NULL, NULL, '1234567890'),
-(4, 665.00, 4165.00, '2024-11-19', 'PENDIENTE', NULL, NULL, '1234567890'),
-(5, 15200.00, 95200.00, '2024-11-19', 'PENDIENTE', NULL, NULL, '1234567890'),
-(6, 665.00, 4165.00, '2024-11-20', 'PENDIENTE', NULL, NULL, '1234567890'),
-(7, 665.00, 4165.00, '2024-11-20', 'PENDIENTE', NULL, NULL, '1234567890'),
-(8, 665.00, 4165.00, '2024-11-20', 'PENDIENTE', NULL, NULL, '1234567890'),
-(9, 266.00, 1666.00, '2024-11-20', 'PENDIENTE', NULL, NULL, '1234567890'),
-(10, 266.00, 1666.00, '2024-11-20', '', NULL, NULL, '1234567890'),
-(11, 266.00, 1666.00, '2024-11-20', 'PAGADA', NULL, NULL, '1234567890'),
-(12, 266.00, 1666.00, '2024-11-20', 'PAGADA', NULL, NULL, '1234567890'),
-(13, 665.00, 4165.00, '2024-11-20', 'PAGADA', NULL, NULL, '1234567890'),
-(14, 266.00, 1666.00, '2024-11-20', 'PAGADA', NULL, NULL, '1234567890'),
-(15, 266.00, 1666.00, '2024-11-20', 'PAGADA', NULL, NULL, '1234567890'),
-(16, 6650.00, 41650.00, '2024-11-20', 'PAGADA', NULL, NULL, '1234567890'),
-(17, 6650.00, 41650.00, '2024-11-20', 'PAGADA', NULL, NULL, '1234567890'),
-(18, 2850.00, 17850.00, '2024-11-20', 'PAGADA', NULL, NULL, '1234567890'),
-(19, 2850.00, 17850.00, '2024-11-20', 'PAGADA', NULL, NULL, '1234567890'),
-(20, 2850.00, 17850.00, '2024-11-20', 'PAGADA', NULL, NULL, '1234567890'),
-(21, 266.00, 1666.00, '2024-11-20', 'PAGADA', NULL, NULL, '1234567890'),
-(22, 266.00, 1666.00, '2024-11-20', 'PAGADA', NULL, NULL, '1234567890'),
-(23, 4750.00, 29750.00, '2024-11-20', 'PAGADA', NULL, NULL, '1234567890'),
-(24, 4750.00, 29750.00, '2024-11-20', 'PAGADA', NULL, NULL, '1234567890'),
-(25, 3410.50, 21345.50, '2024-11-20', 'PAGADA', NULL, NULL, '1234567890');
+(1, 9500.00, 59500.00, '2024-11-19', 'PENDIENTE', NULL, NULL, '1149349066'),
+(2, 665.00, 4165.00, '2024-11-19', 'PENDIENTE', NULL, NULL, '1278170904'),
+(3, 15200.00, 95200.00, '2024-11-19', 'PENDIENTE', NULL, NULL, '1266214945'),
+(4, 665.00, 4165.00, '2024-11-20', 'PENDIENTE', NULL, NULL, '1578902969'),
+(5, 665.00, 4165.00, '2024-11-20', 'PENDIENTE', NULL, NULL, '1524623588'),
+(6, 665.00, 4165.00, '2024-11-20', 'PENDIENTE', NULL, NULL, '1741004700'),
+(7, 266.00, 1666.00, '2024-11-20', 'PENDIENTE', NULL, NULL, '1219233745'),
+(8, 266.00, 1666.00, '2024-11-20', 'PENDIENTE', NULL, NULL, '1167312979'),
+(9, 266.00, 1666.00, '2024-11-20', 'PENDIENTE', NULL, NULL, '1904600077'),
+(10, 266.00, 1666.00, '2024-11-20', '', NULL, NULL, '1973970388'),
+(11, 266.00, 1666.00, '2024-11-20', 'PAGADA', NULL, NULL, '1517365958'),
+(12, 665.00, 4165.00, '2024-11-20', 'PAGADA', NULL, NULL, '1149349066'),
+(13, 6650.00, 41650.00, '2024-11-20', 'PAGADA', NULL, NULL, '1278170904'),
+(14, 2850.00, 17850.00, '2024-11-20', 'PAGADA', NULL, NULL, '1266214945'),
+(15, 2850.00, 17850.00, '2024-11-20', 'PAGADA', NULL, NULL, '1578902969'),
+(16, 2850.00, 17850.00, '2024-11-20', 'PAGADA', NULL, NULL, '1524623588'),
+(17, 266.00, 1666.00, '2024-11-20', 'PAGADA', NULL, NULL, '1741004700'),
+(18, 266.00, 1666.00, '2024-11-20', 'PAGADA', NULL, NULL, '1219233745'),
+(19, 4750.00, 29750.00, '2024-11-20', 'PAGADA', NULL, NULL, '1167312979'),
+(20, 4750.00, 29750.00, '2024-11-20', 'PAGADA', NULL, NULL, '1904600077'),
+(21, 3410.50, 21345.50, '2024-11-20', 'PAGADA', NULL, NULL, '1973970388'),
+(22, 9500.00, 59500.00, '2024-11-21', 'PENDIENTE', NULL, NULL, '1517365958'),
+(23, 665.00, 4165.00, '2024-11-21', 'PENDIENTE', NULL, NULL, '1149349066'),
+(24, 15200.00, 95200.00, '2024-11-21', 'PENDIENTE', NULL, NULL, '1278170904'),
+(25, 665.00, 4165.00, '2024-11-21', 'PENDIENTE', NULL, NULL, '1266214945');
 
 -- --------------------------------------------------------
 
@@ -541,19 +537,18 @@ CREATE TABLE `proveedor` (
 -- Volcado de datos para la tabla `proveedor`
 --
 
-INSERT INTO `proveedor` (`idProveedor`, `nombre`, `email`,`eliminado`)
+INSERT INTO `proveedor` (`idProveedor`, `nombre`, `email`, `eliminado`)
 VALUES
-(1, 'Proveedor A', 'proveedorA@example.com',0),
-(2, 'Proveedor B', 'proveedorB@example.com',0),
-(3, 'Proveedor C', 'proveedorC@example.com',0),
-(4, 'Proveedor D', 'proveedorD@example.com',0),
-(5, 'Proveedor E', 'proveedorE@example.com',0),
-(6, 'Proveedor F', 'proveedorF@example.com',0),
-(7, 'Proveedor G', 'proveedorG@example.com',0),
-(8, 'Proveedor H', 'proveedorH@example.com',0),
-(9, 'Proveedor I', 'proveedorI@example.com',0),
-(10, 'Proveedor J', 'proveedorJ@example.com',0);
-
+(1, 'Laboratorios Farma', 'contacto@laboratoriosfarma.com', 0),  -- Medicamentos
+(2, 'Cosméticos Bella', 'ventas@cosmeticobella.com', 0),  -- Cosméticos
+(3, 'Higiene Total', 'info@higienetotal.com', 0),  -- Higiene Personal
+(4, 'Medicamentos del Sol', 'atencion@medicamentosdelsol.com', 0),  -- Medicamentos
+(5, 'Cosméticos y Belleza', 'soporte@cosmeticosybelleza.com', 0),  -- Cosméticos
+(6, 'Salud y Bienestar', 'contacto@saludybienestar.com', 0),  -- Medicamentos
+(7, 'Higiene Premium', 'atencion@higienepremium.com', 0),  -- Higiene Personal
+(8, 'Estética Natural', 'ventas@esteticanatural.com', 0),  -- Cosméticos
+(9, 'Farmacias Omega', 'contacto@farmaciasomega.com', 0),  -- Medicamentos
+(10, 'Cuidado Personal Avanzado', 'servicioalcliente@cuidadoavanzado.com', 0);  -- Higiene Personal
 -- --------------------------------------------------------
 
 --
@@ -611,18 +606,17 @@ CREATE TABLE `subsidio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-INSERT INTO `subsidio` (`idSubsidio`,`monto`, `fecha`, `cedula`, `idFactura`, `tipoSubsidio`) VALUES
-(1,3000, '2024-11-20', '1234567890', 1, 1),  -- Carlos Pérez, subsidio de transporte
-(2,15000, '2024-11-21', '2345678901', 2, 2), -- María Gómez, subsidio de alimentación
-(3,5000, '2024-11-22', '3456789012', 3, 3),  -- Luis Rodríguez, subsidio de vivienda
-(4,10000, '2024-11-23', '4567890123', 4, 4), -- Ana Torres, subsidio educativo
-(5,7000, '2024-11-24', '5678901234', 5, 5),  -- José Martínez, subsidio de salud
-(6,3500, '2024-11-25', '6789012345', 6, 6),  -- Patricia González, subsidio familiar
-(7,2000, '2024-11-26', '7890123456', 7, 1),  -- Juan López, subsidio de transporte
-(8,88000, '2024-11-27', '8901234567', 8, 2),  -- Raquel Martínez, subsidio de alimentación
-(9,12000, '2024-11-28', '9012345678', 9, 3), -- Eduardo Jiménez, subsidio de vivienda
-(10,5000, '2024-11-29', '0123456789', 10, 4); -- Sofía Fernández, subsidio educativo
-
+INSERT INTO `subsidio` (`idSubsidio`, `monto`, `fecha`, `cedula`, `idFactura`, `tipoSubsidio`) VALUES
+(1, 3000, '2024-11-20', '1149349066', 1, 1),  -- Joseph Perez, subsidio de transporte
+(2, 15000, '2024-11-21', '1278170904', 2, 2),  -- Steven Wiggins, subsidio de alimentación
+(3, 5000, '2024-11-22', '1266214945', 3, 3),  -- Mario Walker, subsidio de vivienda
+(4, 10000, '2024-11-23', '1578902969', 4, 4),  -- Claire Myers, subsidio educativo
+(5, 7000, '2024-11-24', '1524623588', 5, 5),  -- David Greer, subsidio de salud
+(6, 3500, '2024-11-25', '1741004700', 6, 6),  -- Matthew Pennington, subsidio familiar
+(7, 2000, '2024-11-26', '1219233745', 7, 1),  -- William Davis, subsidio de transporte
+(8, 88000, '2024-11-27', '1167312979', 8, 2),  -- Amy Adams, subsidio de alimentación
+(9, 12000, '2024-11-28', '1904600077', 9, 3),  -- Erica Woodward, subsidio de vivienda
+(10, 5000, '2024-11-29', '1973970388', 10, 4);  -- Denise Burke, subsidio educativo
 
 
 -- --------------------------------------------------------
@@ -773,35 +767,32 @@ CREATE TABLE `venta` (
 --
 -- Volcado de datos para la tabla `venta`
 --
-
 INSERT INTO `venta` (`idVenta`, `descuento`, `metodoPago`, `idFactura`, `cedula`) VALUES
-(3, 0, 1, 1, '1234567890'),
-(4, 0, 1, 2, '1234567890'),
-(5, 0, 1, 3, '1234567890'),
-(6, 0, 1, 4, '1234567890'),
-(7, 0, 2, 5, '1234567890'),
-(8, 0, 1, 6, '1234567890'),
-(9, 0, 1, 7, '1234567890'),
-(10, 0, 1, 8, '1234567890'),
-(11, 0, 1, 9, '1234567890'),
-(12, 0, 1, 10, '1234567890'),
-(13, 0, 1, 11, '1234567890'),
-(14, 0, 1, 12, '1234567890'),
-(15, 0, 1, 13, '1234567890'),
-(16, 0, 1, 14, '1234567890'),
-(17, 0, 1, 15, '1234567890'),
-(18, 0, 1, 16, '1234567890'),
-(19, 0, 1, 17, '1234567890'),
-(20, 0, 1, 18, '1234567890'),
-(21, 0, 1, 19, '1234567890'),
-(22, 0, 1, 20, '1234567890'),
-(23, 0, 1, 21, '1234567890'),
-(24, 0, 1, 22, '1234567890'),
-(25, 0, 1, 23, '1234567890'),
-(26, 0, 1, 24, '1234567890'),
-(27, 15, 1, 25, '1234567890');
-
---
+(3, 0, 1, 1, '1149349066'),  -- Joseph Perez
+(4, 0, 1, 2, '1278170904'),  -- Steven Wiggins
+(5, 0, 1, 3, '1266214945'),  -- Mario Walker
+(6, 0, 1, 4, '1578902969'),  -- Claire Myers
+(7, 0, 2, 5, '1524623588'),  -- David Greer
+(8, 0, 1, 6, '1741004700'),  -- Matthew Pennington
+(9, 0, 1, 7, '1219233745'),  -- William Davis
+(10, 0, 1, 8, '1167312979'), -- Amy Adams
+(11, 0, 1, 9, '1904600077'), -- Erica Woodward
+(12, 0, 1, 10, '1973970388'), -- Denise Burke
+(13, 0, 1, 11, '1517365958'), -- Joseph Mcmillan
+(14, 0, 1, 12, '1524623588'), -- David Greer
+(15, 0, 1, 13, '1266214945'), -- Mario Walker
+(16, 0, 1, 14, '1741004700'), -- Matthew Pennington
+(17, 0, 1, 15, '1904600077'), -- Erica Woodward
+(18, 0, 1, 16, '1167312979'), -- Amy Adams
+(19, 0, 1, 17, '1524623588'), -- David Greer
+(20, 0, 1, 18, '1973970388'), -- Denise Burke
+(21, 0, 1, 19, '1741004700'), -- Matthew Pennington
+(22, 0, 1, 20, '1904600077'), -- Erica Woodward
+(23, 0, 1, 21, '1149349066'),  -- Joseph Perez
+(24, 0, 1, 22, '1278170904'),  -- Steven Wiggins
+(25, 0, 1, 23, '1266214945'),  -- Mario Walker
+(26, 0, 1, 24, '1578902969'),  -- Claire Myers
+(27, 15, 1, 25, '1524623588');  -- David Greer (con descuento)
 -- Índices para tablas volcadas
 --
 

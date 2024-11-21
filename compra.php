@@ -106,8 +106,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1 class="text-center">Comprar <?= htmlspecialchars($producto['nombre']); ?></h1>
         <form method="POST" class="formulario-compra">
             <label>Precio: <?= number_format($producto['precio'], 2); ?> COP</label><br>
-            <label>Descuento:</label>
-            <input type="number" name="descuento" step="0.01" min="0" value="0"><br>
             <label>Método de pago:</label>
             <select name="metodoPago">
                 <option value="1">Efectivo</option>
