@@ -41,6 +41,8 @@ $result = $conn->query($sql);
         .container { max-width: 1000px; margin: 0 auto; padding: 20px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); background: white; }
         h1 { text-align: center; color: #333; }
         .download-btn { display: block; margin: 20px auto; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; font-size: 16px; }
+        button { background-color: #007bff; color: white; padding: 10px 20px; font-size: 14px; border: none; cursor: pointer; border-radius: 5px; transition: background-color 0.3s ease; margin-top: 20px; display: inline-block; }
+        button:hover { background-color: #0056b3; }
     </style>
 </head>
 <body>
@@ -81,6 +83,7 @@ $result = $conn->query($sql);
         <?php else: ?>
             <p>No hay datos disponibles.</p>
         <?php endif; ?>
+        <button onclick="window.location.href='reportes.php';">Volver al Menu</button>
     </div>
 
     <script>
