@@ -117,8 +117,6 @@ $conn->close();
             window.location.href = window.location.pathname;
         }
     </script>
-
-    <button onclick="window.location.href='estadisticasStock.php';">Ver Gráfica de Stock</button>
     <button onclick="recargarDatos()">
     <i class="fas fa-sync-alt"></i> Recargar Datos
 </button>
