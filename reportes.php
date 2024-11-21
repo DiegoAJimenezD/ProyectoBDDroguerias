@@ -33,6 +33,7 @@
     </style>
 </head>
 <body>
+
     <header class="header">
         <h1>Generar Reportes</h1>
         <nav>
@@ -46,97 +47,169 @@
         </nav>
     </header>
 
-    <!-- Tabla de reportes -->
-    <table>
-        <thead>
-            <tr>
-                <th>Descripción</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Reporte de Productos</td>
-                <td>
-                    <button onclick="generarReporte('productos')">
-                        <i class="fas fa-file-alt"></i> Generar Reporte
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>Reporte de Proveedores</td>
-                <td>
-                    <button onclick="generarReporte('proveedores')">
-                        <i class="fas fa-file-alt"></i> Generar Reporte
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>Reporte de Inventario</td>
-                <td>
-                    <button onclick="generarReporte('inventario')">
-                        <i class="fas fa-file-alt"></i> Generar Reporte
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>Reporte de Proveedores</td>
-                <td>
-                    <button onclick="generarReporte('proveedores')">
-                        <i class="fas fa-file-alt"></i> Generar Reporte
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>Reporte de Proveedores</td>
-                <td>
-                    <button onclick="generarReporte('proveedores')">
-                        <i class="fas fa-file-alt"></i> Generar Reporte
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>Reporte de Proveedores</td>
-                <td>
-                    <button onclick="generarReporte('proveedores')">
-                        <i class="fas fa-file-alt"></i> Generar Reporte
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>Reporte de Proveedores</td>
-                <td>
-                    <button onclick="generarReporte('proveedores')">
-                        <i class="fas fa-file-alt"></i> Generar Reporte
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>Reporte de Proveedores</td>
-                <td>
-                    <button onclick="generarReporte('proveedores')">
-                        <i class="fas fa-file-alt"></i> Generar Reporte
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>Reporte de Proveedores</td>
-                <td>
-                    <button onclick="generarReporte('proveedores')">
-                        <i class="fas fa-file-alt"></i> Generar Reporte
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>Reporte de Proveedores</td>
-                <td>
-                    <button onclick="generarReporte('proveedores')">
-                        <i class="fas fa-file-alt"></i> Generar Reporte
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <!-- Estilo CSS para centrar el título -->
+<style>
+    h2 {
+        text-align: center;
+    }
+</style>
+
+<!-- Título de la tabla -->
+<h2>Consulta Faciles</h2>
+
+<!-- Tabla de reportes -->
+<table>
+    <thead>
+        <tr>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Estado Factura</td>
+            <td>
+               <button onclick="window.location.href='inventarioLowStock.php';">
+            <i class="fas fa-file-alt"></i> Generar Reporte
+            </button>
+            </td>
+        </tr>
+        <tr>
+            <td>Reporte Poco Stock</td>
+            <td>
+            <button onclick="window.location.href='inventarioLowStock.php';">
+            <i class="fas fa-file-alt"></i> Generar Reporte
+            </button>
+            </td>
+        </tr>
+        <tr>
+            <td>Reporte de Inventario</td>
+            <td>
+                <button onclick="generarReporte('inventario')">
+                    <i class="fas fa-file-alt"></i> Generar Reporte
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>Reporte de Proveedores</td>
+            <td>
+                <button onclick="generarReporte('proveedores')">
+                    <i class="fas fa-file-alt"></i> Generar Reporte
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+  <!-- Estilo CSS para centrar el título -->
+<style>
+    h2 {
+        text-align: center;
+    }
+</style>
+
+<!-- Título de la tabla -->
+<h2>Consulta Intermedias</h2>
+
+<!-- Tabla de reportes -->
+<table>
+    <thead>
+        <tr>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Estado Factura</td>
+            <td>
+               <button onclick="window.location.href='inventarioLowStock.php';">
+            <i class="fas fa-file-alt"></i> Generar Reporte
+            </button>
+            </td>
+        </tr>
+        <tr>
+            <td>Reporte Poco Stock</td>
+            <td>
+            <button onclick="window.location.href='inventarioLowStock.php';">
+            <i class="fas fa-file-alt"></i> Generar Reporte
+            </button>
+            </td>
+        </tr>
+        <tr>
+            <td>Reporte de Inventario</td>
+            <td>
+                <button onclick="generarReporte('inventario')">
+                    <i class="fas fa-file-alt"></i> Generar Reporte
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>Reporte de Proveedores</td>
+            <td>
+                <button onclick="generarReporte('proveedores')">
+                    <i class="fas fa-file-alt"></i> Generar Reporte
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+   <!-- Estilo CSS para centrar el título -->
+<style>
+    h2 {
+        text-align: center;
+    }
+</style>
+
+<!-- Título de la tabla -->
+<h2>Consulta Avanzadas</h2>
+
+<!-- Tabla de reportes -->
+<table>
+    <thead>
+        <tr>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Estado Factura</td>
+            <td>
+               <button onclick="window.location.href='inventarioLowStock.php';">
+            <i class="fas fa-file-alt"></i> Generar Reporte
+            </button>
+            </td>
+        </tr>
+        <tr>
+            <td>Reporte Poco Stock</td>
+            <td>
+            <button onclick="window.location.href='inventarioLowStock.php';">
+            <i class="fas fa-file-alt"></i> Generar Reporte
+            </button>
+            </td>
+        </tr>
+        <tr>
+            <td>Reporte de Inventario</td>
+            <td>
+                <button onclick="generarReporte('inventario')">
+                    <i class="fas fa-file-alt"></i> Generar Reporte
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>Reporte de Proveedores</td>
+            <td>
+                <button onclick="generarReporte('proveedores')">
+                    <i class="fas fa-file-alt"></i> Generar Reporte
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
     <script>
         function generarReporte(tipo) {

@@ -286,30 +286,31 @@ CREATE TABLE `inventario` (
   `idInventario` int(11) NOT NULL,
   `cantidadStock` int(11) NOT NULL,
   `fecha` date DEFAULT NULL,
-  `idProducto` int(11) NOT NULL
+  `idProducto` int(11) NOT NULL,
+  `eliminado` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `inventario`
 --
 
-INSERT INTO `inventario` (`idInventario`, `cantidadStock`, `fecha`, `idProducto`) VALUES
-(1, 45, '2024-11-17', 1),
-(2, 27, '2024-11-17', 2),
-(3, 20, '2024-11-17', 9),
-(4, 92, '2024-11-17', 10),
-(5, 48, '2024-11-17', 11),
-(7, 48, '2024-11-17', 11),
-(8, 73, '2024-11-17', 12),
-(9, 40, '2024-11-17', 13),
-(10, 30, '2024-11-17', 14),
-(11, 60, '2024-11-17', 15),
-(12, 45, '2024-11-17', 16),
-(13, 50, '2024-11-17', 17),
-(14, 34, '2024-11-17', 18),
-(15, 25, '2024-11-17', 19),
-(16, 20, '2024-11-17', 20),
-(17, 99, '2024-11-20', 21);
+INSERT INTO `inventario` (`idInventario`, `cantidadStock`, `fecha`, `idProducto`,`eliminado`) VALUES
+(1, 7, '2024-11-17', 1,0),
+(2, 8, '2024-11-17', 2,0),
+(3, 9, '2024-11-17', 9,0),
+(4, 5, '2024-11-17', 10,0),
+(5, 3, '2024-11-17', 11,0),
+(7, 2, '2024-11-17', 11,0),
+(8, 73, '2024-11-17', 12,0),
+(9, 40, '2024-11-17', 13,0),
+(10, 30, '2024-11-17', 14,0),
+(11, 60, '2024-11-17', 15,0),
+(12, 45, '2024-11-17', 16,0),
+(13, 50, '2024-11-17', 17,0),
+(14, 34, '2024-11-17', 18,0),
+(15, 25, '2024-11-17', 19,0),
+(16, 20, '2024-11-17', 20,0),
+(17, 99, '2024-11-20', 21,0);
 
 -- --------------------------------------------------------
 
@@ -531,25 +532,26 @@ INSERT INTO `productoproveedor` (`idProducto`, `idProveedor`, `costo`) VALUES
 CREATE TABLE `proveedor` (
   `idProveedor` int(11) NOT NULL,
   `nombre` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL
+  `email` varchar(255) NOT NULL,
+  `eliminado` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `proveedor`
 --
 
-INSERT INTO `proveedor` (`idProveedor`, `nombre`, `email`)
+INSERT INTO `proveedor` (`idProveedor`, `nombre`, `email`,`eliminado`)
 VALUES
-(1, 'Proveedor A', 'proveedorA@example.com'),
-(2, 'Proveedor B', 'proveedorB@example.com'),
-(3, 'Proveedor C', 'proveedorC@example.com'),
-(4, 'Proveedor D', 'proveedorD@example.com'),
-(5, 'Proveedor E', 'proveedorE@example.com'),
-(6, 'Proveedor F', 'proveedorF@example.com'),
-(7, 'Proveedor G', 'proveedorG@example.com'),
-(8, 'Proveedor H', 'proveedorH@example.com'),
-(9, 'Proveedor I', 'proveedorI@example.com'),
-(10, 'Proveedor J', 'proveedorJ@example.com');
+(1, 'Proveedor A', 'proveedorA@example.com',0),
+(2, 'Proveedor B', 'proveedorB@example.com',0),
+(3, 'Proveedor C', 'proveedorC@example.com',0),
+(4, 'Proveedor D', 'proveedorD@example.com',0),
+(5, 'Proveedor E', 'proveedorE@example.com',0),
+(6, 'Proveedor F', 'proveedorF@example.com',0),
+(7, 'Proveedor G', 'proveedorG@example.com',0),
+(8, 'Proveedor H', 'proveedorH@example.com',0),
+(9, 'Proveedor I', 'proveedorI@example.com',0),
+(10, 'Proveedor J', 'proveedorJ@example.com',0);
 
 -- --------------------------------------------------------
 
@@ -813,6 +815,11 @@ ALTER TABLE `cajero`
 --
 ALTER TABLE `categoriaproducto`
   ADD PRIMARY KEY (`idCategoria`);
+
+
+
+ALTER TABLE 'productofactura'
+ADD COLUMN cantidad INT NOT NULL DEFAULT 1;  -- Agrega la columna cantidad
 
 --
 -- Indices de la tabla `certificado`

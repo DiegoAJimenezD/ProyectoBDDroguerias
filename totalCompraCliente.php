@@ -14,13 +14,19 @@ if ($conn->connect_error) {
 }
 
 // Consulta SQL para obtener las compras por cliente
-$sql = "SELECT c.nombre AS clienteNombre, f.fecha, SUM(df.cantidad * df.precio) AS totalCompra
-        FROM factura f
-        JOIN cliente c ON f.idCliente = c.idCliente
-        JOIN detalle_factura df ON f.idFactura = df.idFactura
-        WHERE f.estado = 'PAGADA'
-        GROUP BY c.idCliente, f.idFactura
-        ORDER BY c.nombre, f.fecha";
+$sql = "SELECT 
+    CONCAT(c.primernombre, ' ', c.segundonombre, ' ', c.primerApellido, ' ', c.segundoApellido) AS clienteNombre, 
+    f.fechaCompra AS fecha, 
+    SUM(p.precio * pf.cantidad) AS totalCompra
+FROM factura f
+JOIN facturaventa fv ON f.idFactura = fv.idFactura
+JOIN venta v ON fv.idVenta = v.idVenta
+JOIN cliente c ON v.idCliente = c.cedula  -- Relacionamos por c.cedula
+JOIN productofactura pf ON f.idFactura = pf.idFactura
+JOIN producto p ON pf.idProducto = p.idProducto
+WHERE f.estado = 'PAGADA'
+GROUP BY c.cedula, f.idFactura
+ORDER BY c.primernombre, c.primerApellido, f.fechaCompra";
 $result = $conn->query($sql);
 
 // Verificar si la consulta devuelve resultados
