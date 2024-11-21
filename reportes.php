@@ -69,7 +69,7 @@
         <tr>
             <td>Reporte Estado Factura</td>
             <td>
-               <button onclick="window.location.href='estadosFacturas.php';">
+            <button onclick="window.location.href='estadosFacturas.php';">
             <i class="fas fa-file-alt"></i> Generar Reporte
             </button>
             </td>
@@ -78,7 +78,7 @@
          <tr>
             <td>Reporte Pedido Pendiente Proveedor</td>
             <td>
-               <button onclick="window.location.href='pedidosPendientesProveedor.php';">
+            <button onclick="window.location.href='pedidosPendientesProveedor.php';">
             <i class="fas fa-file-alt"></i> Generar Reporte
             </button>
             </td>
