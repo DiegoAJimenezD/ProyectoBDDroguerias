@@ -121,7 +121,7 @@ $result = $conn->query($sql);
 </head>
 <body>
     <div class="container">
-        <h1>Reporte de Ventas por Producto</h1>
+        <h1> Reporte de productos con ventas superiores al promedio de su categoría</h1>
 
         <!-- Botón para regresar -->
         <button onclick="window.location.href='reportes.php';">Volver a Productos</button>

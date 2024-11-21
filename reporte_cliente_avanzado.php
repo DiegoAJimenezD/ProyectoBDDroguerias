@@ -117,7 +117,7 @@ $result = $conn->query($sql);
 </head>
 <body>
     <div class="container">
-        <h1>Reporte de Clientes con Gastos Altos</h1>
+        <h1>Reporte de clientes con compras mayor al promedio</h1>
 
         <!-- Botón para regresar -->
         <button onclick="window.location.href='reportes.php';">Volver a Productos</button>
