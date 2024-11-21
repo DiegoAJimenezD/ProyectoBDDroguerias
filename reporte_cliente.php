@@ -98,8 +98,9 @@ $result = $conn->query($sql);
 </head>
 <body>
     <div class="container">
-        <h1>Reporte de Clientes y Productos Comprados</h1>
-        
+        <h1>Clientes con mayor cantidad de compras</h1>
+        <p>Muestra los clientes que más han comprado, la cantidad total de productos adquiridos y el monto total gastado.</p>
+ 
         <!-- Botón para regresar -->
         <button onclick="window.location.href='reportes.php';">Volver</button>
         

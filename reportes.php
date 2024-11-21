@@ -123,14 +123,14 @@
     </thead>
     <tbody>
     
-    <td>Reporte de Clientes</td>
+    <td>Reporte de clientes con mayor cantidad de compras</td>
                 <td>
                     <button onclick="window.location.href='reporte_cliente.php'">
                         <i class="fas fa-file-alt"></i> Generar Reporte
                      </button>
                 </td>
         <tr>
-            <td>Reporte productosPendientes</td>
+            <td>Reporte Productos Más Vendidos por Categoría</td>
             <td>
             <button onclick="window.location.href='productosCategoriaEstadistica.php';">
             <i class="fas fa-file-alt"></i> Generar Reporte
@@ -146,7 +146,7 @@
                 </td>
         </tr>
        
-        <td>Reporte de Proveedores</td>
+        <td>Reporte de Proveedores y Productos</td>
                 <td>
                     <button onclick="window.location.href='reporte_proveedores.php'">
                         <i class="fas fa-file-alt"></i> Generar Reporte
@@ -176,7 +176,7 @@
     </thead>
     <tbody>
         <tr>
-            <td>Reporte de cliente con compra mayor al promedio</td>
+            <td>Reporte de clientes con compras mayor al promedio</td>
                 <td>
                     <button onclick="window.location.href='reporte_cliente_avanzado.php'">
                         <i class="fas fa-file-alt"></i> Generar Reporte
